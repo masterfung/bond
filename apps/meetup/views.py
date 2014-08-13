@@ -11,26 +11,11 @@ from models import TopicEvent
 from apps.meetup.serializer import TopicEventSerializer
 
 # from .permissions import IsOwnerOrReadOnly
-
 from haystack.query import SearchQuerySet
 from settings import local
 
 from tasks import hello_world
 from django.views.generic import TemplateView
-
-
-class IndexView(TemplateView):
-	template_name = 'events/events.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(IndexView, self).get_context_data(**kwargs)
-		hello_world()
-		return context
-
-
-class EventMixin(object):
-	queryset = TopicEvent.objects.all()
-	serializer_class = TopicEventSerializer(queryset)
 
 
 # permission_classes = (IsOwnerOrReadOnly,)
@@ -51,6 +36,12 @@ class EventMixin(object):
 
 
 MEETUP_API_KEY = local.MEETUP_API_KEY
+
+
+
+ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
+AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
+REDIRECT_URI = 'bondandme.com'
 
 
 @login_required
@@ -176,6 +167,21 @@ def search_titles(request):
 	topic_event = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
 
 	return render_to_response('events/events.html', {'topic_event': topic_event})
+
+
+class IndexView(TemplateView):
+	template_name = 'events/events.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(IndexView, self).get_context_data(**kwargs)
+		hello_world()
+		return context
+
+
+class EventMixin(object):
+	queryset = TopicEvent.objects.all()
+	serializer_class = TopicEventSerializer(queryset)
+
 
 # @api_view(['GET', 'POST'])
 # def event_list(request):
