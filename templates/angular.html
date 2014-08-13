@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+	<script src="{% static "js/angular.js" %}"></script>
+	<script src="{% static "js/angular-resource.js" %}"></script>
+    <script src="{% static "js/angular-route.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+
+    <script src="{% static "js/controllers/indexController.js" %}"></script>
+    <script src="{% static "js/controllers/startSurveyController.js" %}"></script>
+
+{% endblock head %}
+
+{% block content %}
+	<div class="spacing-buffer"></div>
+	<div class="container">
+		<div class="row">
+			<div ng-app="surveyApp">
+				<a href="#/survey">Survey Page</a>
+		           <ng-view class="appSection">
+
+
+		           </ng-view>
+		    </div>
+		</div>
+	</div>
+{% endblock content %}

@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load djangular_tags %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block message %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center title-heading-style">Welcome
+        {% if user.first_name == '' %}
+	        Awesome Individual!
+        {% else %}
+	        {{ user.first_name }}
+        !{% endif %}
+        </h1>
+		<button class="btn btn-primary btn-large setting-btn pull-right">
+			<i class="fa fa-cogs"></i>  Settings
+		</button>
+        <p class="text-center">Your current time: <br/> {% now "jS F Y H:i" %}</p>
+        <div class="spacing-buffer"></div>
+    </div>
+</div>
+{% endblock message %}
+
+{% block content %}
+<div class="container table-bordered">
+	<div class="row buffer">
+		<div class="col-lg-6 col-offset-3">
+	        <h2 class="getting-started text-center">Getting Started</h2>
+			<p class="text-center">In order to make the best event personalization, please start the quest below.</p>
+			<a href="/a/#/getting-started" class="start-btn btn btn-large btn-primary">Start the Quest</a>
+
+	    </div>
+
+	</div>
+
+</div>
+
+<div class="toggle-settings">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-offset-3">
+	        <h2 class="text-center">Event Preferences & Notifications</h2>
+			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Change Notifications</button>
+			<button class="btn btn-primary btn-large text-btn" data-target="#events-btn" data-toggle="modal">Change Events Preference</button>
+	    </div>
+
+	</div>
+	<div class="spacing-buffer"></div>
+	<div class="row">
+		<h4 class="pull-left spacing-right">Current City: <p class="userCity text-center">{{ user.city }}</p></h4>
+		<h4 class="pull-left spacing-right">Event Proximity: <p class="userCity text-center"><5.0 miles</p></h4>
+		<h4 class="pull-left spacing-right">Frequency of Notification: <p class="userCity text-center">3 times/wk</p></h4>
+		<h4 class="pull-left spacing-right">Event Share: <p class="userCity text-center">Friends (In-Network) Only</p></h4>
+		<h4 class="pull-right">Preferred Mode of Communication: <p class="userCity text-center">Email</p></h4>
+	</div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block content_two %}
+<div class="spacing-buffer"></div>
+<div class="container">
+    <div class="row">
+
+		<h2 class="text-center">Interest</h2>
+        <ul>
+            {% for interest in interests %}
+                <a class="userChoice btn btn-default" href="#">{{ interest.name }}</a>
+
+            {% endfor %}
+        </ul>
+        <div class="spacing-buffer"></div>
+
+        <!-- Button trigger modal -->
+		<div class="centering-box">
+			<div class="row">
+				<button class="btn btn-primary btn-lg spacing-right" data-toggle="modal" data-target="#addNewInterest">
+					Add New Interest
+				</button>
+		        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteNewInterest">
+					Delete An Interest
+				</button>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="addNewInterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <form method="post">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Add New Interest</h4>
+		      </div>
+		      <div class="modal-body">
+	                {% csrf_token %}
+	                {{ interest_form.as_p }}
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <input type="submit" value="Add New Interest" class="btn btn-primary" name="interest">
+		      </div>
+			    </form>
+		    </div>
+		  </div>
+		</div>
+
+        <div class="modal fade" id="deleteNewInterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Delete Interest</h4>
+			    <p>Click on an interest to delete.</p>
+		      </div>
+		      <div class="modal-body">
+
+					{% for interest in interests %}
+	                        <a class="userChoice btn btn-default" href="{% url 'delete_interest' interest.id %}">{{ interest.name }}</a>
+                    {% endfor %}
+
+		      </div>
+
+		    </div>
+		  </div>
+		</div>
+
+        <div class="modal fade" id="notification-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			<form method="post">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Change Notifications</h4>
+		      </div>
+		      <div class="modal-body">
+
+				{% csrf_token %}
+
+		        {{ notification_form.as_p }}
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <input type="submit" value="Update Notification" class="btn btn-primary" name="notification">
+
+		      </div>
+			</form>
+		    </div>
+		  </div>
+		</div>
+
+	    <div class="modal fade" id="events-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			<form method="post">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Change Event Personalization</h4>
+		      </div>
+		      <div class="modal-body">
+
+				{% csrf_token %}
+			    {{ event.as_p }}
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <input type="submit" value="Submit Preferences" class="btn btn-primary" name="event">
+		      </div>
+			</form>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Modal Ends-->
+
+        <div class="eventListings">
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock content_two %}
+
+
+{#{% url "view_interest" interest.id %}#}

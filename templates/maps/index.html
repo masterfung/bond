@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block head %}
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBieYQyO_tQHoe2MEmIJCyNFWi9G5cPdyk">
+    </script>
+{#    <script src="{% static 'js/jquery.js' %}"></script>#}
+    <script type="text/javascript" src="{% static "js/maps.js" %}"></script>
+{% endblock head %}
+
+
+{% block title %}
+Event Mapping
+{% endblock title %}
+
+{% block content %}
+<div class="spacing-buffer"></div>
+
+
+    <div class="container">
+        <div class="row">
+            <input type="text" id="inputTextAddress" style=" width:200px" title="Address to Geocode" />
+
+            <button class="maps">Search</button>
+            <div class="spacing-buffer"></div>
+        </div>
+    </div>
+    <div id="map-canvas"></div>
+{% endblock content %}

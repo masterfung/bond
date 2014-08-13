@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}
+Events
+{% endblock title %}
+
+{% block head %}
+    <script src=""></script>
+{% endblock head %}
+
+{% block first %}
+    <h1 class="text-center">Events</h1>
+	<p class="text-center">Search for an interest:</p>
+{% endblock first %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h3>Search</h3>
+
+	        <form action="POST">
+				{% csrf_token %}
+				<input type="text" id="search" class="btn btn-default" name="search" />
+	        </form>
+            <div class="events">
+				{% for event in topic_event %}
+					<li><a href="{{ topic_event.object.get_absolute_url }}">{{ topic_event.object.event_name }}</a></li>
+	            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

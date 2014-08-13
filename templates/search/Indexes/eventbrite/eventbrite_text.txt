@@ -1,0 +1,3 @@
+{{object.event_title}}
+{{object.event_url}}
+{{object.description}}

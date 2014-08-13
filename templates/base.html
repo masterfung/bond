@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Event curation through user interests.">
+<link rel="icon" type="image/png" href="#" />
+<link rel="author" href="http://www.bondandme.com" />
+<link rel="publisher" href="http://www.bondandme.com"/>
+<meta name="geo.region" content="US-CA" />
+<meta name="geo.placename" content="San Francisco" />
+
+<title>{% block title %}{% endblock title %}</title>
+
+<!-- Custom CSS -->
+<link href="{% static 'stylesheets/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static 'stylesheets/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'stylesheets/carousel.css' %}" rel="stylesheet">
+<link href="{% static 'stylesheets/custom.css' %}" rel="stylesheet">
+
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+<script type="text/javascript">
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
+    }
+</script>
+
+{% block head %}
+
+{% endblock head %}
+</head>
+
+<body id="home">
+
+{% include 'navbar.html' %}
+<div class="spacing-buffer"></div>
+<div class="header-image">
+
+	{% block headline %}
+
+    {% endblock headline %}
+
+</div><!-- /header-image -->
+
+
+
+	<!-- START THE FEATURETTES -->
+	{% block carousel %}
+
+    {% endblock carousel %}
+
+    {% block message %}
+
+    {% endblock message %}
+
+	{% block content %}
+
+    {% endblock content %}
+
+    {% block content_two %}
+
+    {% endblock content_two %}
+
+
+    {% block end_script %}
+
+
+    {% endblock end_script %}
+
+
+	<!-- /END THE FEATURETTES -->
+
+	<!-- FOOTER -->
+    <div class="footer">
+        <div class="container">
+            {% include 'footer.html' %}
+        </div>
+    </div>
+    <!-- /END OF FOOTER -->
+
+
+
+<!-- javascript -->
+{#<script src="{% static 'js/jquery.js' %}"></script>#}
+
+
+<!-- Custom SCRIPT -->
+{% block script %}
+
+{% endblock script %}
+
+
+<script>
+{#add google analytics here#}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+//VARIABLES
+
+$lightBlue: #60B2D2
+$secondBlue: #3CA2C8
+$middleBlue: #1C96C4
+$mainBlue: #058DC1
+$darkBlue: #04678D
+
+@font-face
+  font-family: 'ProximaNovaCond-Regular'
+  font-weight: regular
+  src: url('/static/fonts/ProximaNovaCond-Regular.otf')
+
+@font-face
+  font-family: 'ProximaNovaCond-Bold'
+  font-weight: bold
+  src: url('/static/fonts/ProximaNovaCond-Semibold.otf')
+
+@font-face
+  font-family: 'Glyphicons Halflings'
+  src: url('/static/fonts/glyphicons-halflings-regular.eot')
+  src: url('/static/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/static/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/static/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/static/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg')
+
+
+html
+  position: relative
+  min-height: 100%
+
+
+body
+  background-image: url('/static/img/geometry.png')
+  font-family: ProximaNovaCond-Regular
+  margin-bottom: 60px
+
+h1, h2, h3, h4, h5, strong
+  font-family: ProximaNovaCond-Bold
+
+p
+  font-size: 1.3em
+
+//NAVBAR
+
+.navbar
+  background-color: $mainBlue
+
+.navbar-nav > li > a
+  color: #fff
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
+  color: #fff
+  background-color: $secondBlue
+
+.navbar-brand
+  color: #fff
+
+//SPACING & ETC.
+
+.spacing-buffer
+  height: 35px
+  widows: 100%
+
+.centering
+  margin-left: auto
+  margin-right: auto
+  max-width: 100%
+  width: 300px
+
+//FEATURE
+
+.bond-docs-feature
+  position: relative
+  padding: 165px 15px
+  color: #ffffff
+  height: 30%
+  max-height: 100%
+  text-align: center
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1)
+  background-color: #4cc8e3
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3272e3), to(#6ce3e3))
+  background-image: -webkit-linear-gradient(top, $darkBlue 0, #6CE3E3 100%)
+  background-image: -o-linear-gradient(top, $darkBlue 0, #6CE3E3 100%)
+  background-image: linear-gradient(to bottom, $darkBlue 0, #6CE3E3 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0)
+  background-repeat: repeat-x
+
+.bond-highlight
+  position: relative
+  padding: 165px 15px
+  color: #ffffff
+  height: 30%
+  max-height: 100%
+  text-align: center
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1)
+  background-color: $middleBlue
+  background-image: -webkit-gradient(linear, left top, left bottom, from($lightBlue), to($darkBlue))
+  background-image: -webkit-linear-gradient(top, $lightBlue 0, $darkBlue 100%)
+  background-image: -o-linear-gradient(top, $lightBlue 0, $darkBlue 100%)
+  background-image: linear-gradient(to bottom, $lightBlue 0, $darkBlue 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0)
+  background-repeat: repeat-x
+
+.bond-docs-masthead
+  position: relative
+  padding: 165px 15px
+  color: #ffffff
+  height: 30%
+  max-height: 100%
+  text-align: center
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1)
+  background-color: #4397e3
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3272e3), to(#4397e3))
+  background-image: -webkit-linear-gradient(top, #3272e3 0, #4397e3 100%)
+  background-image: -o-linear-gradient(top, #3272e3 0, #4397e3 100%)
+  background-image: linear-gradient(to bottom, #3272e3 0, #4397e3 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', Gradientype=0)
+  background-repeat: repeat-x
+
+//USER SETTINGS & MODS
+
+.buffer
+  padding-bottom: 20px
+
+.buffer-around
+  padding: 20px
+
+.buffer-top-down
+  padding-bottom: 20px
+  padding-top: 20px
+
+.spacing-right
+  margin-right: 30px
+
+.toggle-settings
+  display: none
+
+.start-btn
+  margin-left: auto
+  margin-right: auto
+  width: 100%
+  background: forestgreen
+
+.centering-box
+  width: 400px
+  margin-right: auto
+  margin-left: auto
+
+//FONT TRANSFORMATION
+
+.title-heading-style
+  font-size: 5em
+
+.paragraph-emphasized
+  font-size: 2.5em
+
+.paragraph-secondary-emphasized
+  font-size: 2.5em
+
+//GOOGLE MAPS
+
+#map-canvas
+  height: 100%
+
+
+//ICONS
+
+.fa-search
+  font-size: 15px
+
+.push-from-top
+  padding-top: 75%
+
+
+//BUTTONS
+
+.btn
+  background: $mainBlue
+  color: #fff
+
+.btn-default
+  border-color: $mainBlue
+  &:hover
+    background-color: $darkBlue
+    border-color: $darkBlue
+
+.centering > .btn
+  background: #fff
+
+.userChoice
+  background: $secondBlue
+  width: 20%
+  margin-bottom: 10px
+
+#id_q
+  width: 350px
+  font-size: 18px
+
+#id_models
+  font-size: 16px
+
+//STICKY FOOTER
+
+/* Sticky footer styles
+ *--------------------------------------------------
+
+.footer
+  position: absolute
+  bottom: 0
+  width: 100%
+  /* Set the fixed height of the footer here
+  height: 60px
+
+/* Custom page CSS
+ *--------------------------------------------------
+/* Not required for template or sticky footer method.
+
+.container
+  width: auto
+  max-width: 1250px
+  padding: 0 15px
+  .text-muted
+    margin: 20px 0
+

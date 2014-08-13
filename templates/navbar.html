@@ -1,0 +1,39 @@
+<div class="navbar navbar-fixed-top">
+	<div class="container">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+        <div id="top-menu">
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'profile' %}">Bond<img class="logo" src="" /></a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'home' %}">Bond<img class="logo" src="" /></a>
+            {% endif %}
+			<div class="nav-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><a href="/search">Event Search  <i class="fa fa-search"></i></a></li>
+                        <li><a href="{% url 'settings' %}">Settings</a></li>
+
+                    {% else %}
+{#					<li><a href="{% url 'home' %}">Home</a></li>#}
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href={% url 'whyus' %}#">Why Us?</a></li>
+                    {% endif %}
+
+
+					<li><a href="mailto:hello@bondandme?subject=Comments/Feedback" title="We love your thoughts!!">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+{#                        <li><a href="{% url 'register' %}">Register</a></li>#}
+                        <li class="active"><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+				</ul>
+            </div>
+		</div><!--/nav-collapse -->
+	</div>
+</div><!-- /navbar-fixed-top -->

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="spacing-buffer"></div>
+<div class="container">
+    <div class="row">
+	    <h1 class="text-center">Log In with Facebook</h1>
+	    <p class="text-center">Great events await beyond. Unlock your micro sphere of influence now.</p>
+        <div class="centering">
+            <a class="btn btn-large" href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'img/FacebookButton.png' %}" alt=""/></a>
+        </div>
+	    <div class="text-center"><a href="https://www.facebook.com/r.php">Don't have a Facebook account? Sign Up</a></div>
+        {#<form method="post" action="">#}
+        {#  {% csrf_token %} #}
+        {#  {{ form.as_p }}#}
+        {##}
+        {#  <input type="submit" value="{% trans 'Log in' %}" />#}
+        {#  <input type="hidden" name="next" value="{{ next }}" />#}
+        {#</form>#}
+
+        {#<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>#}
+        {#<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>#}
+    </div>
+</div>
+
+{% endblock %}

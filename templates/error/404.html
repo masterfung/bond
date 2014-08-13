@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+Page Not Found
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1>Oops! Looks like the page you are trying to find is not available.</h1>
+        <h3>404 Error</h3>
+        <a href="{% url 'profile' %}" class="btn">Return to Profile</a>
+    </div>
+</div>
+{% endblock content %}
+
