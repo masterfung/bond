@@ -68,7 +68,9 @@ INSTALLED_APPS = (
 	'djangular',
 	'whoosh',
 	'haystack',
-	'herokuapp',  # 'contact',
+	'herokuapp',
+	'storages',
+
 )
 
 MIDDLEWARE_CLASSES = (

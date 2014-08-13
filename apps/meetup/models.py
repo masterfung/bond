@@ -18,6 +18,7 @@ class Group(models.Model):
 	class Meta:
 		abstract = True
 
+
 class TopicEvent(Group):
 	# owner = models.ForeignKey(AUTH_USER_MODEL, related_name='events')
 	event_name = models.CharField(max_length=250, null=True, blank=True)

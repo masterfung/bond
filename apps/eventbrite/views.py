@@ -3,8 +3,6 @@ import json
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
-
-# Create your views here.
 from requests import get
 from apps.eventbrite.models import EventbriteOAuth
 from settings import local
@@ -112,16 +110,16 @@ def eventbriteOAuth(request):
 	page = 0
 	data_to_return = []
 	cities = ['san+francisco', 'boston', 'new+york', 'dallas', 'houston',
-	          'los+angeles', 'baltimore']
+			'los+angeles', 'baltimore']
 	while page < 50:
 		page += 1
 		resp = get('https://www.eventbriteapi.com/v3/events/search/?',
-		           params={
-			           "token": EVENTBRITE_OAUTH_KEY,
-			           "venue.city": "boston",  # "page_count": 45,  # "page_number": 1,  # "page_size": 50,
-			           # "object_count": 6,
-			           "page": page,
-		           }
+			params={
+				"token": EVENTBRITE_OAUTH_KEY,
+				"venue.city": "boston",  # "page_count": 45,  # "page_number": 1,  # "page_size": 50,
+				# "object_count": 6,
+				"page": page,
+			}
 		)
 
 		if resp.status_code != 200:

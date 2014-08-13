@@ -1,9 +1,6 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
-
 # from bond.meetup.views import EventDetail, EventList
-
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
