@@ -177,6 +177,6 @@ def eventbriteOAuth(request):
 
 
 # def search_titles(request):
-# 	topic_event = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
+# 	eventbrite = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
 #
-# 	return render_to_response('events/events.html', {'topic_event': topic_event})
+# 	return rendere(request, 'events/events.html', {'eventbrite': eventbrite})

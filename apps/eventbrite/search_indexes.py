@@ -11,8 +11,7 @@ class EventbriteEventIndex(indexes.SearchIndex, indexes.Indexable):
     event_title = indexes.CharField(model_attr='event_title')
     event_url = indexes.CharField(model_attr='event_url')
 
-
-    content_auto = indexes.EdgeNgramField(model_attr='event_name') #search population with some intelligence
+    content_auto = indexes.EdgeNgramField(model_attr='event_name')  # search population with some intelligence
 
     def get_model(self):
         return EventbriteOAuth

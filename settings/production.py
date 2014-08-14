@@ -311,15 +311,7 @@ HAYSTACK_CONNECTIONS = {
 		'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
 		'URL': os.environ['SEARCHBOX_SSL_URL'],
 		'INDEX_NAME': 'documents',
-	}, 'autocomplete': {
-		'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-		'PATH': WHOOSH_INDEX,
-		'STORAGE': 'file',
-		'POST_LIMIT': 128 * 1024 * 1024,
-		'INCLUDE_SPELLING': True,
-		'BATCH_SIZE': 100,
-		'SILENTLY_FAIL': True,
-	}
+	},
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
@@ -337,7 +329,8 @@ TEMPLATE_LOADERS = (
 	("django.template.loaders.cached.Loader", (
 		"django.template.loaders.filesystem.Loader",
 		"django.template.loaders.app_directories.Loader",
-	)),
+	)
+	),
 )
 
 STATICFILES_DIRS = (
@@ -353,6 +346,8 @@ AUTH_USER_MODEL = 'profiles.Profile'
 LOGIN_REDIRECT_URL = 'profile'
 
 LOGIN_URL = '/login/'
+
+SITE_ID = 1
 
 # Logging configuration.
 
