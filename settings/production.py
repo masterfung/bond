@@ -341,7 +341,7 @@ TEMPLATE_LOADERS = (
 )
 
 STATICFILES_DIRS = (
-	os.path.join(SITE_ROOT, "static"),
+	os.path.join(SITE_ROOT, "static", "static"),
 )
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static')
