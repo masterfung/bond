@@ -16,20 +16,16 @@ Events
 {% endblock first %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <h3>Search</h3>
+    <form type="get" action="."> {% csrf_token %}
+    <input type="text" name="q">
+    <button type="submit">Search</button>
+	</form>
 
-	        <form action="POST">
-				{% csrf_token %}
-				<input type="text" id="search" class="btn btn-default" name="search" />
-	        </form>
-            <div class="events">
-				{% for event in topic_event %}
-					<li><a href="{{ topic_event.object.get_absolute_url }}">{{ topic_event.object.event_name }}</a></li>
-	            {% endfor %}
-            </div>
-        </div>
-    </div>
+	{% for event in events %}
+	<h1>{{ event.event_name }}</h1>
+	<p>
+	    {{ event.description }}
+	</p>
+{% endfor %}
 
 {% endblock content %}

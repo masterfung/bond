@@ -7,9 +7,10 @@ from haystack import indexes
 from apps.eventbrite.models import EventbriteOAuth
 
 class EventbriteEventIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
+    text = indexes.CharField(document=True, use_template=True, template_name='search/indexes/eventbrite/eventbrite_text.txt')
     event_title = indexes.CharField(model_attr='event_title')
     event_url = indexes.CharField(model_attr='event_url')
+    description = indexes.CharField(model_attr='event_description')
 
     content_auto = indexes.EdgeNgramField(model_attr='event_name')  # search population with some intelligence
 

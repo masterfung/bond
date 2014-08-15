@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 from requests import get
+import requests
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+# from apps.meetup.forms import TopicEventIndexForm
 
 from models import TopicEvent
 from apps.meetup.serializer import TopicEventSerializer
@@ -32,16 +34,22 @@ from django.views.generic import TemplateView
 #
 #
 # class EventDetail(EventMixin, RetrieveUpdateDestroyAPIView):
-# 	pass
+# pass
 
 
 MEETUP_API_KEY = local.MEETUP_API_KEY
 
-
-
 ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
 AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
 REDIRECT_URI = 'bondandme.com'
+
+
+def meetup_oauth_connect(request):
+	if request.method == 'POST':
+		data = json.loads(request.body)
+		print data
+
+	return render(request, 'meetup/meetup_oauth.html')
 
 
 @login_required
@@ -49,52 +57,52 @@ REDIRECT_URI = 'bondandme.com'
 def meetup_api_find_open_events(request):
 	offset = 0
 	data_to_return = []
+
 	while offset < 30:
 		offset += 1
 
-		locations = [
-			# {'city': 'los angeles', 'state': 'ca', 'country': 'us'},
-			# {'city': 'boston', 'state': 'ma', 'country': 'us'},
-			# {'city': 'san francisco', 'state': 'ca', 'country': 'us'},
-			# {'city': 'chicago', 'state': 'il', 'country': 'us'},
-			# {'city': 'houston', 'state': 'tx', 'country': 'us'},
-			# {'city': 'atlanta', 'state': 'ga', 'country': 'us'},
-			# {'city': 'dallas', 'state': 'tx', 'country': 'us'},
-			# {'city': 'seattle', 'state': 'wa', 'country': 'us'},
-			# {'city': 'miami', 'state': 'fl', 'country': 'us'},
-			# {'city': 'new york', 'state': 'ny', 'country': 'us'},
-			# {'city': 'washington', 'state': 'dc', 'country': 'us'},
-			# {'city': 'philadelphia', 'state': 'pa', 'country': 'us'},
-			# {'city': 'phoenix', 'state': 'az', 'country': 'us'},
-			# {'city': 'san antonio', 'state': 'tx', 'country': 'us'},
-			# {'city': 'dallas', 'state': 'tx', 'country': 'us'},
-			# {'city': 'san diego', 'state': 'ca', 'country': 'us'},
-			# {'city': 'columbus', 'state': 'oh', 'country': 'us'},
-			# {'city': 'charlotte', 'state': 'nc', 'country': 'us'},
-			# {'city': 'indianapolis', 'state': 'in', 'country': 'us'},
-			# {'city': 'memphis', 'state': 'tn', 'country': 'us'},
-			# {'city': 'denver', 'state': 'co', 'country': 'us'},
-			# {'city': 'portland', 'state': 'or', 'country': 'us'},
-			# {'city': 'baltimore', 'state': 'md', 'country': 'us'},
-			#{'city': 'las vegas', 'state': 'nv', 'country': 'us'},
-			{'city': 'tuscan', 'state': 'az', 'country': 'us'},
-			{'city': 'jacksonville', 'state': 'fl', 'country': 'us'},
-			{'city': 'austin', 'state': 'tx', 'country': 'us'},
-			{'city': 'nashville', 'state': 'tn', 'country': 'us'},
-			{'city': 'cleveland', 'state': 'oh', 'country': 'us'},
-			{'city': 'new orleans', 'state': 'la', 'country': 'us'},
-			{'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
+		locations = [  # {'city': 'los angeles', 'state': 'ca', 'country': 'us'},
+		               # {'city': 'boston', 'state': 'ma', 'country': 'us'},
+		               # {'city': 'san francisco', 'state': 'ca', 'country': 'us'},
+		               # {'city': 'chicago', 'state': 'il', 'country': 'us'},
+		               # {'city': 'houston', 'state': 'tx', 'country': 'us'},
+		               # {'city': 'atlanta', 'state': 'ga', 'country': 'us'},
+		               # {'city': 'dallas', 'state': 'tx', 'country': 'us'},
+		               # {'city': 'seattle', 'state': 'wa', 'country': 'us'},
+		               # {'city': 'miami', 'state': 'fl', 'country': 'us'},
+		               # {'city': 'new york', 'state': 'ny', 'country': 'us'},
+		               # {'city': 'washington', 'state': 'dc', 'country': 'us'},
+		               # {'city': 'philadelphia', 'state': 'pa', 'country': 'us'},
+		               # {'city': 'phoenix', 'state': 'az', 'country': 'us'},
+		               # {'city': 'san antonio', 'state': 'tx', 'country': 'us'},
+		               # {'city': 'dallas', 'state': 'tx', 'country': 'us'},
+		               # {'city': 'san diego', 'state': 'ca', 'country': 'us'},
+		               # {'city': 'columbus', 'state': 'oh', 'country': 'us'},
+		               # {'city': 'charlotte', 'state': 'nc', 'country': 'us'},
+		               # {'city': 'indianapolis', 'state': 'in', 'country': 'us'},
+		               # {'city': 'memphis', 'state': 'tn', 'country': 'us'},
+		               # {'city': 'denver', 'state': 'co', 'country': 'us'},
+		               # {'city': 'portland', 'state': 'or', 'country': 'us'},
+		               # {'city': 'baltimore', 'state': 'md', 'country': 'us'},
+		               # {'city': 'las vegas', 'state': 'nv', 'country': 'us'},
+		               {'city': 'tuscan', 'state': 'az', 'country': 'us'},
+		               {'city': 'jacksonville', 'state': 'fl', 'country': 'us'},
+		               {'city': 'austin', 'state': 'tx', 'country': 'us'},
+		               {'city': 'nashville', 'state': 'tn', 'country': 'us'},
+		               {'city': 'cleveland', 'state': 'oh', 'country': 'us'},
+		               {'city': 'new orleans', 'state': 'la', 'country': 'us'},
+		               {'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
 		]
 		for place in locations:
 			resp = get("https://api.meetup.com/2/open_events.json",
-				params={
-					"key": MEETUP_API_KEY,
-					"city": place['city'],
-					"state": place['state'],
-					"country": place['country'],
-					"page": 200,
-					"offset": offset,
-				})
+			           params={
+				           "key": MEETUP_API_KEY,
+				           "city": place['city'],
+				           "state": place['state'],
+				           "country": place['country'],
+				           "page": 200,
+				           "offset": offset,
+			           })
 
 			if resp.status_code != 200:
 				print "error"
@@ -148,7 +156,14 @@ def meetup_api_find_open_events(request):
 						created=event.get('created', None),
 					)
 
-	return HttpResponse(data_to_return, content_type='application.json')  # def all_open_event(request):
+	return HttpResponse(data_to_return, content_type='application/json',
+	                    headers=headers)  # def all_open_event(request):
+
+
+# def notes(request):
+# form = TopicEventIndexForm(request.GET)
+# 	events = form.search()
+# 	return render(request, 'events/events.html', {'events': events})
 
 
 @login_required
@@ -190,7 +205,7 @@ class EventMixin(object):
 # '''
 #
 # if request.method == 'GET':
-#         events = TopicEvent.objects.all()
+# events = TopicEvent.objects.all()
 #         serializer = TopicEventSerializer(events)
 #         return Response(serializer.data)
 #     elif request.method == 'POST':

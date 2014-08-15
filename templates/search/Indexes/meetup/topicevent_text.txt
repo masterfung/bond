@@ -1,6 +1,6 @@
 {{object.event_name}}
 {{object.event_url}}
-{{object.description}}
+{{object.description|striptags}}
 {{object.city}}
 {{object.status}}
 {{object.lat}}

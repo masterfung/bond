@@ -35,7 +35,9 @@ urlpatterns = patterns('',
                        url(r'^settings/$', 'apps.profiles.views.settings', name='settings'),
 
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
-                       url(r'^meetup_all/$', 'apps.meetup.views.meetup_api_find_open_events', name='all_open_event'),
+
+                       url(r'^meetup/$', 'apps.meetup.views.meetup_api_find_open_events', name='meetup'),
+                       url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
 
 
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
