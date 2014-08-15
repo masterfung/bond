@@ -3,8 +3,8 @@
  */
 
 $(document).ready(function() {
-	// OAuth
 
+	// OAuth
 
 	var version  = OAuth.getVersion();
 
@@ -34,6 +34,7 @@ $(document).ready(function() {
 	OAuth.redirect('meetup', 'callback/url');
 
 	result.me().done(function(data) {
+		console.log(data);
 //	  console.log(data);
 //	  console.log('Johnny');
 //	  result = JSON.stringify(data);
