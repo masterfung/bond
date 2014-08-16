@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 		data = JSON.stringify(result.access_token);
 		$.ajax({
-			url: '/meetup_oauth/',
+			url: '/meetup/',
 			type: 'POST',
 			data: data,
 			success: function(response) {

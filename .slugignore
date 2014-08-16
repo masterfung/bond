@@ -4,3 +4,5 @@ tests.pyc
 local.py
 local.pyc
 node_modules
+/static/.sass-cache
+/static/sass

@@ -79,6 +79,11 @@ def meetup_oauth_connect(request):
 def meetup_api_find_open_events(request):
 	offset = 0
 	data_to_return = []
+	datacode = []
+	if request.method == 'POST':
+			data = json.loads(request.body)
+			print data
+			datacode.append(data)
 
 	while offset < 30:
 		offset += 1
@@ -116,9 +121,7 @@ def meetup_api_find_open_events(request):
 		               # {'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
 		]
 
-		if request.method == 'POST':
-			data = json.loads(request.body)
-			print data
+
 
 		for place in locations:
 			resp = get("https://api.meetup.com/2/open_events.json",
@@ -130,7 +133,7 @@ def meetup_api_find_open_events(request):
 				           "page": 200,
 				           "offset": offset,
 			           }, headers={
-		           "Authorization": "Bearer 3b0fc338218d79b6ba3ee27ed2bde37b"
+		           # "Authorization": "Bearer {}".format(datacode[0])
 				})
 
 			if resp.status_code != 200:
