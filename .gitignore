@@ -17,5 +17,5 @@ Thumbs.db
 /build
 /MANIFEST
 /venv
-
+/tnp
 *.seg
