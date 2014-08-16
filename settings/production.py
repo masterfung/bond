@@ -96,7 +96,7 @@ EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-	"default": dj_database_url.config(default='postgres://'),
+	"default": dj_database_url.config(default='postgres://mybond'),
 }
 
 HEROKU_APP_NAME = "bondandme"
