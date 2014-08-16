@@ -1,18 +1,15 @@
 *.pyc
 .idea/
-staticfiles
+
 /*.egg-info/
 /*.egg
 *.pyo
 .DS_Store
-whoosh/MAIN_ep3mkxyp3q9f6gjp.seg
 
 /.env
 /.anvil
-
 .project
 .pydevproject
-.settings
 .bzr
 .bzrignore
 Thumbs.db
