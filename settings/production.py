@@ -95,9 +95,7 @@ EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-	"default": dj_database_url.config(os.environ.get("DATABASE_URL")),
-}
+DATABASES = dict(default=dj_database_url.config(default=os.environ.get("DATABASE_URL")))
 
 HEROKU_APP_NAME = "bondandme"
 
@@ -235,7 +233,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Namespace for cache keys, if using a process-shared cache.
 
-CACHE_MIDDLEWARE_KEY_PREFIX = "bondandme"
+CACHE_MIDDLEWARE_KEY_PREFIX = "bond"
 
 CACHES = {
 	"default": {
@@ -284,6 +282,7 @@ SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email', ]
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 # Facebook
+
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY")
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET")
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['user_likes', 'email', 'user_location', 'publish_actions', 'user_birthday',
@@ -291,7 +290,8 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['user_likes', 'email', 'user_location', 'publish_a
                               'friends_location', 'friends_interests', ]
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'ru_RU'}
 
-#Celery
+# Celery
+
 djcelery.setup_loader()
 
 BROKER_URL = 'redis://localhost:6379/0'
@@ -322,7 +322,7 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MEDIA_URL = '/media/'
 
 TEMPLATE_DIRS = (
-	os.path.join(   SITE_ROOT, "templates"),
+	os.path.join(SITE_ROOT, "templates"),
 )
 
 TEMPLATE_LOADERS = (
