@@ -6,17 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 from requests import get
-import requests
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 # from apps.meetup.forms import TopicEventIndexForm
-
 from models import TopicEvent
 from apps.meetup.serializer import TopicEventSerializer
-
 # from .permissions import IsOwnerOrReadOnly
 from haystack.query import SearchQuerySet
 from settings import local
-
 from tasks import hello_world
 from django.views.generic import TemplateView
 
@@ -75,8 +71,9 @@ def meetup_oauth_connect(request):
 
 
 @login_required
+@csrf_exempt
 # @user_passes_test(lambda u: u.is_superuser)
-def meetup_api_find_open_events(request):
+def meetup_open_events(request):
 	offset = 0
 	data_to_return = []
 	datacode = []
@@ -121,8 +118,6 @@ def meetup_api_find_open_events(request):
 		               # {'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
 		]
 
-
-
 		for place in locations:
 			resp = get("https://api.meetup.com/2/open_events.json",
 			           params={
@@ -136,57 +131,57 @@ def meetup_api_find_open_events(request):
 		           # "Authorization": "Bearer {}".format(datacode[0])
 				})
 
-			if resp.status_code != 200:
-				print "error"
-				return
+		if resp.status_code != 200:
+			print "error"
+			return
 
-			data = dumps(resp.json(), indent=2, sort_keys=True)
-			data_to_return.append(data)
-			print data
+		data = dumps(resp.json(), indent=2, sort_keys=True)
+		data_to_return.append(data)
+		print data
 
-			events = json.loads(data)
-			print events
+		events = json.loads(data)
+		print events
 
-			events = events['results']
+		events = events['results']
 
-			x = 0
-			while x <= 200:
-				x += 1
-				print x
-				if not (len(events) > x):
-					break
+		x = 0
+		while x <= 200:
+			x += 1
+			print x
+			if not (len(events) > x):
+				break
 
-				event = events[x]
+			event = events[x]
 
-				if event.get('name'):
-					meetup = TopicEvent.objects.get_or_create(
-						group_id=event.get('group', {}).get('id', 'Not Available'),
-						join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
-						group_name=event.get('group', {}).get('name', 'Not Available'),
-						event_name=event.get('name', 'Not Available'),
-						description=event.get('description', 'Not Available'),
-						group=event.get('group', 'Not Available'),
-						venue=event.get('venue', 'Not Available'),
-						event_id=event.get('id', 'Not Available'),
-						updated=event.get('updated', None),
-						visibility=event.get('visibility', 'Not Available'),
-						status=event.get('status', 'Not Available'),
-						utc_offset=event.get('utc_offset', None),
-						rsvp_limit=event.get("rsvp_limit", 0),
-						event_url=event.get('event_url', 'Not Available'),
-						how_to_find_us=event.get('how_to_find_us', 'Not Available'),
-						duration=event.get('duration', None),
-						lat=event.get('venue', {}).get('lat', 0),
-						lon=event.get('venue', {}).get('lon', 0),
-						event_address=event.get('venue', {}).get('address_1', 'Not Available'),
-						city=event.get('venue', {}).get('city', 'Not Available'),
-						state=event.get('venue', {}).get('state', 'Not Available'),
-						zip=event.get('venue', {}).get('zip', 0),
-						country=event.get('venue', {}).get('country', 'Not Available'),
-						maybe_rsvp_count=event.get('maybe_rsvp_count', 0),
-						time=event.get('time', 0),
-						created=event.get('created', None),
-					)
+			if event.get('name'):
+				meetup = TopicEvent.objects.get_or_create(
+					group_id=event.get('group', {}).get('id', 'Not Available'),
+					join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
+					group_name=event.get('group', {}).get('name', 'Not Available'),
+					event_name=event.get('name', 'Not Available'),
+					description=event.get('description', 'Not Available'),
+					group=event.get('group', 'Not Available'),
+					venue=event.get('venue', 'Not Available'),
+					event_id=event.get('id', 'Not Available'),
+					updated=event.get('updated', None),
+					visibility=event.get('visibility', 'Not Available'),
+					status=event.get('status', 'Not Available'),
+					utc_offset=event.get('utc_offset', None),
+					rsvp_limit=event.get("rsvp_limit", 0),
+					event_url=event.get('event_url', 'Not Available'),
+					how_to_find_us=event.get('how_to_find_us', 'Not Available'),
+					duration=event.get('duration', None),
+					lat=event.get('venue', {}).get('lat', 0),
+					lon=event.get('venue', {}).get('lon', 0),
+					event_address=event.get('venue', {}).get('address_1', 'Not Available'),
+					city=event.get('venue', {}).get('city', 'Not Available'),
+					state=event.get('venue', {}).get('state', 'Not Available'),
+					zip=event.get('venue', {}).get('zip', 0),
+					country=event.get('venue', {}).get('country', 'Not Available'),
+					maybe_rsvp_count=event.get('maybe_rsvp_count', 0),
+					time=event.get('time', 0),
+					created=event.get('created', None),
+				)
 
 	return HttpResponse(data_to_return, content_type='application/json')  # def all_open_event(request):
 

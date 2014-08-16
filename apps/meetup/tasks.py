@@ -1,3 +1,5 @@
+from settings import local
+
 __author__ = '@masterfung'
 import json
 from json import dumps
@@ -12,16 +14,16 @@ from apps.meetup.serializer import TopicEventSerializer
 
 from apps.meetup.celery import app
 
-@app.task
+
 def hello_world():
     print('Hello World')
 
-meetup_api_key = "67f634b2a311c1b104c2c2e45d3856"
+MEETUP_API_KEY = local.MEETUP_API_KEY
 
 def meetup_api_find_open_events(request):
     resp = get("https://api.meetup.com/2/open_events.json",
         params={
-            "key": meetup_api_key,
+            "key": MEETUP_API_KEY,
             "city": "san francisco",
             "state": "ca",
             "country": "us",  # "topic": "python",
@@ -38,12 +40,12 @@ def meetup_api_find_open_events(request):
 
     events = events['results']
     print events
-    serialized_data = TopicEventSerializer(data=events, many=True)
-    if serialized_data.is_valid():
-        serialized_data.save()
-    else:
-        print serialized_data.errors
+    # serialized_data = TopicEventSerializer(data=events, many=True)
+    # if serialized_data.is_valid():
+    #     serialized_data.save()
+    # else:
+    #     print serialized_data.errors
 
 
 
-    return HttpResponse(data, content_type='application.json')
+    return HttpResponse(data, content_type='application/json')

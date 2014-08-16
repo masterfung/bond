@@ -36,7 +36,7 @@ urlpatterns = patterns('',
 
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
 
-                       url(r'^meetup/$', 'apps.meetup.views.meetup_api_find_open_events', name='meetup'),
+                       url(r'^meetup/$', 'apps.meetup.views.meetup_open_events', name='meetup'),
                        url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
 
 
