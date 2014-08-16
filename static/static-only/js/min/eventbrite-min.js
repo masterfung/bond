@@ -1,1 +1,0 @@
-$(document).ready(function(){var e="ZK2FA7QOSAKQ3UUKPC";$.ajax({url:"https://www.eventbriteapi.com/v3/event_search?token=ZK2FA7QOSAKQ3UUKPC",type:"GET",dataType:"jsonp",success:function(e){console.log(e)}})});
