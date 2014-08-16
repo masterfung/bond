@@ -8,9 +8,9 @@ from apps.eventbrite.models import EventbriteOAuth
 
 class EventbriteEventIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True, template_name='search/indexes/eventbrite/eventbrite_text.txt')
-    event_title = indexes.CharField(model_attr='event_title')
+    # event_title = indexes.CharField(model_attr='event_title')
     event_url = indexes.CharField(model_attr='event_url')
-    description = indexes.CharField(model_attr='event_description')
+    description = indexes.CharField(model_attr='event_description', null=True)
 
     content_auto = indexes.EdgeNgramField(model_attr='event_name')  # search population with some intelligence
 
@@ -25,7 +25,7 @@ class EventbriteEventIndex(indexes.SearchIndex, indexes.Indexable):
         """
         Flattens an object for indexing.
 
-        This loads a template
+        This loads2 a template
         (``search/indexes/{app_label}/{model_name}_{field_name}.txt``) and
         returns the result of rendering that template. ``object`` will be in
         its context.

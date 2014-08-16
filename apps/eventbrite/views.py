@@ -24,7 +24,7 @@ def eventbriteOAuth(request):
 		resp = get('https://www.eventbriteapi.com/v3/events/search/?',
 			params={
 				"token": EVENTBRITE_OAUTH_KEY,
-				"venue.city": "austin",  # "page_count": 45,  # "page_number": 1,  # "page_size": 50,
+				"venue.city": "san+francisco",  # "page_count": 45,  # "page_number": 1,  # "page_size": 50,
 				# "object_count": 6,
 				"page": page,
 			}
@@ -38,10 +38,8 @@ def eventbriteOAuth(request):
 		data_to_return.append(data)
 
 		events = json.loads(data)
-		print events
 
 		events = events['events']
-		print events
 
 		x = 0
 		while x <= 50:
@@ -175,8 +173,3 @@ def eventbriteOAuth(request):
 #
 # 	return StreamingHttpResponse(data_to_return, content_type='application.json')
 
-
-# def search_titles(request):
-# 	eventbrite = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
-#
-# 	return rendere(request, 'events/events.html', {'eventbrite': eventbrite})

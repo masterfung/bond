@@ -5,11 +5,11 @@
 All Open Meetup Event
 {% endblock title %}
 
+{% block head %}
+<script src="{% static 'js/oauth.js' %}"></script>
+{% endblock head %}
+
 {% block content %}
-	<script>OAuth.popup('meetup').done(function(result) {
-    console.log(result)
-    // do some stuff with result
-	})
-	</script>
+
 
 {% endblock content %}

@@ -14,8 +14,11 @@ $(document).ready(function() {
 	//Using popup (option 1)
 	OAuth.popup('meetup').done(function(result) {
 	  console.log(result);
-	  console.log('Johnny');
-	  data = JSON.stringify(result);
+
+	result.me().done(function(data) {
+		console.log(data);
+
+		data = JSON.stringify(result.access_token);
 		$.ajax({
 			url: '/meetup_oauth/',
 			type: 'POST',
@@ -27,28 +30,11 @@ $(document).ready(function() {
 			error: function (response) {
 				console.log(response);
 			}
-		})
+		});
+	});
+
 	});
 
 	//Using redirection (option 2)
-	OAuth.redirect('meetup', 'callback/url');
-
-	result.me().done(function(data) {
-		console.log(data);
-//	  console.log(data);
-//	  console.log('Johnny');
-//	  result = JSON.stringify(data);
-//		$.ajax({
-//			url: '/meetup_oauth/',
-//			type: 'POST',
-//			data: result,
-//			success: function(response) {
-//				console.log(response);
-//				console.log("AJAX WORKED");
-//			},
-//			error: function (response) {
-//				console.log(response);
-//			}
-//		})
-	});
+//	OAuth.redirect('meetup', 'callback/url');
 });

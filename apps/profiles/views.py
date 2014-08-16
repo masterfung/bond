@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 
 from apps.profiles.forms import InterestForm, UserNotificationForm, UserEventPersonalizationForm
 from models import Interest, UserNotification, UserEventPersonalization
@@ -16,12 +17,12 @@ def logout(request):
 	auth_logout(request)
 	return redirect('/')
 
-
+@cache_page(3600)
 def about(request):
 	"""About page"""
 	return render(request, 'menu/about.html')
 
-
+@cache_page(3600)
 def whyus(request):
 	"""Why choose us page"""
 	return render(request, 'menu/why_us.html')

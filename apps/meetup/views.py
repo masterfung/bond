@@ -1,6 +1,7 @@
 from json import dumps
 import json
-
+from django.views.decorators.csrf import csrf_exempt
+from requests_oauthlib import OAuth2Session
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
@@ -43,11 +44,32 @@ ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
 AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
 REDIRECT_URI = 'bondandme.com'
 
-
+@csrf_exempt
 def meetup_oauth_connect(request):
 	if request.method == 'POST':
 		data = json.loads(request.body)
-		print data
+		print "{} is the token".format(data)
+
+
+	client_id = 'vjrn056elr2s00femc9i9smmhf'
+	client_secret = 'puv15odjlhhpcr4ja42j16e2vq'
+
+	scope = ACCESS_TOKEN_URL
+	oauth = OAuth2Session(client_id, redirect_uri=REDIRECT_URI)
+
+	# r = oauth.get(AUTHORIZATION_URL)
+	# print r
+	# token = oauth.fetch_token(ACCESS_TOKEN_URL, client_secret)
+	# print token
+
+	# meetup = OAuth2Session(client_id)
+	# authorization_url, state = meetup.authorization_url(AUTHORIZATION_URL)
+	# print state
+	#
+	# callback = OAuth2Session(client_id, state=state)
+	# token = callback.fetch_token(ACCESS_TOKEN_URL, client_secret=client_secret, authorization_response="/")
+	# print "{} is the token".format(token)
+
 
 	return render(request, 'meetup/meetup_oauth.html')
 
@@ -86,13 +108,18 @@ def meetup_api_find_open_events(request):
 		               # {'city': 'baltimore', 'state': 'md', 'country': 'us'},
 		               # {'city': 'las vegas', 'state': 'nv', 'country': 'us'},
 		               {'city': 'tuscan', 'state': 'az', 'country': 'us'},
-		               {'city': 'jacksonville', 'state': 'fl', 'country': 'us'},
-		               {'city': 'austin', 'state': 'tx', 'country': 'us'},
-		               {'city': 'nashville', 'state': 'tn', 'country': 'us'},
-		               {'city': 'cleveland', 'state': 'oh', 'country': 'us'},
-		               {'city': 'new orleans', 'state': 'la', 'country': 'us'},
-		               {'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
+		               # {'city': 'jacksonville', 'state': 'fl', 'country': 'us'},
+		               # {'city': 'austin', 'state': 'tx', 'country': 'us'},
+		               # {'city': 'nashville', 'state': 'tn', 'country': 'us'},
+		               # {'city': 'cleveland', 'state': 'oh', 'country': 'us'},
+		               # {'city': 'new orleans', 'state': 'la', 'country': 'us'},
+		               # {'city': 'milwaukee', 'state': 'wi', 'country': 'us'},
 		]
+
+		if request.method == 'POST':
+			data = json.loads(request.body)
+			print data
+
 		for place in locations:
 			resp = get("https://api.meetup.com/2/open_events.json",
 			           params={
@@ -102,7 +129,9 @@ def meetup_api_find_open_events(request):
 				           "country": place['country'],
 				           "page": 200,
 				           "offset": offset,
-			           })
+			           }, headers={
+		           "Authorization": "Bearer 3b0fc338218d79b6ba3ee27ed2bde37b"
+				})
 
 			if resp.status_code != 200:
 				print "error"
@@ -156,8 +185,7 @@ def meetup_api_find_open_events(request):
 						created=event.get('created', None),
 					)
 
-	return HttpResponse(data_to_return, content_type='application/json',
-	                    headers=headers)  # def all_open_event(request):
+	return HttpResponse(data_to_return, content_type='application/json')  # def all_open_event(request):
 
 
 # def notes(request):

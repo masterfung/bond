@@ -70,7 +70,7 @@ INSTALLED_APPS = (
 	'haystack',
 	'herokuapp',
 	'storages',
-
+	'compressor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -322,7 +322,7 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MEDIA_URL = '/media/'
 
 TEMPLATE_DIRS = (
-	os.path.join(SITE_ROOT, "templates"),
+	os.path.join(   SITE_ROOT, "templates"),
 )
 
 TEMPLATE_LOADERS = (
