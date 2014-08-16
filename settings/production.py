@@ -309,7 +309,7 @@ WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh/')
 HAYSTACK_CONNECTIONS = {
 	'default': {
 		'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-		'URL': os.environ['SEARCHBOX_URL'],
+		'URL': os.environ.get['SEARCHBOX_SSL_URL'],
 		'INDEX_NAME': 'documents',
 	},
 }
