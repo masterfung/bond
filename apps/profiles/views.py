@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
-from apps.profiles.forms import InterestForm, NotificationForm
-from models import Interest, Notification
+from apps.profiles.forms import InterestForm, ProfileForm, RiskProfileForm
+from models import Interest, Profile
 
 
 def home(request):
@@ -36,8 +36,8 @@ def angular(request):
 def settings(request):
 	"""Handles new interests, notifications, and event preferences"""
 	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
-	notifications = Notification.objects.filter(profile=request.user)
-	# 	#preferences = UserEventPersonalization.objects.filter(profile=request.user)
+	profile = Profile.objects.get(id=request.user.id)
+	# #preferences = UserEventPersonalization.objects.filter(profile=request.user)
 
 	if 'interest' in request.POST:
 		interest_form = InterestForm(request.POST, prefix='interest')
@@ -50,14 +50,14 @@ def settings(request):
 		interest_form = InterestForm(prefix='interest')
 
 	if 'notification' in request.POST:
-		notification_form = NotificationForm(request.POST, prefix='notification')
-		if notification_form.is_valid():
-			notification = notification_form.save(commit=False)
+		profile_form = ProfileForm(request.POST, prefix='notification')
+		if profile_form.is_valid():
+			notification = profile_form.save(commit=False)
 			notification.profile = request.user
 			notification.save()
 			return redirect("/settings")
 	else:
-		notification_form = NotificationForm(prefix='notification')
+		profile_form = ProfileForm(prefix='notification')
 
 	# if 'event' in request.POST:
 	# 	event = UserEventPersonalizationForm(request.POST, prefix='event')
@@ -69,8 +69,8 @@ def settings(request):
 	# else:
 	# 		#event = UserEventPersonalizationForm(prefix='event')
 
-	data = {'user': request.user, 'interests': interests, 'notifications': notifications,
-		'interest_form': interest_form, 'notification_form': notification_form
+	data = {'user': request.user, 'interests': interests, 'profile': profile,
+	        'interest_form': interest_form, 'profile_form': profile_form
 	}
 	return render(request, 'settings.html', data)
 
@@ -97,8 +97,43 @@ def delete_interest(request, interest_id):
 	return redirect('/settings')
 
 
-	# @login_required
-	# def update_event_notification(request, usernotification_id):
-	# notification = UserNotification.objects.get(id=usernotification_id)
-	# 	data = {'notification': notification}
-	# 	return render(request, '/settings.html', data)
+@login_required
+def update_profile(request, profile_id):
+	profile = Profile.objects.get(id=profile_id)
+	data = {'profile': profile}
+	return render(request, '/settings.html', data)
+
+
+@login_required()
+def getting_started(request):
+	getting_started = Profile.objects.get(id=request.user.id)
+	if request.method == 'POST':
+		form = RiskProfileForm(request.POST)
+		if form.is_valid():
+			# You have so many of these fields, and probably very little else in `form.cleaned_data`
+			# It would probably make more sense to loop over these fields
+			picked = form.cleaned_data['One']
+			picked += form.cleaned_data['Two']
+			picked += form.cleaned_data['Three']
+			picked += form.cleaned_data['Four']
+			picked += form.cleaned_data['Five']
+			picked += form.cleaned_data['Six']
+			picked += form.cleaned_data['Seven']
+			picked += form.cleaned_data['Eight']
+			picked += form.cleaned_data['Nine']
+			picked += form.cleaned_data['Ten']
+			picked += form.cleaned_data['Eleven']
+			picked += form.cleaned_data['Twelve']
+			picked += form.cleaned_data['Thirteen']
+			picked += form.cleaned_data['Fourteen']
+			picked += form.cleaned_data['Fifteen']
+			picked += form.cleaned_data['Sixteen']
+			getting_started.risk_score = int(picked)
+			getting_started.save()
+			print picked
+			return redirect("boot")
+
+	else:
+		form = RiskProfileForm()
+
+	return render(request, 'getting_started.html', {'form': form})

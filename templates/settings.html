@@ -13,12 +13,13 @@
         <h2 class="text-center">Event Preferences & Notifications</h2>
 
 		<div class="col-lg-6">
-			<h3>Event Notifications</h3>
+			<h3>Profile Settings</h3>
 			<form action="post">
 				{% csrf_token %}
-				{{ notification_form.as_p }}
+				{{ profile_form.as_p }}
+{#				<a href="{% url 'update_notification' user.id %}">Submit</a>#}
 			</form>
-			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Update Notifications</button>
+{#			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Update Notifications</button>#}
 
 		</div>
 	<div class="col-lg-6">

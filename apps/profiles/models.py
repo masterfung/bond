@@ -21,6 +21,17 @@ class Profile(AbstractUser):
 	profile_updated_time = models.CharField(max_length=50, blank=True, null=True)
 	account_created = models.DateTimeField(auto_now_add=True)
 
+	ENROLLED = 'Enrolled'
+	NOT_ENROLLED = 'Not Enrolled'
+
+	STATUS = (
+		(ENROLLED, 'Enrolled'),
+		(NOT_ENROLLED, 'Not Enrolled')
+	)
+
+	email_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
+	text_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
+
 	def __unicode__(self):
 		return "{} {}".format(self.first_name, self.last_name)
 
@@ -42,21 +53,21 @@ class Interest(models.Model):
 		return self.name
 
 
-class Notification(models.Model):
-	ENROLLED = 'Enrolled'
-	NOT_ENROLLED = 'Not Enrolled'
-
-	STATUS = (
-		(ENROLLED, 'Enrolled'),
-		(NOT_ENROLLED, 'Not Enrolled')
-	)
-
-	email = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
-	text = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
-	profile = models.ForeignKey(Profile, related_name='notification')
-
-	def __unicode__(self):
-		return "The statuses are: {} and {}.".format(self.email, self.text)
+# class Notification(models.Model):
+# 	ENROLLED = 'Enrolled'
+# 	NOT_ENROLLED = 'Not Enrolled'
+#
+# 	STATUS = (
+# 		(ENROLLED, 'Enrolled'),
+# 		(NOT_ENROLLED, 'Not Enrolled')
+# 	)
+#
+# 	email = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
+# 	text = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
+# 	profile = models.ForeignKey(Profile, related_name='notification')
+#
+# 	def __unicode__(self):
+# 		return "The statuses are: {} and {}.".format(self.email, self.text)
 
 
 # class ProximityNotificationPreference(models.Model):
