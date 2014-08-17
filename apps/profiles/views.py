@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 
 # from apps.profiles.forms import InterestForm, UserNotificationForm
-# from models import Interest, UserNotification
+from models import Interest
 
 
 def home(request):
@@ -17,10 +17,12 @@ def logout(request):
 	auth_logout(request)
 	return redirect('/')
 
+
 @cache_page(3600)
 def about(request):
 	"""About page"""
 	return render(request, 'menu/about.html')
+
 
 @cache_page(3600)
 def whyus(request):
@@ -79,22 +81,23 @@ def profile(request):
 	data = {'user': request.user}
 	return render(request, 'profiles/view_profile.html', data)
 
-#
-# @login_required
-# def view_interest(request, interest_id):
-# 	"""View interests"""
-# 	interest = Interest.objects.get(id=interest_id)
-# 	data = {'interest': interest}
-# 	return render(request, "settings.html", data)
+
+@login_required
+def view_interest(request, interest_id):
+	"""View interests"""
+	interest = Interest.objects.get(id=interest_id)
+	data = {'interest': interest}
+	return render(request, "settings.html", data)
 
 
-# @login_required
-# def delete_interest(request, interest_id):
-# 	"""Delete interest"""
-# 	interest = Interest.objects.get(id=interest_id)
-# 	interest.delete()
-# 	return redirect('/settings')
-#
+@login_required
+def delete_interest(request, interest_id):
+	"""Delete interest"""
+	interest = Interest.objects.get(id=interest_id)
+	interest.delete()
+	return redirect('/settings')
+
+
 # @login_required
 # def update_event_notification(request, usernotification_id):
 # 	notification = UserNotification.objects.get(id=usernotification_id)

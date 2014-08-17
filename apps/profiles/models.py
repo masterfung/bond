@@ -25,7 +25,7 @@ class Profile(AbstractUser):
 		return "{} {}".format(self.first_name, self.last_name)
 
 
-class Preference(models.Model):
+class CategoryPreference(models.Model):
 	name = models.CharField(max_length=150, null=True, blank=True)
 	choices = models.ManyToManyField(Profile, through='Interest')
 
@@ -35,7 +35,7 @@ class Preference(models.Model):
 
 class Interest(models.Model):
 	name = models.CharField(max_length=30)
-	choice = models.ForeignKey(Preference, related_name='interest_choice')
+	choice = models.ForeignKey(CategoryPreference, related_name='interest_choice')
 	profile = models.ForeignKey(Profile, related_name='interest_profile')
 
 	def __unicode__(self):
@@ -45,7 +45,7 @@ class Interest(models.Model):
 class Notification(models.Model):
 	ENROLLED = 'Enrolled'
 	NOT_ENROLLED = 'Not Enrolled'
-	
+
 	STATUS = (
 		(ENROLLED, 'Enrolled'),
 		(NOT_ENROLLED, 'Not Enrolled')
@@ -59,7 +59,7 @@ class Notification(models.Model):
 		return "The statuses are: {} and {}.".format(self.email, self.text)
 
 
-	# class Notification(models.Model):
+	# class ProximityNotificationPreference(models.Model):
 	# WITHIN_2 = 2
 	# 	WITHIN_5 = 5
 	# 	WITHIN_10 = 10
@@ -94,8 +94,8 @@ class Notification(models.Model):
 	#
 	# profile = models.ForeignKey(Profile, related_name='notification')
 	#
-	def __unicode__(self):
-		return str(self.length)
+	# def __unicode__(self):
+	# 	return str(self.length)
 		#
 		#
 		# class EventFrequency(models.Model):

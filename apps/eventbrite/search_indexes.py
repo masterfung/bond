@@ -1,14 +1,15 @@
 from haystack.exceptions import SearchFieldError
 from django.template import loader, Context
+from haystack.indexes import SearchIndex
 
 __author__ = '@masterfung'
 
 from haystack import indexes
 from apps.eventbrite.models import EventbriteOAuth
 
-class EventbriteEventIndex(indexes.SearchIndex, indexes.Indexable):
+class EventbriteEventIndex(SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True, template_name='search/indexes/eventbrite/eventbrite_text.txt')
-    # event_title = indexes.CharField(model_attr='event_title')
+    city = indexes.CharField(model_attr='city')
     event_url = indexes.CharField(model_attr='event_url')
     description = indexes.CharField(model_attr='event_description', null=True)
 
