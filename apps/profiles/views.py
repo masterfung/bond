@@ -38,7 +38,7 @@ def settings(request):
 	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
 	notifications = Notification.objects.filter(profile=request.user)
 	# 	#preferences = UserEventPersonalization.objects.filter(profile=request.user)
-	#
+
 	if 'interest' in request.POST:
 		interest_form = InterestForm(request.POST, prefix='interest')
 		if interest_form.is_valid():
