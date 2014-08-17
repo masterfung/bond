@@ -7,30 +7,33 @@
 
 {% block content %}
 <div class="spacing-buffer"></div>
-<div class="container">
-	<div class="row">
-		<button class="btn btn-primary btn-large setting-btn pull-right">
-			<i class="fa fa-cogs"></i>  Settings
-		</button>
-	</div>
-</div>
 <div class="toggle-settings">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-6 col-offset-3">
-	        <h2 class="text-center">Event Preferences & Notifications</h2>
-			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Change Notifications</button>
-			<button class="btn btn-primary btn-large text-btn" data-target="#events-btn" data-toggle="modal">Change Events Preference</button>
-	    </div>
+        <h2 class="text-center">Event Preferences & Notifications</h2>
 
+		<div class="col-lg-6">
+			<h3>Event Notifications</h3>
+			<form action="post">
+				{% csrf_token %}
+				{{ notification_form.as_p }}
+			</form>
+			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Update Notifications</button>
+
+		</div>
+	<div class="col-lg-6">
+{#		<h4 class="pull-left spacing-right">Current City: <p class="userCity text-center">{{ user.city }}</p></h4>#}
+{#		<h4 class="pull-left spacing-right">Event Proximity: <p class="userCity text-center">{{ event }}</p></h4>#}
+{#		<h4 class="pull-left spacing-right">Frequency of Notification: <p class="userCity text-center">3 times/wk</p></h4>#}
+{#		<h4 class="pull-left spacing-right">Event Share: <p class="userCity text-center">1</p></h4>#}
+{#		<h4 class="pull-right">Preferred Mode of Communication: <p class="userCity text-center">Email</p></h4>#}
+		<h3>Event Preferences</h3>
+			<form action="post">
+				{% csrf_token %}
+{#				{{ event.as_p }}#}
+		</form>
+		<button class="btn btn-primary btn-large text-btn" data-target="#events-btn" data-toggle="modal">Update Events Preference</button>
 	</div>
-	<div class="spacing-buffer"></div>
-	<div class="row">
-		<h4 class="pull-left spacing-right">Current City: <p class="userCity text-center">{{ user.city }}</p></h4>
-		<h4 class="pull-left spacing-right">Event Proximity: <p class="userCity text-center"><5.0 miles</p></h4>
-		<h4 class="pull-left spacing-right">Frequency of Notification: <p class="userCity text-center">3 times/wk</p></h4>
-		<h4 class="pull-left spacing-right">Event Share: <p class="userCity text-center">1</p></h4>
-		<h4 class="pull-right">Preferred Mode of Communication: <p class="userCity text-center">Email</p></h4>
 	</div>
 </div>
 </div>
@@ -91,7 +94,7 @@
 		      <div class="modal-body">
 
 					{% for interest in interests %}
-	                        <a class="userChoice btn btn-default" href="{% url 'delete_interest' interest.id %}">{{ interest.name }}</a>
+                        <a class="userChoice btn btn-default" href="{% url 'delete_interest' interest.id %}">{{ interest.name }}</a>
                     {% endfor %}
 
 		      </div>
@@ -112,7 +115,9 @@
 
 				{% csrf_token %}
 
-		        {{ notification_form.as_p }}
+{#		        {% for notifcation in notifications %}#}
+{#                    <a class="userChoice btn btn-default" href="{% url 'update_notifcation' usernotification.id %}">{{ notifcation.email_notification }}</a>#}
+{#		        {% endfor %}#}
 
 		      </div>
 		      <div class="modal-footer">

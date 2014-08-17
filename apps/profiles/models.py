@@ -25,61 +25,82 @@ class Profile(AbstractUser):
 		return "{} {}".format(self.first_name, self.last_name)
 
 
-class Preference(models.Model):
-	name = models.CharField(max_length=150)
-	choices = models.ManyToManyField(Profile, through='Interest')
-
-	def __unicode__(self):
-		return self.name
-
-
-class Interest(models.Model):
-	name = models.CharField(max_length=30)
-	preference = models.ForeignKey(Preference)
-	profile = models.ForeignKey(Profile)
-
-	def __unicode__(self):
-		return self.name
-
-
-class UserNotification(models.Model):
-	email_notification = models.BooleanField(default=True)
-	text_notification = models.BooleanField(default=True)
-	profile = models.ForeignKey(Profile)
-
-	def __unicode__(self):
-		return str(self.email_notification)
+# class Preference(models.Model):
+# 	name = models.CharField(max_length=150)
+# 	choices = models.ManyToManyField(Profile, through='Interest')
+#
+# 	def __unicode__(self):
+# 		return self.name
+#
+#
+# class Interest(models.Model):
+# 	name = models.CharField(max_length=30)
+# 	preference = models.ForeignKey(Preference)
+# 	profile = models.ForeignKey(Profile)
+#
+# 	def __unicode__(self):
+# 		return self.name
 
 
-class EventProximity(models.Model):
-	length = models.IntegerField(max_length=3)
-	choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
-
-	def __unicode__(self):
-		return str(self.length)
-
-
-class EventFrequency(models.Model):
-	length = models.IntegerField(max_length=3)
-	choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
-
-	def __unicode__(self):
-		return str(self.length)
+# class UserNotification(models.Model):
+# 	email_notification = models.BooleanField(default=True)
+# 	text_notification = models.BooleanField(default=True)
+# 	profile = models.ForeignKey(Profile)
+#
+# 	def __unicode__(self):
+# 		return str(self.email_notification)
 
 
-class EventShare(models.Model):
-	name = models.CharField(max_length=50)
-	choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
+# class EventProximity(models.Model):
+# 	WITHIN_2 = 2
+# 	WITHIN_5 = 5
+# 	WITHIN_10 = 10
+# 	WITHIN_20 = 20
+# 	WITHIN_35 = 35
+# 	WITHIN_50 = 50
+#
+# 	PROXIMITY = (
+# 		(WITHIN_2, 'Within 2 Miles'),
+# 		(WITHIN_5, 'Within 5 Miles'),
+# 		(WITHIN_10, 'Within 10 Miles'),
+# 		(WITHIN_20, 'Within 20 Miles'),
+# 		(WITHIN_35, 'Within 35 Miles'),
+# 		(WITHIN_50, 'Wihtin 50 Miles'),
+# 	)
+#
+# 	distance = models.CharField(max_length=20, choices=PROXIMITY, default=WITHIN_2)
+#
+# 	# choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
+#
+# 	def __unicode__(self):
+# 		return str(self.length)
+#
+#
+# class EventFrequency(models.Model):
+# 	length = models.IntegerField(max_length=3)
+# 	choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
+#
+# 	def __unicode__(self):
+# 		return str(self.length)
+#
+#
+# class EventShare(models.Model):
+# 	name = models.CharField(max_length=50)
+# 	choices = models.ManyToManyField(Profile, through='UserEventPersonalization')
+#
+# 	def __unicode__(self):
+# 		return self.name
+#
+#
+# class UserEventPersonalization(models.Model):
+# 	event_proximity = models.ForeignKey(EventProximity)
+# 	event_frequency = models.ForeignKey(EventFrequency)
+# 	event_share = models.ForeignKey(EventShare)
+# 	profile = models.ForeignKey(Profile)
+#
+# 	def __unicode__(self):
+# 		return "{}".format(self.profile.username)
 
-	def __unicode__(self):
-		return self.name
-
-
-class UserEventPersonalization(models.Model):
-	event_proximity = models.ForeignKey(EventProximity)
-	event_frequency = models.ForeignKey(EventFrequency)
-	event_share = models.ForeignKey(EventShare)
-	profile = models.ForeignKey(Profile)
-
-	def __unicode__(self):
-		return "{}".format(self.profile.username)
+#
+# class StartingSurvey(models.Model):
+# 	pass

@@ -29,10 +29,14 @@ urlpatterns = patterns('',
 
                        url(r'^profile/$', 'apps.profiles.views.profile', name='profile'),
 
-                       url(r'^profile/(?P<interest_id>\w+)/delete/$', 'apps.profiles.views.delete_interest', name='delete_interest'),
+
                        # url(r'^profile/delete_interest/$', 'profiles.views.delete_interest', name='delete_interest'),
 
                        url(r'^settings/$', 'apps.profiles.views.settings', name='settings'),
+                       #url(r'^settings/(?P<interest_id>\w+)/delete/$', 'apps.profiles.views.delete_interest',
+                          # name='delete_interest'),
+                       #url(r'^settings/(?P<usernotification_id>\w+)/update/$',
+                           #'apps.profiles.views.update_event_notification', name='update_notification'),
 
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
 
