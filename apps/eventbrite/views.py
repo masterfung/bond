@@ -17,8 +17,11 @@ EVENTBRITE_OAUTH_KEY = local.EVENTBRITE_OAUTH_KEY
 def eventbriteOAuth(request):
 	page = 0
 	data_to_return = []
-	cities = ["boston", "new+york", "dallas", "houston",
-	          "los+angeles", "baltimore"]
+	# cities = ["san+francisco", "boston", "new+york", "dallas", "houston",
+	#           "los+angeles", "baltimore", "austin", "san+antonio", "nashville", "seattle"]
+
+	cities = ["philadelphia", "columbus"]
+
 	while page < 50:
 		for city in cities:
 

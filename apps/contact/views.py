@@ -3,8 +3,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.views.generic import FormView
-
-from bond.apps.contact.forms import ContactForm
+from apps.contact.forms import ContactForm
 
 
 class ContactFormView(FormView):
