@@ -8,85 +8,29 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'AuthProvider'
-        db.create_table(u'profiles_authprovider', (
+        # Adding model 'Preference'
+        db.create_table(u'profiles_preference', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('provider', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
         ))
-        db.send_create_signal(u'profiles', ['AuthProvider'])
+        db.send_create_signal(u'profiles', ['Preference'])
 
         # Adding model 'Interest'
-        # db.create_table(u'profiles_interest', (
-        #     (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-        #     ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
-        # ))
-        # db.send_create_signal(u'profiles', ['Interest'])
-
-        # Adding model 'Profile'
-        db.create_table(u'profiles_profile', (
+        db.create_table(u'profiles_interest', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('password', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('last_login', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('is_superuser', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('username', self.gf('django.db.models.fields.CharField')(unique=True, max_length=30)),
-            ('first_name', self.gf('django.db.models.fields.CharField')(max_length=30, blank=True)),
-            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=30, blank=True)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, blank=True)),
-            ('is_staff', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('is_active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('date_joined', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('provider', self.gf('django.db.models.fields.related.ForeignKey')(related_name='users', null=True, to=orm['profiles.AuthProvider'])),
-            ('raw', self.gf('django.db.models.fields.TextField')(null=True)),
-            ('phone', self.gf('django.db.models.fields.CharField')(max_length=12, null=True)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=40, null=True)),
-            ('birthday', self.gf('django.db.models.fields.CharField')(max_length=10, null=True)),
-            ('zip', self.gf('django.db.models.fields.IntegerField')(max_length=5, null=True)),
-            ('picture_url', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
-            ('profile_updated_time', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
-            ('account_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('choice', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.Preference'])),
+            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.Profile'])),
         ))
-        db.send_create_signal(u'profiles', ['Profile'])
-
-        # Adding M2M table for field groups on 'Profile'
-        m2m_table_name = db.shorten_name(u'profiles_profile_groups')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('profile', models.ForeignKey(orm[u'profiles.profile'], null=False)),
-            ('group', models.ForeignKey(orm[u'auth.group'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['profile_id', 'group_id'])
-
-        # Adding M2M table for field user_permissions on 'Profile'
-        m2m_table_name = db.shorten_name(u'profiles_profile_user_permissions')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('profile', models.ForeignKey(orm[u'profiles.profile'], null=False)),
-            ('permission', models.ForeignKey(orm[u'auth.permission'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['profile_id', 'permission_id'])
-
-        # Adding M2M table for field interest on 'Profile'
-        # m2m_table_name = db.shorten_name(u'profiles_profile_interest')
-        # db.create_table(m2m_table_name, (
-        #     ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-        #     ('profile', models.ForeignKey(orm[u'profiles.profile'], null=False)),
-        #     ('interest', models.ForeignKey(orm[u'profiles.interest'], null=False))
-        # ))
-        # db.create_unique(m2m_table_name, ['profile_id', 'interest_id'])
+        db.send_create_signal(u'profiles', ['Interest'])
 
 
     def backwards(self, orm):
-        # Deleting model 'AuthProvider'
-        db.delete_table(u'profiles_authprovider')
+        # Deleting model 'Preference'
+        db.delete_table(u'profiles_preference')
 
-        # Deleting model 'Profile'
-        db.delete_table(u'profiles_profile')
-
-        # Removing M2M table for field groups on 'Profile'
-        db.delete_table(db.shorten_name(u'profiles_profile_groups'))
-
-        # Removing M2M table for field user_permissions on 'Profile'
-        db.delete_table(db.shorten_name(u'profiles_profile_user_permissions'))
+        # Deleting model 'Interest'
+        db.delete_table(u'profiles_interest')
 
 
     models = {
@@ -115,6 +59,19 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'provider': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
         },
+        u'profiles.interest': {
+            'Meta': {'object_name': 'Interest'},
+            'choice': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.Preference']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.Profile']"})
+        },
+        u'profiles.preference': {
+            'Meta': {'object_name': 'Preference'},
+            'choices': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['profiles.Profile']", 'through': u"orm['profiles.Interest']", 'symmetrical': 'False'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '150', 'null': 'True', 'blank': 'True'})
+        },
         u'profiles.profile': {
             'Meta': {'object_name': 'Profile'},
             'account_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -125,7 +82,6 @@ class Migration(SchemaMigration):
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            #'interest': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'userinterest'", 'null': 'True', 'to': u"orm['profiles.Interest']"}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
