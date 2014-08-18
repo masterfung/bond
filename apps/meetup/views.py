@@ -12,7 +12,7 @@ from models import TopicEvent
 from apps.meetup.serializer import TopicEventSerializer
 # from .permissions import IsOwnerOrReadOnly
 from haystack.query import SearchQuerySet
-from settings import local
+# from settings import local
 from tasks import hello_world
 from django.views.generic import TemplateView
 
@@ -34,7 +34,7 @@ from django.views.generic import TemplateView
 # pass
 
 
-MEETUP_API_KEY = local.MEETUP_API_KEY
+# MEETUP_API_KEY = local.MEETUP_API_KEY
 
 ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
 AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
