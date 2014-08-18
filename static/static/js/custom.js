@@ -6,7 +6,6 @@ $(document).ready(function() {
 //	});
 
 //    Toggle buttons for questions
-// Can you use jQuery's `toggle` for this?
     $('.questSetOneNext').on('click', function () {
         $('.questSetOne').hide('slow');
         $('.questSetTwo').show('slow');

@@ -2,14 +2,17 @@
   font-family: "ProximaNovaCond-Regular";
   font-weight: regular;
   src: url("/static/fonts/ProximaNovaCond-Regular.otf"); }
+
 @font-face {
   font-family: "ProximaNovaCond-Bold";
   font-weight: bold;
   src: url("/static/fonts/ProximaNovaCond-Semibold.otf"); }
+
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url("/static/fonts/glyphicons-halflings-regular.eot");
   src: url("/static/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/static/fonts/glyphicons-halflings-regular.woff") format("woff"), url("/static/fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("/static/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg"); }
+
 html {
   position: relative;
   min-height: 100%; }
@@ -109,8 +112,8 @@ p {
 .spacing-right {
   margin-right: 30px; }
 
-/*.toggle-settings {*/
-  /*display: none; }*/
+.toggle-settings {
+  display: none; }
 
 .start-btn {
   margin-left: auto;
@@ -165,6 +168,9 @@ p {
 
 #id_models {
   font-size: 16px; }
+
+ul > li {
+  list-style-type: none; }
 
 /* Sticky footer styles
  *-------------------------------------------------- */
