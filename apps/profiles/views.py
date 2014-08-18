@@ -124,10 +124,6 @@ def getting_started(request):
 			picked += form.cleaned_data['Ten']
 			picked += form.cleaned_data['Eleven']
 			picked += form.cleaned_data['Twelve']
-			# picked += form.cleaned_data['Thirteen']
-			# picked += form.cleaned_data['Fourteen']
-			# picked += form.cleaned_data['Fifteen']
-			# picked += form.cleaned_data['Sixteen']
 			getting_started.risk_score = int(picked)
 			getting_started.save()
 			print picked

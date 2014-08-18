@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import TopicEvent
-from settings.local import MEETUP_API_KEY
+from settings.production import MEETUP_API_KEY
 
 class Command(BaseCommand):
 	def handle(self, *args, **options):

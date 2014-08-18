@@ -2,7 +2,7 @@ from json import dumps
 import json
 from requests import get
 from apps.eventbrite.models import EventbriteOAuth
-from settings.local import EVENTBRITE_OAUTH_KEY
+from settings.production import EVENTBRITE_OAUTH_KEY
 
 __author__ = 'htm'
 
@@ -13,10 +13,11 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 		page = 0
 
-		# cities = ["san+francisco", "boston", "new+york", "houston",
+		cities = ["san+francisco", "boston", "new+york", "houston",
 		# "los+angeles", "baltimore", "austin", "san+antonio", "nashville", "seattle", "philadelphia",
 		# "columbus", "dallas", "denver", "salt+lake+city", "las+vegas", "washington", "kansas+city",
-		# "minneapolis", "atlanta", "orlando", "richmond"]
+		# "minneapolis", "atlanta", "orlando", "richmond"
+		]
 
 		while page < 50:
 			for city in cities:
