@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 import json
 from django.core.management.base import BaseCommand
+from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import TopicEvent
 from settings.local import MEETUP_API_KEY
-
 
 class Command(BaseCommand):
 	def handle(self, *args, **options):
@@ -85,7 +85,7 @@ class Command(BaseCommand):
 							join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
 							group_name=event.get('group', {}).get('name', 'Not Available'),
 							event_name=event.get('name', 'Not Available'),
-							description=event.get('description', 'Not Available').strip(),
+							description=strip_tags(event.get('description', 'Not Available').strip()),
 							group=event.get('group', 'Not Available'),
 							venue=event.get('venue', 'Not Available'),
 							event_id=event.get('id', 'Not Available'),

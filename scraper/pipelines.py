@@ -3,7 +3,7 @@ from psycopg2._psycopg import IntegrityError
 __author__ = 'htm'
 
 
-class SFGatePipeline(object):
+class SFGateTechBusiness(object):
 
 	def process_item(self, item, spider):
 		try:
