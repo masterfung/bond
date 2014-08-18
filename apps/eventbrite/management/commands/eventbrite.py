@@ -18,8 +18,6 @@ class Command(BaseCommand):
 		# "columbus", "dallas", "denver", "salt+lake+city", "las+vegas", "washington", "kansas+city",
 		# "minneapolis", "atlanta", "orlando", "richmond"]
 
-		cities = ["atlanta", "orlando", "richmond"]
-
 		while page < 50:
 			for city in cities:
 

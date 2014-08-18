@@ -1,9 +1,6 @@
 from __future__ import absolute_import
 import json
 from django.core.management.base import BaseCommand
-
-from django.core.management.base import BaseCommand
-from django.http import HttpResponse
 from requests import get
 from apps.meetup.models import TopicEvent
 from settings.local import MEETUP_API_KEY
