@@ -57,7 +57,7 @@ def settings(request):
 			notification.save()
 			return redirect("/settings")
 	else:
-		profile_form = ProfileForm(prefix='notification')
+		profile_form = ProfileForm(prefix='notification', instance=profile)
 
 	# if 'event' in request.POST:
 	# 	event = UserEventPersonalizationForm(request.POST, prefix='event')
