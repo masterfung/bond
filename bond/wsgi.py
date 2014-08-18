@@ -12,7 +12,7 @@ import os
 import sys
 
 sys.path.insert(0, '/Users/htm/Documents/bond')
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bond.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.production")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
