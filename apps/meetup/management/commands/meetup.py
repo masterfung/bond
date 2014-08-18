@@ -67,7 +67,7 @@ class Command(BaseCommand):
 					return
 
 				data = json.dumps(resp.json(), indent=2, sort_keys=True)
-				
+
 				events = json.loads(data)
 				print events
 
