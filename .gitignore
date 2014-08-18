@@ -21,3 +21,4 @@ Thumbs.db
 *.seg
 *.col
 /whoosh/
+local_settings.py
