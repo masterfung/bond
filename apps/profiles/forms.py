@@ -6,15 +6,27 @@ from apps.profiles.models import Interest, Profile
 
 
 class InterestForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(InterestForm, self).__init__(*args, **kwargs)
+		for field_name, field in self.fields.items():
+			field.widget.attrs['class'] = 'form-control'
+
+
 	class Meta:
 		model = Interest
 		exclude = ['profile']
 
 
 class ProfileForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(ProfileForm, self).__init__(*args, **kwargs)
+		for field_name, field in self.fields.items():
+			field.widget.attrs['class'] = 'form-control'
+
 	class Meta:
 		model = Profile
-		fields = ['first_name', 'last_name', 'email', 'email_notification', 'text_notification']
+		fields = ['first_name', 'last_name', 'email', 'email_notification', 'text_notification',
+				  'distance', 'notice_frequency']
 
 
 class GettingStartedForm(forms.Form):
@@ -56,31 +68,31 @@ class GettingStartedForm(forms.Form):
 	)
 
 	One = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                             label="I attend food events in my community frequently")
+								 label="I attend food events in my community frequently")
 	Two = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                             label="Physical well-being is important to me")
+								 label="Physical well-being is important to me")
 	Three = forms.TypedChoiceField(choices=timeline, coerce=int, widget=forms.RadioSelect,
-	                               label="I am currently seeking to build a stronger community/network")
+								   label="I am currently seeking to build a stronger community/network")
 	Four = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                              label="Attending conferences, workshops, and/or talks are important to my personal growth")
+								  label="Attending conferences, workshops, and/or talks are important to my personal growth")
 	Five = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                              label="I am more likely to attend an event if my friends will partake")
+								  label="I am more likely to attend an event if my friends will partake")
 	Six = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                             label="I spend most of my free time with friends and families")
+								 label="I spend most of my free time with friends and families")
 	Seven = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                               label="My preferred style of learning is hands-on rather than theoretical")
+								   label="My preferred style of learning is hands-on rather than theoretical")
 	Eight = forms.TypedChoiceField(choices=negative_questions, coerce=int, widget=forms.RadioSelect,
-	                               label="I enjoy planning my schedule in advance")
+								   label="I enjoy planning my schedule in advance")
 	Nine = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                              label="I personally enjoy participating in philanthropic events")
+								  label="I personally enjoy participating in philanthropic events")
 	Ten = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                             label="I know quite a bit about economic issues and personal investing.")
+								 label="I know quite a bit about economic issues and personal investing.")
 	Eleven = forms.TypedChoiceField(choices=negative_answers, coerce=int, widget=forms.RadioSelect,
-	                                label="I involve myself in competitive sports")
+									label="I involve myself in competitive sports")
 	Twelve = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	                                label="I tend to have a lot of free time in a given week")
+									label="I tend to have a lot of free time in a given week")
 	Thirteen = forms.TypedChoiceField(choices=yes_no, coerce=int, widget=forms.RadioSelect,
-	                                  label="I enjoy trying risk and trying new things")
+									  label="I enjoy trying risk and trying new things")
 	# Fourteen = forms.TypedChoiceField(choices=pos_yes_no, coerce=int, widget=forms.RadioSelect,
 	# label="Do you believe that interest rates relate to the performance of investments")
 	# Fifteen = forms.TypedChoiceField(choices=pos_yes_no, coerce=int, widget=forms.RadioSelect,
