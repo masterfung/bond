@@ -3,7 +3,23 @@ from django.db import models
 # Create your models here.
 
 
-class Group(models.Model):
+# class Group(models.Model):
+# 	group_id = models.CharField(max_length=200, null=True, blank=True)
+# 	join_mode = models.CharField(max_length=20, null=True, blank=True)
+# 	group_name = models.CharField(max_length=200, null=True, blank=True)
+# 	phone = models.CharField(max_length=20, null=True, blank=True)
+# 	description = models.TextField(null=True, blank=True)
+# 	event_address = models.CharField(max_length=200, null=True, blank=True)
+# 	city = models.CharField(max_length=50, null=True, blank=True)
+# 	state = models.CharField(max_length=20, null=True, blank=True)
+# 	zip = models.CharField(max_length=10, null=True, blank=True)
+# 	country = models.CharField(max_length=30, null=True, blank=True)
+#
+# 	class Meta:
+# 		abstract = True
+
+
+class TopicEvent(models.Model):
 	group_id = models.CharField(max_length=200, null=True, blank=True)
 	join_mode = models.CharField(max_length=20, null=True, blank=True)
 	group_name = models.CharField(max_length=200, null=True, blank=True)
@@ -14,13 +30,6 @@ class Group(models.Model):
 	state = models.CharField(max_length=20, null=True, blank=True)
 	zip = models.CharField(max_length=10, null=True, blank=True)
 	country = models.CharField(max_length=30, null=True, blank=True)
-
-	class Meta:
-		abstract = True
-
-
-class TopicEvent(Group):
-	# owner = models.ForeignKey(AUTH_USER_MODEL, related_name='events')
 	event_name = models.CharField(max_length=250, null=True, blank=True)
 	rsvp_limit = models.BigIntegerField(null=True, blank=True)
 	status = models.CharField(max_length=30, null=True, blank=True)
