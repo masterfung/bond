@@ -32,6 +32,39 @@ class Profile(AbstractUser):
 	email_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
 	text_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
 
+	WITHIN_2 = 2
+	WITHIN_5 = 5
+	WITHIN_10 = 10
+	WITHIN_20 = 20
+	WITHIN_35 = 35
+	WITHIN_50 = 50
+
+	ONCE = 1
+	TWICE = 2
+	THRICE = 3
+	WEEKDAYS = 5
+	DAILY = 7
+
+	PROXIMITY = (
+		(WITHIN_2, 'Within 2 Miles'),
+		(WITHIN_5, 'Within 5 Miles'),
+		(WITHIN_10, 'Within 10 Miles'),
+		(WITHIN_20, 'Within 20 Miles'),
+		(WITHIN_35, 'Within 35 Miles'),
+		(WITHIN_50, 'Within 50 Miles'),
+	)
+
+	FREQUENCY = (
+		(ONCE, 'Once a week'),
+		(TWICE, 'Twice a week'),
+		(THRICE, 'Three times a week'),
+		(WEEKDAYS, 'Only on weekdays'),
+		(DAILY, 'Everyday'),
+	)
+
+	distance = models.CharField(max_length=20, choices=PROXIMITY, default=WITHIN_2)
+	notice_frequency = models.CharField(max_length=20, choices=FREQUENCY, default=THRICE)
+
 	def __unicode__(self):
 		return "{} {}".format(self.first_name, self.last_name)
 

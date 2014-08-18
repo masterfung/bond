@@ -17,7 +17,7 @@
 			<form action="post">
 				{% csrf_token %}
 				{{ profile_form.as_p }}
-{#				<a href="{% url 'update_notification' user.id %}">Submit</a>#}
+				<a href="{% url 'update_profile' profile.id %}">Submit</a>
 			</form>
 {#			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Update Notifications</button>#}
 
@@ -104,55 +104,28 @@
 		  </div>
 		</div>
 
-        <div class="modal fade" id="notification-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-			<form method="post">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Change Notifications</h4>
-		      </div>
-		      <div class="modal-body">
-
-				{% csrf_token %}
-
-{#		        {% for notifcation in notifications %}#}
-{#                    <a class="userChoice btn btn-default" href="{% url 'update_notifcation' usernotification.id %}">{{ notifcation.email_notification }}</a>#}
-{#		        {% endfor %}#}
-
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <input type="submit" value="Update Notification" class="btn btn-primary" name="notification">
-
-		      </div>
-			</form>
-		    </div>
-		  </div>
-		</div>
-
-	    <div class="modal fade" id="events-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-			<form method="post">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Change Event Personalization</h4>
-		      </div>
-		      <div class="modal-body">
-
-				{% csrf_token %}
-			    {{ event.as_p }}
-
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <input type="submit" value="Submit Preferences" class="btn btn-primary" name="event">
-		      </div>
-			</form>
-		    </div>
-		  </div>
-		</div>
+{#	    <div class="modal fade" id="events-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{#		  <div class="modal-dialog">#}
+{#		    <div class="modal-content">#}
+{#			<form method="post">#}
+{#		      <div class="modal-header">#}
+{#		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
+{#		        <h4 class="modal-title" id="myModalLabel">Change Event Personalization</h4>#}
+{#		      </div>#}
+{#		      <div class="modal-body">#}
+{##}
+{#				{% csrf_token %}#}
+{#			    {{ event.as_p }}#}
+{##}
+{#		      </div>#}
+{#		      <div class="modal-footer">#}
+{#		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+{#		        <input type="submit" value="Submit Preferences" class="btn btn-primary" name="event">#}
+{#		      </div>#}
+{#			</form>#}
+{#		    </div>#}
+{#		  </div>#}
+{#		</div>#}
     </div>
 
 
