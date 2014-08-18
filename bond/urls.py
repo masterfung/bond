@@ -43,7 +43,7 @@ urlpatterns = patterns('',
                        url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
 
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
-                       url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
+                       #url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
 
                        url(r'^events/$', 'apps.events.views.events', name='events'),
 
