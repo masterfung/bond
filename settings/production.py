@@ -95,7 +95,11 @@ EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = dict(default=dj_database_url.config(default=os.environ.get("DATABASE_URL")))
+# DATABASES = dict(default=dj_database_url.config(default=os.environ.get("DATABASE_URL")))
+
+DATABASES = {
+	"default": dj_database_url.config(default="postgresql://"),
+}
 
 HEROKU_APP_NAME = "bondandme"
 
@@ -155,11 +159,15 @@ STATICFILES_STORAGE = "require_s3.storage.OptimizedCachedStaticFilesStorage"
 
 # Amazon S3 settings.
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+#
+# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+#
+# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = "AKIAIZ6XEDICLPBV3W4A"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "bondandme"
 
 AWS_AUTO_CREATE_BUCKET = True
 
@@ -300,7 +308,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 BROKER_TRANSPORT = 'redis'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
-#WHOOSH
+# WHOOSH
 
 WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh/')
 
