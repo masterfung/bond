@@ -17,7 +17,7 @@ class ProfileForm(ModelForm):
 		fields = ['first_name', 'last_name', 'email', 'email_notification', 'text_notification']
 
 
-class RiskProfileForm(forms.Form):
+class GettingStartedForm(forms.Form):
 	choices = (
 		(3, "Strongly Agree"),
 		(2, "Agree"),

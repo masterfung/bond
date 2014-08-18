@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
-from apps.profiles.forms import InterestForm, ProfileForm, RiskProfileForm
+from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm
 from models import Interest, Profile
 
 
@@ -108,7 +108,7 @@ def update_profile(request, profile_id):
 def getting_started(request):
 	getting_started = Profile.objects.get(id=request.user.id)
 	if request.method == 'POST':
-		form = RiskProfileForm(request.POST)
+		form = GettingStartedForm(request.POST)
 		if form.is_valid():
 			# You have so many of these fields, and probably very little else in `form.cleaned_data`
 			# It would probably make more sense to loop over these fields
@@ -134,6 +134,6 @@ def getting_started(request):
 			return redirect("boot")
 
 	else:
-		form = RiskProfileForm()
+		form = GettingStartedForm()
 
 	return render(request, 'getting_started.html', {'form': form})
