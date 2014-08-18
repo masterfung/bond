@@ -10,5 +10,5 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 		meetup = TopicEvent.objects.all()
 		for event in meetup:
-			new = strip_tags(event.description)
-			new.save()
+			event.description = strip_tags(event.description)
+			event.save()
