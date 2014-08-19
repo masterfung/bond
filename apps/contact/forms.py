@@ -1,19 +1,19 @@
 __author__ = '@masterfung'
 
 from captcha.fields import ReCaptchaField  # Only import different from yesterday
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 import floppyforms as forms
+
 
 class ContactForm(forms.Form):
 
-    name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    subject = forms.CharField(required=True)
-    message = forms.CharField(widget=forms.Textarea)
-    captcha = ReCaptchaField()
+	def __init__(self, *args, **kwargs):
+		super(ContactForm, self).__init__(*args, **kwargs)
+		for field_name, field in self.fields.items():
+			field.widget.attrs['class'] = 'form-control'
 
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
-        super(ContactForm, self).__init__(*args, **kwargs)
+
+	name = forms.CharField(required=True)
+	email = forms.EmailField(required=True)
+	subject = forms.CharField(required=True)
+	message = forms.CharField(widget=forms.Textarea)
+	captcha = ReCaptchaField()

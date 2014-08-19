@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import TopicEvent
-from settings.production import MEETUP_API_KEY
+from settings.local import MEETUP_API_KEY
 
 class Command(BaseCommand):
 	def handle(self, *args, **options):
@@ -16,8 +16,8 @@ class Command(BaseCommand):
 			               # {'city': "chicago", 'state': "il", 'country': "us"},
 			               # {'city': "houston", 'state': "tx", 'country': "us"},
 			               # {'city': "atlanta", 'state': "ga", 'country': "us"},
-			               {'city': "dallas", 'state': "tx", 'country': "us"},
-			               # {'city': "seattle", 'state': "wa", 'country': "us"},
+			               # {'city': "dallas", 'state': "tx", 'country': "us"},
+			               {'city': "seattle", 'state': "wa", 'country': "us"},
 			               # {'city': "miami", 'state': "fl", 'country': "us"},
 			               # {'city': "new york", 'state': "ny", 'country': "us"},
 			               # {'city': "washington", 'state': "dc", 'country': "us"},

@@ -2,7 +2,7 @@ from json import dumps
 import json
 from requests import get
 from apps.eventbrite.models import EventbriteOAuth
-from settings.production import EVENTBRITE_OAUTH_KEY
+from settings.local import EVENTBRITE_OAUTH_KEY
 
 __author__ = 'htm'
 

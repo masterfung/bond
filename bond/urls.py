@@ -25,7 +25,7 @@ urlpatterns = patterns('',
                        url(r'^about/$', 'apps.profiles.views.about', name='about'),
                        url(r'^why_us/$', 'apps.profiles.views.whyus', name='whyus'),
 
-                       # url(r'^contact/$', 'contact.views.ContactFormView', name='contact'),
+                       url(r'^contact/$', 'apps.contact.views.contact', name='contact'),
 
                        url(r'^profile/$', 'apps.profiles.views.profile', name='profile'),
 

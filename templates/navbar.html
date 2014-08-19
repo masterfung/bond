@@ -25,7 +25,7 @@
                     {% endif %}
 
 
-					<li><a href="mailto:hello@bondandme?subject=Comments/Feedback" title="We love your thoughts!!">Contact</a></li>
+					<li><a href="{% url 'contact' %}" title="We love your thoughts!!">Contact</a></li>
                     {% if user.is_authenticated %}
                         <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
