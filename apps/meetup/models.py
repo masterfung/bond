@@ -35,8 +35,8 @@ class Event(models.Model):
 	organizer_description = models.TextField(null=True, blank=True)
 	ticket_classes = models.TextField(null=True, blank=True)
 
-	start_time = models.CharField(max_length=50, null=True, blank=True)
-	end_time = models.CharField(max_length=50, null=True, blank=True)
+	start_time = models.CharField(max_length=150, null=True, blank=True)
+	end_time = models.CharField(max_length=150, null=True, blank=True)
 	start_dateTime = models.DateTimeField(null=True, blank=True)
 	end_dateTime = models.DateTimeField(null=True, blank=True)
 

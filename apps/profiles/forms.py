@@ -60,16 +60,5 @@ class GettingStartedForm(forms.Form):
 									label="I involve myself in competitive sports")
 	Twelve = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 									label="I tend to have a lot of free time in a given week")
-	Thirteen = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-									  label="I enjoy trying risk and trying new things")
-	# Fourteen = forms.TypedChoiceField(choices=pos_yes_no, coerce=int, widget=forms.RadioSelect,
-	# label="Do you believe that interest rates relate to the performance of investments")
-	# Fifteen = forms.TypedChoiceField(choices=pos_yes_no, coerce=int, widget=forms.RadioSelect,
-	# label="If one investment had expected returns of 20% but could easily "
-	#                                        "have returns of -20%, would you invest in that?")
-	# Sixteen = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-	#                                  label="I would prefer to invest in a well diversified portfolio that spreads"
-	#                                        " my investment across the major asset classes and understand that "
-	#                                        "this may reduce the potential returns although should help to lower "
-	#                                        "the risk profile:")
+
 	helper = FormHelper()

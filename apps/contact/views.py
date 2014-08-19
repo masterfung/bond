@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+from django.core.mail import send_mail
 from apps.contact.forms import ContactForm
 from django.shortcuts import render
 
@@ -35,13 +35,10 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
 
-            recipients = ['info@example.com']
-
-            from django.core.mail import send_mail
-            send_mail(name, email, subject, message)
-            return HttpResponseRedirect('/thanks/')
+            send_mail(subject, message, email, ['admin@bondandme.com', 'thung@me.com'])
+            return HttpResponseRedirect('/')
     else:
-        form = ContactForm() # An unbound form
+        form = ContactForm()  # An unbound form
 
     return render(request, 'contact/contact_form.html', {
         'form': form,

@@ -25,7 +25,22 @@ Profile
 {% endblock message %}
 
 {% block content %}
-	<div class="container table-bordered">
+
+	{% if user.wellness_score >= 1 %}
+
+		<div class="eventListings">
+
+		<h2 class="text-center">We are working on making the best event curation. Check back in the future</h2>
+
+		</div>
+
+	{% else %}
+
+		<div class="eventListings">
+
+		<h2 class="text-center">Please fill out the Get Started Survey before event curation can begin.</h2>
+		<div class="spacing-buffer"></div>
+		<div class="container table-bordered">
 		<div class="row buffer">
 			<div class="col-lg-6 col-offset-3">
 		        <h2 class="getting-started text-center">Getting Started</h2>
@@ -34,27 +49,21 @@ Profile
 
 		    </div>
 
+			</div>
 		</div>
-	</div>
-
-	<div class="spacing-buffer"></div>
-	{% if user %}
-
-		<div class="eventListings">
-
-		<h2></h2>
-
-		</div>
-
-	{% else %}
-
-		<div class="eventListings">
-
-		<h2>Please fill out the Get Started Survey before event curation can begin.</h2>
-
 		</div>
 
 	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			<h2>Events in Your City:</h2>
+			{% for event in city_event %}
+				<li>{{ event }}</li>
+			{% endfor %}
+		</div>
+	</div>
+
 
 {% endblock content %}
 

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
+from apps.meetup.models import Event
 from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm
 from models import Interest, Profile
 
@@ -37,7 +38,7 @@ def settings(request):
 	"""Handles new interests, notifications, and event preferences"""
 	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
 	profile = Profile.objects.get(id=request.user.id)
-	# #preferences = UserEventPersonalization.objects.filter(profile=request.user)
+	city_event = Event.objects.filter(city=request.user.city)
 
 	if 'interest' in request.POST:
 		interest_form = InterestForm(request.POST, prefix='interest')
@@ -59,7 +60,8 @@ def settings(request):
 		profile_form = ProfileForm(prefix='notification', instance=profile)
 
 	data = {'user': request.user, 'interests': interests, 'profile': profile,
-	        'interest_form': interest_form, 'profile_form': profile_form
+	        'interest_form': interest_form, 'profile_form': profile_form,
+	        'city_event': city_event
 	}
 	return render(request, 'settings.html', data)
 
@@ -100,8 +102,6 @@ def getting_started(request):
 		print 'post'
 		form = GettingStartedForm(request.POST)
 		if form.is_valid():
-			survey = survey.save(commit=False)
-			print 'valid'
 			food = form.cleaned_data['One']
 			wellness = form.cleaned_data['Two']
 			community = form.cleaned_data['Three']

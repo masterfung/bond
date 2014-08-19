@@ -16,12 +16,12 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 		offset = 1
 
-		locations = [  # {'city': "los angeles", 'state': "ca", 'country': "us"},
+		locations = [  #{'city': "los angeles", 'state': "ca", 'country': "us"},
 		               # {'city': "boston", 'state': "ma", 'country': "us"},
-		               # {'city': "san francisco", 'state': "ca", 'country': "us"},
-		               # {'city': "chicago", 'state': "il", 'country': "us"},
-		               # {'city': "houston", 'state': "tx", 'country': "us"},
-		               # {'city': "atlanta", 'state': "ga", 'country': "us"},
+		               #{'city': "san francisco", 'state': "ca", 'country': "us"},
+		                {'city': "chicago", 'state': "il", 'country': "us"},
+		                {'city': "houston", 'state': "tx", 'country': "us"},
+		                {'city': "atlanta", 'state': "ga", 'country': "us"},
 		               # {'city': "dallas", 'state': "tx", 'country': "us"},
 		               # {'city': "seattle", 'state': "wa", 'country': "us"},
 		               # {'city': "miami", 'state': "fl", 'country': "us"},
@@ -31,7 +31,7 @@ class Command(BaseCommand):
 		               # {'city': "phoenix", 'state': "az", 'country': "us"},
 		               # {'city': "san antonio", 'state': "tx", 'country': "us"},
 		               # {'city': "dallas", 'state': "tx", 'country': "us"},
-		               {'city': "san diego", 'state': "ca", 'country': "us"},
+		               # {'city': "san diego", 'state': "ca", 'country': "us"},
 		               # {'city': "columbus", 'state': "oh", 'country': "us"},
 		               # {'city': "charlotte", 'state': "nc", 'country': "us"},
 		               # {'city': "indianapolis", 'state': "in", 'country': "us"},
