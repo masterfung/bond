@@ -50,10 +50,8 @@ def settings(request):
 		interest_form = InterestForm(prefix='interest')
 
 	if 'notification' in request.POST:
-		print "in notification"
 		profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
 		if profile_form.is_valid():
-			print "form is valid"
 			profile = profile_form.save(commit=False)
 			profile.save()
 			return redirect("/settings")
@@ -97,12 +95,12 @@ def update_profile(request, profile_id):
 
 @login_required()
 def getting_started(request):
-	getting_started = Profile.objects.get(id=request.user.id)
+	survey = Profile.objects.get(id=request.user.id)
 	if request.method == 'POST':
+		print 'post'
 		form = GettingStartedForm(request.POST)
 		if form.is_valid():
-			# You have so many of these fields, and probably very little else in `form.cleaned_data`
-			# It would probably make more sense to loop over these fields
+			print 'valid'
 			food = form.cleaned_data['One']
 			wellness = form.cleaned_data['Two']
 			community = form.cleaned_data['Three']
@@ -115,16 +113,17 @@ def getting_started(request):
 			wellness += form.cleaned_data['Ten']
 			personal += form.cleaned_data['Eleven']
 			personal += form.cleaned_data['Twelve']
-			getting_started.food_score = int(food)
-			getting_started.wellness_score = int(wellness)
-			getting_started.community_score = int(community)
-			getting_started.education_score = int(education)
-			getting_started.personal_score = int(personal)
-			getting_started.save()
+
+			survey.food_score = int(food)
+			survey.wellness_score = int(wellness)
+			survey.community_score = int(community)
+			survey.education_score = int(education)
+			survey.personal_score = int(personal)
+			survey.save()
 
 			return redirect("profile")
 
 	else:
 		form = GettingStartedForm()
-
-	return render(request, 'getting_started.html', {'form': form})
+	data = {'form': form}
+	return render(request, 'getting_started.html', data)

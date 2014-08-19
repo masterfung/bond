@@ -10,16 +10,13 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 		offset = 1
 
-		while offset < 20:
-			offset += 1
-
-			locations = [  {'city': "los angeles", 'state': "ca", 'country': "us"},
+		locations = [  #{'city': "los angeles", 'state': "ca", 'country': "us"},
 			               # {'city': "boston", 'state': "ma", 'country': "us"},
 			               # {'city': "san francisco", 'state': "ca", 'country': "us"},
 			               # {'city': "chicago", 'state': "il", 'country': "us"},
 			               # {'city': "houston", 'state': "tx", 'country': "us"},
 			               # {'city': "atlanta", 'state': "ga", 'country': "us"},
-			               # {'city': "dallas", 'state': "tx", 'country': "us"},
+			               {'city': "dallas", 'state': "tx", 'country': "us"},
 			               # {'city': "seattle", 'state': "wa", 'country': "us"},
 			               # {'city': "miami", 'state': "fl", 'country': "us"},
 			               # {'city': "new york", 'state': "ny", 'country': "us"},
@@ -45,6 +42,10 @@ class Command(BaseCommand):
 			               # {'city': "new orleans", 'state': "la", 'country': "us"},
 			               # {'city': "milwaukee", 'state': "wi", 'country': "us"},
 			]
+
+		while offset < 20:
+			offset += 1
+
 
 			for place in locations:
 				resp = get("https://api.meetup.com/2/open_events.json",

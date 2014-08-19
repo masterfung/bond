@@ -37,25 +37,6 @@ class GettingStartedForm(forms.Form):
 		(0, "Strongly Disagree"),
 	)
 
-	negative_questions = (
-		(0, "Strongly Agree"),
-		(1, "Agree"),
-		(2, "Disagree"),
-		(3, "Strongly Disagree"),
-	)
-
-	negative_answers = (
-		(0, "Sell immediately"),
-		(1, "Look to sell shortly"),
-		(3, "Buy the dip"),
-		(2, "Leave my positions alone"),
-	)
-
-	pos_yes_no = (
-		(3, "YES"),
-		(-3, "NO")
-	)
-
 	One = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								 label="I attend food events in my community frequently")
 	Two = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,

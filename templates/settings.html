@@ -30,7 +30,7 @@
 		<h2 class="text-center">Interest</h2>
         <ul>
             {% for interest in interests %}
-                <a class="userChoice btn btn-default" href="#">{{ interest.name }}</a>
+                <a class="userChoice btn btn-default" href="/search/?q={{ interest.name }}">{{ interest.name }}</a>
 
             {% endfor %}
         </ul>
