@@ -53,7 +53,7 @@ def settings(request):
 		profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
 		if profile_form.is_valid():
 			profile = profile_form.save(commit=False)
-			profile = request.user
+			profile.id = request.user
 			profile.save()
 			return redirect("/settings")
 	else:
