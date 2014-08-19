@@ -1,0 +1,3 @@
+{{object.title_content}}
+{{object.url}}
+{{object.description_content}}

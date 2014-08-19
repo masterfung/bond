@@ -1,0 +1,7 @@
+{{object.event_name}}
+{{object.event_url}}
+{{object.description|striptags}}
+{{object.city}}
+{{object.status}}
+{{object.lat}}
+{{object.lon}}
