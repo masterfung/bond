@@ -3,16 +3,16 @@ from scraper.models import Scraper
 
 __author__ = 'htm'
 
-# from haystack import indexes
+# from haystack import Indexes
 #
 #
-# class SFGateScraperIndex(SearchIndex, indexes.Indexable):
-#     text = indexes.CharField(document=True, use_template=True)
-#     name = indexes.CharField(model_attr='name')
-#     url = indexes.CharField(model_attr='url')
-#     description = indexes.CharField(model_attr='description_content', null=True)
+# class SFGateScraperIndex(SearchIndex, Indexes.Indexable):
+#     text = Indexes.CharField(document=True, use_template=True)
+#     name = Indexes.CharField(model_attr='name')
+#     url = Indexes.CharField(model_attr='url')
+#     description = Indexes.CharField(model_attr='description_content', null=True)
 #
-#     content_auto = indexes.EdgeNgramField(model_attr='event_name')  # search population with some intelligence
+#     content_auto = Indexes.EdgeNgramField(model_attr='event_name')  # search population with some intelligence
 #
 #     def get_model(self):
 #         return Scraper

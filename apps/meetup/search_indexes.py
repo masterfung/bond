@@ -27,7 +27,7 @@ class TopicEventIndex(SearchIndex, indexes.Indexable):
     #     Flattens an object for indexing.
     #
     #     This loads a template
-    #     (``search/indexes/{app_label}/{model_name}_{field_name}.txt``) and
+    #     (``search/Indexes/{app_label}/{model_name}_{field_name}.txt``) and
     #     returns the result of rendering that template. ``object`` will be in
     #     its context.
     #     """
@@ -40,7 +40,7 @@ class TopicEventIndex(SearchIndex, indexes.Indexable):
     #         if not isinstance(template_names, (list, tuple)):
     #             template_names = [template_names]
     #     else:
-    #         template_names = ['search/indexes/%s/%s_%s.txt' % (obj._meta.app_label, obj._meta.module_name, self.instance_name)]
+    #         template_names = ['search/Indexes/%s/%s_%s.txt' % (obj._meta.app_label, obj._meta.module_name, self.instance_name)]
     #
     #     t = loader.select_template(template_names)
     #     return t.render(Context({'object': obj}))
