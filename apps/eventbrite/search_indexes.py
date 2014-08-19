@@ -8,7 +8,7 @@ from haystack import indexes
 from apps.eventbrite.models import EventbriteOAuth
 
 class EventbriteEventIndex(SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True, template_name='search/indexes/eventbrite/eventbrite_text.txt')
+    text = indexes.CharField(document=True, use_template=True, template_name='search/Indexes/eventbrite/eventbrite_text.txt')
     city = indexes.CharField(model_attr='city')
     event_url = indexes.CharField(model_attr='event_url')
     description = indexes.CharField(model_attr='event_description', null=True)
