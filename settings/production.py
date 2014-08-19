@@ -70,6 +70,9 @@ INSTALLED_APPS = (
 	'haystack',
 	'herokuapp',
 	'storages',
+	'pytz',
+	'dateutil',
+	'tzlocal',
 	'compressor',
 )
 

@@ -8,7 +8,7 @@ from django.shortcuts import render
 from requests import get
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 # from apps.meetup.forms import TopicEventIndexForm
-from models import TopicEvent
+from models import Event
 from apps.meetup.serializer import TopicEventSerializer
 # from .permissions import IsOwnerOrReadOnly
 from haystack.query import SearchQuerySet
@@ -78,13 +78,13 @@ def meetup_oauth_connect(request):
 
 @login_required
 def events(request):
-	events = TopicEvent.objects.all()
+	events = Event.objects.all()
 	return render(request, 'events/events.html')
 
 
 @login_required
 def event(request, topicevent_id=1):
-	return render(request, 'events/event.html', {'event': TopicEvent.objects.get(id=topicevent_id)})
+	return render(request, 'events/event.html', {'event': Event.objects.get(id=topicevent_id)})
 
 
 @login_required
@@ -104,7 +104,7 @@ class IndexView(TemplateView):
 
 
 class EventMixin(object):
-	queryset = TopicEvent.objects.all()
+	queryset = Event.objects.all()
 	serializer_class = TopicEventSerializer(queryset)
 
 

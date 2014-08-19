@@ -6,9 +6,9 @@ from haystack.indexes import SearchIndex
 __author__ = '@masterfung'
 
 from haystack import indexes
-from apps.meetup.models import TopicEvent
+from apps.meetup.models import Event
 
-class TopicEventIndex(SearchIndex, indexes.Indexable):
+class EventIndex(SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     event_name = indexes.CharField(model_attr='event_name')
     event_url = indexes.CharField(model_attr='event_url')
@@ -16,7 +16,7 @@ class TopicEventIndex(SearchIndex, indexes.Indexable):
     content_auto = indexes.EdgeNgramField(model_attr='event_name') #search population with some intelligence
 
     def get_model(self):
-        return TopicEvent
+        return Event
 
     # def index_queryset(self, using=None):
     #     ''' Used when the entire index for model is updated. '''

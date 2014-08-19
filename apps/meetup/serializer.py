@@ -2,7 +2,7 @@ __author__ = '@masterfung'
 
 from rest_framework import serializers
 
-from apps.meetup.models import TopicEvent
+from apps.meetup.models import Event
 
 
 class TopicEventSerializer(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class TopicEventSerializer(serializers.ModelSerializer):
 
 
 	class Meta:
-		model = TopicEvent
+		model = Event
 		fields = (
 			# 'owner',
 			'event_name',
@@ -62,7 +62,7 @@ class TopicEventSerializer(serializers.ModelSerializer):
 			'utc_offset',
 			'lat',
 			'lon',
-			'updated',
+			'event_updated',
 			'group',
 			'time',
 			'created',
