@@ -37,13 +37,6 @@ class GettingStartedForm(forms.Form):
 		(0, "Strongly Disagree"),
 	)
 
-	timeline = (
-		(3, "More than 4 years"),
-		(2, "2 to 4 years"),
-		(1, "6 months to 2 years"),
-		(0, "Less than 1 year"),
-	)
-
 	negative_questions = (
 		(0, "Strongly Agree"),
 		(1, "Agree"),
@@ -58,10 +51,6 @@ class GettingStartedForm(forms.Form):
 		(2, "Leave my positions alone"),
 	)
 
-	yes_no = (
-		(-3, "YES"),
-		(3, "NO")
-	)
 	pos_yes_no = (
 		(3, "YES"),
 		(-3, "NO")
@@ -71,7 +60,7 @@ class GettingStartedForm(forms.Form):
 								 label="I attend food events in my community frequently")
 	Two = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								 label="Physical well-being is important to me")
-	Three = forms.TypedChoiceField(choices=timeline, coerce=int, widget=forms.RadioSelect,
+	Three = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								   label="I am currently seeking to build a stronger community/network")
 	Four = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								  label="Attending conferences, workshops, and/or talks are important to my personal growth")
@@ -81,17 +70,17 @@ class GettingStartedForm(forms.Form):
 								 label="I spend most of my free time with friends and families")
 	Seven = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								   label="My preferred style of learning is hands-on rather than theoretical")
-	Eight = forms.TypedChoiceField(choices=negative_questions, coerce=int, widget=forms.RadioSelect,
+	Eight = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								   label="I enjoy planning my schedule in advance")
 	Nine = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								  label="I personally enjoy participating in philanthropic events")
 	Ten = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 								 label="I know quite a bit about economic issues and personal investing.")
-	Eleven = forms.TypedChoiceField(choices=negative_answers, coerce=int, widget=forms.RadioSelect,
+	Eleven = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 									label="I involve myself in competitive sports")
 	Twelve = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 									label="I tend to have a lot of free time in a given week")
-	Thirteen = forms.TypedChoiceField(choices=yes_no, coerce=int, widget=forms.RadioSelect,
+	Thirteen = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
 									  label="I enjoy trying risk and trying new things")
 	# Fourteen = forms.TypedChoiceField(choices=pos_yes_no, coerce=int, widget=forms.RadioSelect,
 	# label="Do you believe that interest rates relate to the performance of investments")

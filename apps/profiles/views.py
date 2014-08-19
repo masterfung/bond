@@ -50,7 +50,7 @@ def settings(request):
 		interest_form = InterestForm(prefix='interest')
 
 	if 'notification' in request.POST:
-		profile_form = ProfileForm(request.POST, prefix='notification')
+		profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
 		if profile_form.is_valid():
 			profile = profile_form.save(commit=False)
 			profile = request.user
