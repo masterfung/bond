@@ -18,9 +18,9 @@ class EventbriteEventIndex(SearchIndex, indexes.Indexable):
     def get_model(self):
         return EventbriteOAuth
 
-    def index_queryset(self, using=None):
-        ''' Used when the entire index for model is updated. '''
-        return self.get_model().objects.all()
+    # def index_queryset(self, using=None):
+    #     ''' Used when the entire index for model is updated. '''
+    #     return self.get_model().objects.all()
 
     # def prepare_template(self, obj):
     #     """
