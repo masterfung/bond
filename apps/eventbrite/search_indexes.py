@@ -8,7 +8,7 @@ from haystack import indexes
 from apps.eventbrite.models import EventbriteOAuth
 
 class EventbriteEventIndex(SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True, template_name='search/Indexes/eventbrite/eventbrite_text.txt')
+    text = indexes.CharField(document=True, use_template=True, template_name='search/indexes/eventbrite/eventbrite_text.txt')
     city = indexes.CharField(model_attr='city')
     event_url = indexes.CharField(model_attr='event_url')
     description = indexes.CharField(model_attr='event_description', null=True)
@@ -40,7 +40,7 @@ class EventbriteEventIndex(SearchIndex, indexes.Indexable):
             if not isinstance(template_names, (list, tuple)):
                 template_names = [template_names]
         else:
-            template_names = ['search/Indexes/%s/%s_%s.txt' % (obj._meta.app_label, obj._meta.module_name, self.instance_name)]
+            template_names = ['search/indexes/%s/%s_%s.txt' % (obj._meta.app_label, obj._meta.module_name, self.instance_name)]
 
         t = loader.select_template(template_names)
         return t.render(Context({'object': obj}))

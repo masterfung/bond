@@ -13,29 +13,14 @@
         <h2 class="text-center">Event Preferences & Notifications</h2>
 
 			<h3>Profile Settings</h3>
-			<form action="post">
+			<form method="post" action=".">
 				{% csrf_token %}
 				<div class="form-group">
 					{{ profile_form.as_p }}
-					{{ profile_form.errors }}
 				</div>
-				<a class="btn btn-default" href="{% url 'settings' %}">Submit</a>
+				<input class="btn btn-default" type="submit" name="notification" value="submit">
 			</form>
-{#			<button class="btn btn-primary btn-large email-btn" data-target="#notification-btn" data-toggle="modal">Update Notifications</button>#}
 
-{#	<div class="col-lg-6">#}
-{#		<h4 class="pull-left spacing-right">Current City: <p class="userCity text-center">{{ user.city }}</p></h4>#}
-{#		<h4 class="pull-left spacing-right">Event Proximity: <p class="userCity text-center">{{ event }}</p></h4>#}
-{#		<h4 class="pull-left spacing-right">Frequency of Notification: <p class="userCity text-center">3 times/wk</p></h4>#}
-{#		<h4 class="pull-left spacing-right">Event Share: <p class="userCity text-center">1</p></h4>#}
-{#		<h4 class="pull-right">Preferred Mode of Communication: <p class="userCity text-center">Email</p></h4>#}
-{#		<h3>Event Preferences</h3>#}
-{#			<form action="post">#}
-{#				{% csrf_token %}#}
-{#				{{ event.as_p }}#}
-{#		</form>#}
-{#		<button class="btn btn-primary btn-large text-btn" data-target="#events-btn" data-toggle="modal">Update Events Preference</button>#}
-{#	</div>#}
 	</div>
 </div>
 </div>
@@ -105,28 +90,6 @@
 		  </div>
 		</div>
 
-{#	    <div class="modal fade" id="events-btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
-{#		  <div class="modal-dialog">#}
-{#		    <div class="modal-content">#}
-{#			<form method="post">#}
-{#		      <div class="modal-header">#}
-{#		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
-{#		        <h4 class="modal-title" id="myModalLabel">Change Event Personalization</h4>#}
-{#		      </div>#}
-{#		      <div class="modal-body">#}
-{##}
-{#				{% csrf_token %}#}
-{#			    {{ event.as_p }}#}
-{##}
-{#		      </div>#}
-{#		      <div class="modal-footer">#}
-{#		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
-{#		        <input type="submit" value="Submit Preferences" class="btn btn-primary" name="event">#}
-{#		      </div>#}
-{#			</form>#}
-{#		    </div>#}
-{#		  </div>#}
-{#		</div>#}
     </div>
 
 

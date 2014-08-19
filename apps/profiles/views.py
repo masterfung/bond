@@ -50,24 +50,15 @@ def settings(request):
 		interest_form = InterestForm(prefix='interest')
 
 	if 'notification' in request.POST:
+		print "in notification"
 		profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
 		if profile_form.is_valid():
+			print "form is valid"
 			profile = profile_form.save(commit=False)
-			profile.id = request.user
 			profile.save()
 			return redirect("/settings")
 	else:
 		profile_form = ProfileForm(prefix='notification', instance=profile)
-
-	# if 'event' in request.POST:
-	# 	event = UserEventPersonalizationForm(request.POST, prefix='event')
-	# 	if event.is_valid():
-	# 		preference = event.save(commit=False)
-	# 		preference.profile = request.user
-	# 		preference.save()
-	# 		return redirect("/settings")
-	# else:
-	# 		#event = UserEventPersonalizationForm(prefix='event')
 
 	data = {'user': request.user, 'interests': interests, 'profile': profile,
 	        'interest_form': interest_form, 'profile_form': profile_form
@@ -112,22 +103,26 @@ def getting_started(request):
 		if form.is_valid():
 			# You have so many of these fields, and probably very little else in `form.cleaned_data`
 			# It would probably make more sense to loop over these fields
-			picked = form.cleaned_data['One']
-			picked += form.cleaned_data['Two']
-			picked += form.cleaned_data['Three']
-			picked += form.cleaned_data['Four']
-			picked += form.cleaned_data['Five']
-			picked += form.cleaned_data['Six']
-			picked += form.cleaned_data['Seven']
-			picked += form.cleaned_data['Eight']
-			picked += form.cleaned_data['Nine']
-			picked += form.cleaned_data['Ten']
-			picked += form.cleaned_data['Eleven']
-			picked += form.cleaned_data['Twelve']
-			getting_started.risk_score = int(picked)
+			food = form.cleaned_data['One']
+			wellness = form.cleaned_data['Two']
+			community = form.cleaned_data['Three']
+			education = form.cleaned_data['Four']
+			personal = form.cleaned_data['Five']
+			personal += form.cleaned_data['Six']
+			personal += form.cleaned_data['Seven']
+			personal += form.cleaned_data['Eight']
+			community += form.cleaned_data['Nine']
+			wellness += form.cleaned_data['Ten']
+			personal += form.cleaned_data['Eleven']
+			personal += form.cleaned_data['Twelve']
+			getting_started.food_score = int(food)
+			getting_started.wellness_score = int(wellness)
+			getting_started.community_score = int(community)
+			getting_started.education_score = int(education)
+			getting_started.personal_score = int(personal)
 			getting_started.save()
-			print picked
-			return redirect("boot")
+
+			return redirect("profile")
 
 	else:
 		form = GettingStartedForm()

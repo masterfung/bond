@@ -32,18 +32,18 @@ class Profile(AbstractUser):
 	email_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
 	text_notification = models.CharField(max_length=25, choices=STATUS, default=ENROLLED)
 
-	WITHIN_2 = 2
-	WITHIN_5 = 5
-	WITHIN_10 = 10
-	WITHIN_20 = 20
-	WITHIN_35 = 35
-	WITHIN_50 = 50
+	WITHIN_2 = '2'
+	WITHIN_5 = '5'
+	WITHIN_10 = '10'
+	WITHIN_20 = '20'
+	WITHIN_35 = '35'
+	WITHIN_50 = '50'
 
-	ONCE = 1
-	TWICE = 2
-	THRICE = 3
-	WEEKDAYS = 5
-	DAILY = 7
+	ONCE = "1"
+	TWICE = '2'
+	THRICE = '3'
+	WEEKDAYS = '5'
+	DAILY = '7'
 
 	PROXIMITY = (
 		(WITHIN_2, 'Within 2 Miles'),
@@ -64,6 +64,12 @@ class Profile(AbstractUser):
 
 	distance = models.CharField(max_length=20, choices=PROXIMITY, default=WITHIN_2)
 	notice_frequency = models.CharField(max_length=20, choices=FREQUENCY, default=THRICE)
+
+	food_score = models.FloatField(default=0, null=True)
+	wellness_score = models.FloatField(default=0, null=True)
+	community_score = models.FloatField(default=0, null=True)
+	personal_score = models.FloatField(default=0, null=True)
+	education_score = models.FloatField(default=0, null=True)
 
 	def __unicode__(self):
 		return "{} {}".format(self.first_name, self.last_name)
