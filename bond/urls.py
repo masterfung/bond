@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 # from bond.meetup.views import EventDetail, EventList
+from haystack.forms import FacetedSearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import search_view_factory, FacetedSearchView
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
@@ -54,7 +57,8 @@ urlpatterns = patterns('',
                        url(r'^a/$', 'apps.profiles.views.angular', name='angular'),
 
                        url(r'^search/$', include('haystack.urls')),  # pulls urls from the haystack app
-                       # url(r'^search/$', 'meetup.views.search_titles', name='search'),
+                       url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
+					        view_class=FacetedSearchView, form_class=FacetedSearchForm), name='faceted_search'),
 
 )
 

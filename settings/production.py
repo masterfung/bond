@@ -13,7 +13,10 @@ import dj_database_url
 import os
 from django.utils.crypto import get_random_string
 import djcelery
+import logging
 
+
+logging.basicConfig(level=logging.INFO)
 
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 

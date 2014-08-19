@@ -38,7 +38,7 @@ def settings(request):
 	"""Handles new interests, notifications, and event preferences"""
 	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
 	profile = Profile.objects.get(id=request.user.id)
-	city_event = Event.objects.filter(city=request.user.city)
+
 
 	if 'interest' in request.POST:
 		interest_form = InterestForm(request.POST, prefix='interest')
@@ -60,15 +60,15 @@ def settings(request):
 		profile_form = ProfileForm(prefix='notification', instance=profile)
 
 	data = {'user': request.user, 'interests': interests, 'profile': profile,
-	        'interest_form': interest_form, 'profile_form': profile_form,
-	        'city_event': city_event
+	        'interest_form': interest_form, 'profile_form': profile_form
 	}
 	return render(request, 'settings.html', data)
 
 
 @login_required
 def profile(request):
-	data = {'user': request.user}
+	city_event = Event.objects.filter(city=request.user.city)
+	data = {'user': request.user, 'city_event': city_event}
 	return render(request, 'profiles/view_profile.html', data)
 
 
