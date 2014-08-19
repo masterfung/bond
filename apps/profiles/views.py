@@ -100,6 +100,7 @@ def getting_started(request):
 		print 'post'
 		form = GettingStartedForm(request.POST)
 		if form.is_valid():
+			survey = survey.save(commit=False)
 			print 'valid'
 			food = form.cleaned_data['One']
 			wellness = form.cleaned_data['Two']

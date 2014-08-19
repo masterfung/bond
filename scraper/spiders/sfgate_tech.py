@@ -33,16 +33,16 @@ class SFGate(BaseSpider):
 		items = []
 		for title in titles:
 			event = SFGateTechBusiness()
-			event['url'] = title.xpath(".//td[@class='title_content']/a/@href").extract()[0].strip().replace('"', '')
-			event['title_content'] = title.xpath(".//td[@class='title_content']/a/text()").extract()[0].strip().replace(
+			event['event_url'] = title.xpath(".//td[@class='title_content']/a/@href").extract()[0].strip().replace('"', '')
+			event['event_name'] = title.xpath(".//td[@class='title_content']/a/text()").extract()[0].strip().replace(
 				'"', '')
-			event['description_content'] = title.xpath(".//td[@class='description_content']/div/text()").extract()[
+			event['description'] = title.xpath(".//td[@class='description_content']/div/text()").extract()[
 				0].strip().replace('"', '')
-			event['meta_date_content'] = title.xpath(".//td[@class='meta_content']/div[1]/text()").extract()[
+			event['venue'] = title.xpath(".//td[@class='meta_content']/div[1]/text()").extract()[
 				0].strip().replace('"', '')
-			event['meta_event_link'] = title.xpath(".//td[@class='meta_content']/div[2]/a/@href").extract()[
+			event['start_time'] = title.xpath(".//td[@class='meta_content']/div[2]/a/@href").extract()[
 				0].strip().replace('"', '')
-			event['meta_event_location'] = title.xpath(".//td[@class='meta_content']/div[2]/a/text()").extract()[
+			event['event_address'] = title.xpath(".//td[@class='meta_content']/div[2]/a/text()").extract()[
 				0].strip().replace('"', '')
 			# event['buy_link'] = title.xpath("//td[@class='meta_content']/div[2]/a/@href").extract()
 			items.append(event)

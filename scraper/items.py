@@ -1,6 +1,7 @@
 import scrapy
 from scrapy.contrib.djangoitem import DjangoItem
 from scrapy.item import Item, Field
+from apps.meetup.models import Event
 from models import Scraper
 
 
@@ -14,4 +15,4 @@ from models import Scraper
 
 
 class SFGateTechBusiness(DjangoItem):
-	django_model = Scraper
+	django_model = Event
