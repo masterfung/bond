@@ -16,8 +16,8 @@ class Command(BaseCommand):
 
         cities = [ # "san+francisco",
                   # "boston", "new+york", "houston",
-                   "los+angeles", "baltimore", "austin", "san+antonio", "nashville", "seattle", "philadelphia",
-                  # "columbus", "dallas", "denver", "salt+lake+city", "las+vegas", "washington", "kansas+city",
+                  # "los+angeles", "baltimore", "austin", "san+antonio", "nashville", "seattle", "philadelphia",
+                   "columbus", "dallas", "denver", "salt+lake+city", "las+vegas", "washington", "kansas+city",
                   # "minneapolis", "atlanta", "orlando", "richmond"
         ]
 

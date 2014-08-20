@@ -92,6 +92,14 @@ class Interest(models.Model):
 		return self.name
 
 
+class UserCity(models.Model):
+	name = models.CharField(max_length=35)
+	profile = models.ForeignKey(Profile, related_name='usercity_profile')
+
+	def __unicode__(self):
+		return self.name
+
+
 # class Notification(models.Model):
 # 	ENROLLED = 'Enrolled'
 # 	NOT_ENROLLED = 'Not Enrolled'

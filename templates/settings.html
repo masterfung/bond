@@ -25,17 +25,16 @@
     <div class="row col-lg-6">
 
 		<h2 class="text-center">Interest</h2>
-        <ul>
+        <ul class="centered">
             {% for interest in interests %}
                 <a class="userChoice btn btn-default" href="/search/?q={{ interest.name }}">{{ interest.name }}</a>
 
             {% endfor %}
         </ul>
-        <div class="spacing-buffer"></div>
 
         <!-- Button trigger modal -->
 		<div class="centering-box">
-			<div class="row">
+			<div class="row centered">
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNewInterest">
 					Add New Interest
 				</button>
@@ -44,7 +43,31 @@
 				</button>
 			</div>
 		</div>
+        <div class="spacing-buffer"></div>
+	    <hr/>
+    </div>
 
+	<div class="spacing-buffer"></div>
+	<div class="row col-lg-6">
+		<h2 class="text-center">Favorite Cities</h2>
+		<ul class="centered">
+            {% for city in cities %}
+                <a class="userChoice btn btn-default" href="/search/?q={{ interest.name }}">{{ interest.name }}</a>
+
+            {% endfor %}
+        </ul>
+
+		<div class="centering-box">
+			<div class="row centered">
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNewCity">
+					Add New City
+				</button>
+		        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteCity">
+					Delete A City
+				</button>
+			</div>
+		</div>
+	</div>
 		<!-- Modal -->
 		<div class="modal fade" id="addNewInterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -85,8 +108,28 @@
 
 		    </div>
 		  </div>
-	</div>
+		</div>
 
+		<div class="modal fade" id="addNewCity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+			    <form method="post">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Add New Interest</h4>
+		      </div>
+		      <div class="modal-body">
+	                {% csrf_token %}
+	                {{ city_form.as_p }}
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <input type="submit" value="Add New Interest" class="btn btn-primary" name="city">
+		      </div>
+			    </form>
+		    </div>
+		  </div>
+		</div>
 </div>
 
 

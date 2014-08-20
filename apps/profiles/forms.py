@@ -2,7 +2,7 @@ from crispy_forms.helper import FormHelper
 from django import forms
 from django.forms import ModelForm
 from djangular.forms import NgFormValidationMixin, NgModelFormMixin
-from apps.profiles.models import Interest, Profile
+from apps.profiles.models import Interest, Profile, UserCity
 
 
 class InterestForm(ModelForm):
@@ -27,6 +27,15 @@ class ProfileForm(ModelForm):
 		fields = ['first_name', 'last_name', 'email', 'phone', 'city', 'email_notification', 'text_notification',
 				  'distance', 'notice_frequency']
 
+class UserCityForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(UserCityForm, self).__init__(*args, **kwargs)
+		for field_name, field in self.fields.items():
+			field.widget.attrs['class'] = 'form-control'
+
+	class Meta:
+		model = UserCity
+		exclude = ['profile']
 
 class GettingStartedForm(forms.Form):
 	choices = (

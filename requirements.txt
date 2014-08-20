@@ -46,6 +46,7 @@ psycopg2==2.5.3
 pyOpenSSL==0.14
 pycparser==2.10
 pyelasticsearch==0.7.1
+python-dateutil==2.2
 python-openid==2.2.5
 python-social-auth==0.1.26
 pytz==2014.4
@@ -56,6 +57,7 @@ sh==1.09
 simplejson==3.6.2
 six==1.7.3
 static3==0.5.1
+tzlocal==1.1.1
 urllib3==1.9
 w3lib==1.8.0
 waitress==0.8.9

@@ -17,7 +17,7 @@ Profile
 	        {{ user.first_name }}!
         {% endif %}
         </h1>
-
+		<p class="text-center">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
         <p class="text-center">Your current time: <br/> {% now "jS F Y H:i" %}</p>
         <div class="spacing-buffer"></div>
     </div>
@@ -56,11 +56,25 @@ Profile
 	{% endif %}
 
 	<div class="container">
-		<div class="row">
+		<div class="row col-md-6">
 			<h2>Some Events in Your City:</h2>
-			{% for event in city_event %}
-				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
-			{% endfor %}
+
+				{% for event in city_event %}
+					<div class="table-bordered">
+
+						{% if event.description == None %}
+
+						{% else %}
+							<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+							<p>{{ event.description | truncatechars:100  }}</p>
+						{% endif %}
+					</div>
+				{% endfor %}
+
+		</div>
+
+		<div class="row col-md-6">
+
 		</div>
 	</div>
 

@@ -3,8 +3,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from apps.meetup.models import Event
-from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm
-from models import Interest, Profile
+from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm, UserCityForm
+from models import Interest, Profile, UserCity
 
 
 def home(request):
@@ -38,7 +38,7 @@ def settings(request):
 	"""Handles new interests, notifications, and event preferences"""
 	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
 	profile = Profile.objects.get(id=request.user.id)
-
+	cities = UserCity.objects.filter(profile=request.user)
 
 	if 'interest' in request.POST:
 		interest_form = InterestForm(request.POST, prefix='interest')
@@ -59,8 +59,19 @@ def settings(request):
 	else:
 		profile_form = ProfileForm(prefix='notification', instance=profile)
 
+	if 'city' in request.POST:
+		city_form = UserCityForm(request.POST, prefix='city', instance=request.user)
+		if city_form.is_valid():
+			city = city_form.save(commit=False)
+			city.save()
+			return redirect("/settings")
+
+	else:
+		city_form = UserCityForm(prefix='city')
+
 	data = {'user': request.user, 'interests': interests, 'profile': profile,
-	        'interest_form': interest_form, 'profile_form': profile_form
+	        'interest_form': interest_form, 'profile_form': profile_form,
+	        'cities': cities, 'city_form': city_form
 	}
 	return render(request, 'settings.html', data)
 
@@ -70,14 +81,6 @@ def profile(request):
 	city_event = Event.objects.filter(city=request.user.city)[:10]
 	data = {'user': request.user, 'city_event': city_event}
 	return render(request, 'profiles/view_profile.html', data)
-
-
-@login_required
-def view_interest(request, interest_id):
-	"""View interests"""
-	interest = Interest.objects.get(id=interest_id)
-	data = {'interest': interest}
-	return render(request, "settings.html", data)
 
 
 @login_required
