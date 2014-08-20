@@ -20,6 +20,8 @@ function initialize() {
 //    map.setCenter({lat: 37.7833, lng: -122.4167});
 
     geocoder = new google.maps.Geocoder();
+
+	getData();
     }
 
      // Try HTML5 geolocation
@@ -62,7 +64,22 @@ function initialize() {
     }
 	google.maps.event.addDomListener(window, 'load', initialize);
 
+	var getData = function() {
 
+		$.ajax({
+			url: '/get-events/',
+			type: "GET",
+			success: function (data) {
+				console.log(data[0].fields.lat);
+				console.log('success');
+			},
+			error: function (data) {
+				console.log('error');
+				console.log(data.response);
+				console.log(data);
+			}
+		})
+	};
 
     $(".maps").on('click', function () {
         userInput = $('#inputTextAddress').val();

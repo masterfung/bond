@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
                        url(r'^$', "apps.profiles.views.home", name="home"),
                        url(r'^about/$', 'apps.profiles.views.about', name='about'),
-                       url(r'^why_us/$', 'apps.profiles.views.whyus', name='whyus'),
+                       url(r'^why-us/$', 'apps.profiles.views.whyus', name='whyus'),
 
                        url(r'^contact/$', 'apps.contact.views.contact', name='contact'),
 
@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 
 
                        # url(r'^profile/delete_interest/$', 'profiles.views.delete_interest', name='delete_interest'),
-                       url(r'^getting_started/$', 'apps.profiles.views.getting_started', name='getting_started'),
+                       url(r'^getting-started/$', 'apps.profiles.views.getting_started', name='getting_started'),
 
                        url(r'^settings/$', 'apps.profiles.views.settings', name='settings'),
                        url(r'^settings/(?P<interest_id>\w+)/delete/$', 'apps.profiles.views.delete_interest',
@@ -44,14 +44,15 @@ urlpatterns = patterns('',
                            name='delete_city'),
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
 
-                       url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
+                       url(r'^meetup-oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
 
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
                        # url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
 
                        url(r'^events/$', 'apps.events.views.events', name='events'),
 
-                       url(r'^event_maps/$', 'apps.maps.views.event_maps', name='event_maps'),
+                       url(r'^map/$', 'apps.maps.views.event_maps', name='map'),
+                       url(r'^get-events/$', 'apps.maps.views.get_events', name='get_events'),
 
                        url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
                        url(r'^logout/$', 'apps.profiles.views.logout', name='logout'),
@@ -63,7 +64,7 @@ urlpatterns = patterns('',
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),
-                           name='faceted_search'),
+                                                                      name='faceted_search'),
 
 )
 

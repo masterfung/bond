@@ -1,6 +1,7 @@
 from json import dumps
 import json
 import dateutil.parser
+from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import Event
 from settings.local import EVENTBRITE_OAUTH_KEY
@@ -66,7 +67,6 @@ class Command(BaseCommand):
                             status=event.get('status', 'Not Available'),
                             event_logo=event.get('logo_url', 'Not Available'),
                             event_capacity=event.get('capacity', 0),
-                            #created=event.get('created', 'Not Available'),
                             organizer_description=event.get('description', {}).get('text', 'Not Available'),
 
                             venue=event.get('venue', {}),

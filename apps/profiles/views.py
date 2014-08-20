@@ -80,10 +80,11 @@ def settings(request):
 @login_required
 def profile(request):
 	city_event = Event.objects.filter(city=request.user.city).order_by('?')[:8]
+	
 	food = Event.objects.filter(city=request.user.city).filter(description__icontains='food').order_by('timestamp')[:1]
-	community = Event.objects.filter(city=request.user.city).filter(description__icontains='community').order_by('timestamp')[:1]
-	wellness = Event.objects.filter(city=request.user.city).filter(description__icontains='health').order_by('timestamp')[:1]
-	education = Event.objects.filter(city=request.user.city).filter(description__icontains='learn').order_by('timestamp')[:1]
+	community = Event.objects.filter(city=request.user.city, description__icontains='community').order_by('timestamp')[:1]
+	wellness = Event.objects.filter(city=request.user.city, description__icontains='health').order_by('timestamp')[:1]
+	education = Event.objects.filter(city=request.user.city, description__icontains='learn').order_by('timestamp')[:1]
 	personal = Event.objects.filter(city=request.user.city).order_by('timestamp')[:2]
 	data = {
 		'user': request.user, 'city_event': city_event, 'food': food,
