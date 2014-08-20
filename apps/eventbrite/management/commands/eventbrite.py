@@ -60,7 +60,7 @@ class Command(BaseCommand):
                         datetime_end = dateutil.parser.parse(event['end']['utc'])
                         eventbrite = Event.objects.get_or_create(
                             event_name=event.get('name', {}).get('text'),
-                            description=event.get('description', {}).get('text', 'Not Available'),
+                            description=strip_tags(event.get('description', {}).get('text', 'Not Available').strip()),
                             event_url=event.get('url', None),
                             event_id=event.get('id', 0),
                             status=event.get('status', 'Not Available'),

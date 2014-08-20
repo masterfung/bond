@@ -62,7 +62,7 @@ function initialize() {
     }
 	google.maps.event.addDomListener(window, 'load', initialize);
 
-	
+
 
     $(".maps").on('click', function () {
         userInput = $('#inputTextAddress').val();
