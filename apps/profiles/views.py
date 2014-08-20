@@ -60,9 +60,10 @@ def settings(request):
 		profile_form = ProfileForm(prefix='notification', instance=profile)
 
 	if 'city' in request.POST:
-		city_form = UserCityForm(request.POST, prefix='city', instance=request.user)
+		city_form = UserCityForm(request.POST, prefix='city')
 		if city_form.is_valid():
 			city = city_form.save(commit=False)
+			city.profile = request.user
 			city.save()
 			return redirect("/settings")
 
@@ -85,9 +86,17 @@ def profile(request):
 
 @login_required
 def delete_interest(request, interest_id):
-	"""Delete interest"""
+	"""Delete an interest"""
 	interest = Interest.objects.get(id=interest_id)
 	interest.delete()
+	return redirect('/settings')
+
+
+@login_required
+def delete_user_city(request, usercity_id):
+	"""Delete a city"""
+	user_city = UserCity.objects.get(id=usercity_id)
+	user_city.delete()
 	return redirect('/settings')
 
 

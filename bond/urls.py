@@ -40,6 +40,8 @@ urlpatterns = patterns('',
                        url(r'^settings/(?P<interest_id>\w+)/delete/$', 'apps.profiles.views.delete_interest',
                            name='delete_interest'),
 
+                       url(r'^settings/(?P<usercity_id>\w+)/delete/$', 'apps.profiles.views.delete_user_city',
+                           name='delete_city'),
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
 
                        url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
@@ -59,7 +61,9 @@ urlpatterns = patterns('',
                        url(r'^search/$', include('haystack.urls')),  # pulls urls from the haystack app
                        # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),  # pulls urls from the haystack app
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
-					        view_class=FacetedSearchView, form_class=FacetedSearchForm), name='faceted_search'),
+                                                                      view_class=FacetedSearchView,
+                                                                      form_class=FacetedSearchForm),
+                           name='faceted_search'),
 
 )
 

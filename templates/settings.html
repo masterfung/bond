@@ -38,7 +38,7 @@
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNewInterest">
 					Add New Interest
 				</button>
-		        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteNewInterest">
+		        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteInterest">
 					Delete An Interest
 				</button>
 			</div>
@@ -52,8 +52,7 @@
 		<h2 class="text-center">Favorite Cities</h2>
 		<ul class="centered">
             {% for city in cities %}
-                <a class="userChoice btn btn-default" href="/search/?q={{ interest.name }}">{{ interest.name }}</a>
-
+                <a class="userChoice btn btn-default" href="/search/?q={{ city.name }}">{{ city.name }}</a>
             {% endfor %}
         </ul>
 
@@ -90,13 +89,13 @@
 		  </div>
 		</div>
 
-        <div class="modal fade" id="deleteNewInterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteInterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Delete Interest</h4>
-			    <p>Click on an interest to delete.</p>
+			    <p>Click on any interest to delete.</p>
 		      </div>
 		      <div class="modal-body">
 
@@ -116,7 +115,7 @@
 			    <form method="post">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Add New Interest</h4>
+		        <h4 class="modal-title" id="myModalLabel">Add New City</h4>
 		      </div>
 		      <div class="modal-body">
 	                {% csrf_token %}
@@ -127,6 +126,26 @@
 		        <input type="submit" value="Add New Interest" class="btn btn-primary" name="city">
 		      </div>
 			    </form>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="modal fade" id="deleteCity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Delete A City</h4>
+			    <p>Click on any city to delete.</p>
+		      </div>
+		      <div class="modal-body">
+
+					{% for city in cities %}
+                        <a class="userChoice btn btn-default" href="{% url 'delete_city' city.id %}">{{ city.name }}</a>
+                    {% endfor %}
+
+		      </div>
+
 		    </div>
 		  </div>
 		</div>
