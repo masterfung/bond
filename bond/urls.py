@@ -45,7 +45,7 @@ urlpatterns = patterns('',
                        url(r'^meetup_oauth/$', 'apps.meetup.views.meetup_oauth_connect', name='all_open_event'),
 
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
-                       #url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
+                       # url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
 
                        url(r'^events/$', 'apps.events.views.events', name='events'),
 
@@ -57,6 +57,7 @@ urlpatterns = patterns('',
                        url(r'^a/$', 'apps.profiles.views.angular', name='angular'),
 
                        url(r'^search/$', include('haystack.urls')),  # pulls urls from the haystack app
+                       # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),  # pulls urls from the haystack app
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
 					        view_class=FacetedSearchView, form_class=FacetedSearchForm), name='faceted_search'),
 

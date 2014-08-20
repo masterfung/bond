@@ -67,7 +67,7 @@ def settings(request):
 
 @login_required
 def profile(request):
-	city_event = Event.objects.filter(city=request.user.city)
+	city_event = Event.objects.filter(city=request.user.city)[:10]
 	data = {'user': request.user, 'city_event': city_event}
 	return render(request, 'profiles/view_profile.html', data)
 

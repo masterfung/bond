@@ -69,6 +69,15 @@ def meetup_oauth_connect(request):
 
 	return render(request, 'meetup/meetup_oauth.html')
 
+@csrf_exempt
+def autocomplete(request):
+	sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('q', ''))[:5]
+	suggestions = [result.event_name for result in sqs]
+	the_data = json.dumps({
+		'results': suggestions
+	})
+	return HttpResponse(the_data, content_type='application/json')
+
 
 # def notes(request):
 # form = TopicEventIndexForm(request.GET)
