@@ -18,7 +18,9 @@
 				<div class="form-group">
 					{{ profile_form.as_p }}
 				</div>
-				<input class="btn btn-default" type="submit" name="notification" value="submit">
+				<div class="centered">
+					<input class="btn btn-default btn-large" type="submit" name="notification" value="submit">
+				</div>
 			</form>
 
 	</div>
@@ -97,14 +99,13 @@
 		        <h4 class="modal-title" id="myModalLabel">Delete Interest</h4>
 			    <p>Click on any interest to delete.</p>
 		      </div>
-		      <div class="modal-body">
+		      <div class="modal-body centered">
 
 					{% for interest in interests %}
                         <a class="userChoice btn btn-default" href="{% url 'delete_interest' interest.id %}">{{ interest.name }}</a>
                     {% endfor %}
 
 		      </div>
-
 		    </div>
 		  </div>
 		</div>
@@ -123,7 +124,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <input type="submit" value="Add New Interest" class="btn btn-primary" name="city">
+		        <input type="submit" value="Add New City" class="btn btn-primary" name="city">
 		      </div>
 			    </form>
 		    </div>
@@ -138,14 +139,13 @@
 		        <h4 class="modal-title" id="myModalLabel">Delete A City</h4>
 			    <p>Click on any city to delete.</p>
 		      </div>
-		      <div class="modal-body">
+		      <div class="modal-body centered">
 
-					{% for city in cities %}
-                        <a class="userChoice btn btn-default" href="{% url 'delete_city' city.id %}">{{ city.name }}</a>
-                    {% endfor %}
+				{% for city in cities %}
+                    <a class="userChoice btn btn-default" href="{% url 'delete_city' city.id %}">{{ city.name }}</a>
+                {% endfor %}
 
 		      </div>
-
 		    </div>
 		  </div>
 		</div>

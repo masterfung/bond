@@ -9,14 +9,11 @@ class ProfileAdmin(admin.ModelAdmin):
 class InterestAdmin(admin.ModelAdmin):
 	list_display = ['name', 'choice', 'profile']
 
-# class NotificationAdmin(admin.ModelAdmin):
-# 	list_display = ['profile', 'email', 'text']
-
-# class UserEventPersonalizationAdmin(admin.ModelAdmin):
-# 	list_display = ['profile', 'event_proximity', 'email_frequency', 'event_share']
+class UserCityAdmin(admin.ModelAdmin):
+	list_display = ['name', 'profile']
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Interest, InterestAdmin)
 admin.site.register(CategoryPreference)
-admin.site.register(UserCity)
+admin.site.register(UserCity, UserCityAdmin)
 

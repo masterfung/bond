@@ -95,8 +95,8 @@ def delete_interest(request, interest_id):
 @login_required
 def delete_user_city(request, usercity_id):
 	"""Delete a city"""
-	user_city = UserCity.objects.get(id=usercity_id)
-	user_city.delete()
+	city = UserCity.objects.get(id=usercity_id)
+	city.delete()
 	return redirect('/settings')
 
 

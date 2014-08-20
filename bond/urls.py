@@ -40,7 +40,7 @@ urlpatterns = patterns('',
                        url(r'^settings/(?P<interest_id>\w+)/delete/$', 'apps.profiles.views.delete_interest',
                            name='delete_interest'),
 
-                       url(r'^settings/(?P<usercity_id>\w+)/delete/$', 'apps.profiles.views.delete_user_city',
+                       url(r'^settings/(?P<usercity_id>\w+)/$', 'apps.profiles.views.delete_user_city',
                            name='delete_city'),
                        # url(r'^meetup_all/$', 'meetup.tasks.meetup_api_find_open_events', name='all_open_event'),
 
