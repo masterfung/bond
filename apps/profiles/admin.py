@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.profiles.models import Profile, Interest, CategoryPreference
+from apps.profiles.models import Profile, Interest, CategoryPreference, UserCity
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -18,7 +18,5 @@ class InterestAdmin(admin.ModelAdmin):
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Interest, InterestAdmin)
 admin.site.register(CategoryPreference)
-# admin.site.register(Notification, NotificationAdmin)
-#
-# admin.site.register(EventProximity)
+admin.site.register(UserCity)
 
