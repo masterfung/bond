@@ -11,7 +11,7 @@ function initialize() {
     var mapOptions = {
       center: new google.maps.LatLng(37.7833, -122.4167),
       zoom: 15,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
 
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -31,7 +31,7 @@ function initialize() {
       var infowindow = new google.maps.InfoWindow({
         map: map,
         position: pos,
-        content: 'Doomed you are! We found you!'
+        content: 'You are located around here'
       });
 
       map.setCenter(pos);
@@ -62,7 +62,7 @@ function initialize() {
     }
 	google.maps.event.addDomListener(window, 'load', initialize);
 
-
+	
 
     $(".maps").on('click', function () {
         userInput = $('#inputTextAddress').val();

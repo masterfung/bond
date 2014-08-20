@@ -15,7 +15,6 @@ from django.utils.crypto import get_random_string
 import djcelery
 import logging
 
-
 logging.basicConfig(level=logging.INFO)
 
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -165,15 +164,11 @@ STATICFILES_STORAGE = "require_s3.storage.OptimizedCachedStaticFilesStorage"
 
 # Amazon S3 settings.
 
-# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-#
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-#
-# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 
-AWS_ACCESS_KEY_ID = "AKIAIZ6XEDICLPBV3W4A"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "bondandme"
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
 AWS_AUTO_CREATE_BUCKET = True
 
@@ -320,13 +315,20 @@ WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh/')
 
 #HAYSTACK
 
+from urlparse import urlparse
+
+es = urlparse(os.environ.get('SEARCHBOX_URL') or 'http://127.0.0.1:9200/')
+
 HAYSTACK_CONNECTIONS = {
-	'default': {
-		'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-		'URL': os.environ["SEARCHBOX_SSL_URL"],
-		'INDEX_NAME': 'documents',
-	},
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': es.scheme + '://' + es.hostname + ':80',
+        'INDEX_NAME': 'documents',
+    },
 }
+
+if es.username:
+    HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
