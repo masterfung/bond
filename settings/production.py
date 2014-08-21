@@ -126,6 +126,8 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 ALLOWED_HOSTS = (
 	SITE_DOMAIN,
 	"bondandme.herokuapp.com",
+	"bondandme.com",
+	"www.bondandme.com",
 )
 
 PASSWORD_HASHERS = (
