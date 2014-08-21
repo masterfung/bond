@@ -5,10 +5,10 @@ from django.db import models
 class Event(models.Model):
 	group_id = models.CharField(max_length=200, null=True, blank=True)
 	join_mode = models.CharField(max_length=20, null=True, blank=True)
-	group_name = models.CharField(max_length=200, null=True, blank=True)
+	group_name = models.CharField(max_length=400, null=True, blank=True)
 	phone = models.CharField(max_length=20, null=True, blank=True)
 	description = models.TextField(null=True, blank=True)
-	event_address = models.CharField(max_length=200, null=True, blank=True)
+	event_address = models.CharField(max_length=400, null=True, blank=True)
 	city = models.CharField(max_length=50, blank=True)
 	state = models.CharField(max_length=20, null=True, blank=True)
 	zip = models.CharField(max_length=20, null=True, blank=True)
