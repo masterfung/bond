@@ -115,7 +115,7 @@ HEROKU_BUILDPACK_URL = "https://github.com/heroku/heroku-buildpack-python.git"
 
 SITE_NAME = "Bond"
 
-SITE_DOMAIN = "bondandme.herokuapp.com"
+SITE_DOMAIN = "bondandme.com"
 
 PREPEND_WWW = False
 
