@@ -196,3 +196,10 @@ ul > li {
   padding: 0 15px; }
   .container .text-muted {
     margin: 20px 0; }
+
+.backgroundImage1 {
+  background: url(/static/img/main-slide.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }

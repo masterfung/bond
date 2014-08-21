@@ -10,6 +10,10 @@ Profile
 {% block message %}
 <div class="container">
     <div class="row">
+        <div class="spacing-buffer"></div>
+        <div class="centered">
+    	    <img class="img-responsive" src="http://graph.facebook.com/{{ user.uid }}/picture?type=large" alt=""/>
+        </div>
         <h1 class="text-center title-heading-style">Welcome
         {% if user.first_name == '' %}
 	        Awesome Individual!
@@ -18,7 +22,7 @@ Profile
         {% endif %}
         </h1>
 		<p class="text-center">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
-        <p class="text-center">Your current time: <br/> {% now "jS F Y H:i" %}</p>
+        <p class="text-center">Your current time: <br/> {% now "jS F Y g:iA" %}</p>
         <div class="spacing-buffer"></div>
     </div>
 </div>
@@ -98,7 +102,7 @@ Profile
 				<p>{{ event.description | truncatechars:100  }}</p>
 			{% endfor %}
 		{% else %}
-			<h2 class="text-center">We are working on making the best event curation. Please check back later!</h2>
+			<h2 class="text-center">Awaiting {{ user.first_name | capfirst}} to finish survey before we can supply kick-ass events.</h2>
 		{% endif %}
 	</div>
 

@@ -72,6 +72,14 @@ function initialize() {
 			success: function (data) {
 				console.log(data[0].fields.lat);
 				console.log('success');
+				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					var eventName = data[i]['fields']['event_name'];
+					var description = data[i]['fields']['description'];
+					var lat = data[i]['fields']['lat'];
+					var lon = data[i]['fields']['lon'];
+					var eventUrl = data[i]['fields']['event_url'];
+				}
 			},
 			error: function (data) {
 				console.log('error');
