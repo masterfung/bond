@@ -13,6 +13,7 @@ class AuthProvider(models.Model):
 class Profile(AbstractUser):
 	provider = models.ForeignKey(AuthProvider, null=True, related_name='users')
 	raw = models.TextField(null=True)
+	fib = models.BigIntegerField(null=True, blank=True)
 	phone = models.CharField(max_length=12, null=True)
 	city = models.CharField(max_length=40, null=True)
 	birthday = models.CharField(max_length=10, null=True)
