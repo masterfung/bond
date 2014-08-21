@@ -4,7 +4,7 @@ import dateutil.parser
 from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import Event
-from settings.local import EVENTBRITE_OAUTH_KEY
+from settings.production import EVENTBRITE_OAUTH_KEY
 
 __author__ = 'htm'
 

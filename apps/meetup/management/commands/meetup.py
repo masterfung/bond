@@ -9,7 +9,7 @@ from pytz import timezone
 from tzlocal import get_localzone
 from dateutil.relativedelta import relativedelta
 from apps.meetup.models import Event
-from settings.local import MEETUP_API_KEY
+from settings.production import MEETUP_API_KEY
 
 
 class Command(BaseCommand):
