@@ -6,10 +6,10 @@ settings.
 """
 
 # Import production settings.
-# from settings.production import *
-#
-# # Import optional local settings.
-# try:
-#     from settings.local import *
-# except ImportError:
-#     pass
+from settings.production import *
+
+# Import optional local settings.
+try:
+    from settings.local import *
+except ImportError:
+    pass
