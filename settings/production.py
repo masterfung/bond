@@ -93,7 +93,7 @@ ROOT_URLCONF = 'bond.urls'
 
 WSGI_APPLICATION = 'bond.wsgi.application'
 
-MEETUP_API_KEY = os.environ.get("MEETUP_API_KEY")
+MEETUP_API_KEY1 = os.environ.get("MEETUP_API_KEY1")
 EVENTBRITE_API_KEY = os.environ.get("EVENTBRITE_API_KEY")
 EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
 
