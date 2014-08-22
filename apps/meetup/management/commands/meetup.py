@@ -122,6 +122,7 @@ class Command(BaseCommand):
 							lat=event.get('venue', {}).get('lat', 0),
 							lon=event.get('venue', {}).get('lon', 0),
 							event_address=event.get('venue', {}).get('address_1', 'Not Available'),
+							# event_address2=event.get('venue', {}).get('address_2', 'Not Available'),
 							city=event.get('venue', {}).get('city', 'Not Available'),
 							state=event.get('venue', {}).get('state', 'Not Available'),
 							zip=event.get('venue', {}).get('zip', 0),

@@ -12,7 +12,7 @@ class Event(models.Model):
 		('None', 'None'),
 
 	)
-	
+
 	source = models.CharField(max_length=20, choices=EVENT_SOURCE, default='None')
 	group_id = models.CharField(max_length=200, null=True, blank=True)
 	join_mode = models.CharField(max_length=20, null=True, blank=True)
@@ -20,6 +20,7 @@ class Event(models.Model):
 	phone = models.CharField(max_length=20, null=True, blank=True)
 	description = models.TextField(null=True, blank=True)
 	event_address = models.CharField(max_length=400, null=True, blank=True)
+	event_address2 = models.CharField(max_length=400, null=True, blank=True)
 	city = models.CharField(max_length=50, blank=True)
 	state = models.CharField(max_length=20, null=True, blank=True)
 	zip = models.CharField(max_length=20, null=True, blank=True)
