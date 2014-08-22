@@ -369,7 +369,7 @@ SITE_ID = 1
 
 # Compressor
 
-COMPRESS_ENABLED = False
+COMPRESS_ENABLED = True
 
 COMPRESS_ROOT = os.path.join(BASE_DIR, "static")
 

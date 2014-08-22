@@ -7,6 +7,7 @@ class SFGateTechBusiness(object):
 
 	def process_item(self, item, spider):
 		try:
+			# source = ('Scrapy')
 			item.save()
 			return item
 		except IntegrityError, e:

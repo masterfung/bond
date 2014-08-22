@@ -64,6 +64,5 @@ class TopicEventSerializer(serializers.ModelSerializer):
 			'lon',
 			'event_updated',
 			'group',
-			'time',
-			'created',
+
 		)

@@ -40,7 +40,7 @@ class SFGate(BaseSpider):
 				0].strip().replace('"', '')
 			event['venue'] = title.xpath(".//td[@class='meta_content']/div[1]/text()").extract()[
 				0].strip().replace('"', '')
-			event['start_time'] = title.xpath(".//td[@class='meta_content']/div[2]/a/@href").extract()[
+			event['scrapy_event_url'] = title.xpath(".//td[@class='meta_content']/div[2]/a/@href").extract()[
 				0].strip().replace('"', '')
 			event['event_address'] = title.xpath(".//td[@class='meta_content']/div[2]/a/text()").extract()[
 				0].strip().replace('"', '')

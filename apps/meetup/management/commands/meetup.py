@@ -103,6 +103,7 @@ class Command(BaseCommand):
 							end_dateTime = start_dateTime + relativedelta(hours=5)
 							end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
 						meetup = Event.objects.get_or_create(
+							source=('Meetup'),
 							group_id=event.get('group', {}).get('id', 'Not Available'),
 							join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
 							group_name=event.get('group', {}).get('name', 'Not Available'),
@@ -122,7 +123,7 @@ class Command(BaseCommand):
 							lat=event.get('venue', {}).get('lat', 0),
 							lon=event.get('venue', {}).get('lon', 0),
 							event_address=event.get('venue', {}).get('address_1', 'Not Available'),
-							# event_address2=event.get('venue', {}).get('address_2', 'Not Available'),
+							event_address2=event.get('venue', {}).get('address_2', 'Not Available'),
 							city=event.get('venue', {}).get('city', 'Not Available'),
 							state=event.get('venue', {}).get('state', 'Not Available'),
 							zip=event.get('venue', {}).get('zip', 0),

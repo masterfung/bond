@@ -41,6 +41,7 @@ class Event(models.Model):
 	how_to_find_us = models.TextField(null=True, blank=True)
 
 	event_updated = models.DateTimeField(null=True, blank=True)
+	scrapy_event_url = models.URLField(null=True, blank=True)
 
 	event_logo = models.URLField(null=True, blank=True)
 	event_capacity = models.IntegerField(max_length=100000, null=True, blank=True)
@@ -53,8 +54,8 @@ class Event(models.Model):
 	end_dateTime = models.DateTimeField(null=True, blank=True)
 
 	group = models.TextField(null=True, blank=True)
-	time = models.BigIntegerField(null=True, blank=True)
-	created = models.BigIntegerField(null=True, blank=True)
+	# time = models.BigIntegerField(null=True, blank=True)
+	# created = models.BigIntegerField(null=True, blank=True)
 	event_created = models.DateTimeField(null=True, blank=True)
 	timestamp = models.DateTimeField(default=datetime.today())
 	last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)

@@ -15,12 +15,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         page = 0
 
-        cities = [  "san+francisco",
-                   "boston", "new+york", "houston",
-                   "los+angeles", "baltimore", "austin", "san+antonio", "nashville", "seattle", "philadelphia",
-                   "columbus", "dallas", "denver", "salt+lake+city", "las+vegas", "washington", "kansas+city",
-                   "minneapolis", "atlanta", "orlando", "richmond",
-                   "jacksonville", "charlotte", "milwaukee"
+        cities = [
+            "san+francisco",
+            "boston", "new+york", "houston",
+            "los+angeles", "baltimore", "austin",
+            "san+antonio", "nashville", "seattle", "philadelphia",
+            "columbus", "dallas", "denver", "salt+lake+city",
+            "las+vegas", "washington", "kansas+city",
+            "minneapolis", "atlanta", "orlando", "richmond",
+            "jacksonville", "charlotte", "milwaukee"
         ]
 
         while page < 50:
@@ -61,6 +64,7 @@ class Command(BaseCommand):
                         datetime_end = dateutil.parser.parse(event['end']['utc'])
                         description_info = strip_tags(event.get('description', {}))
                         eventbrite = Event.objects.get_or_create(
+	                        source=('Eventbrite')
                             event_name=event.get('name', {}).get('text'),
                             description=description_info.get('text', 'Not Available'),
                             event_url=event.get('url', None),
