@@ -4,6 +4,16 @@ from django.db import models
 # Create your models here.
 
 class Event(models.Model):
+	EVENT_SOURCE = (
+		('Eventbrite', 'Eventbrite'),
+		('Meetup', 'Meetup'),
+		('Scrapy', 'Scrapy'),
+		('Other', 'Other'),
+		('None', 'None'),
+
+	)
+	
+	source = models.CharField(max_length=20, choices=EVENT_SOURCE, default='None')
 	group_id = models.CharField(max_length=200, null=True, blank=True)
 	join_mode = models.CharField(max_length=20, null=True, blank=True)
 	group_name = models.CharField(max_length=400, null=True, blank=True)
