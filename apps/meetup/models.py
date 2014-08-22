@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
@@ -44,7 +45,7 @@ class Event(models.Model):
 	time = models.BigIntegerField(null=True, blank=True)
 	created = models.BigIntegerField(null=True, blank=True)
 	event_created = models.DateTimeField(null=True, blank=True)
-	timestamp = models.DateTimeField(auto_now_add=True)
+	timestamp = models.DateTimeField(default=datetime.today())
 	last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	def __unicode__(self):
