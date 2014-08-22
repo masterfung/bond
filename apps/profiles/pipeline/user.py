@@ -11,6 +11,7 @@ def save_profile(strategy, details, user=None, *args, **kwargs):
         user.profile_updated_time = kwargs['response'].get('updated_time', 'NA')
         user.city = kwargs['response'].get('city', 'San Francisco')
         user.fib = kwargs['response'].get('id', 0)
+
         user.raw = dumps(kwargs['response'])
         if user.provider is None and kwargs.get('backend'):
             backend = kwargs['backend'].name

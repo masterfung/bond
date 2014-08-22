@@ -64,7 +64,7 @@ class Command(BaseCommand):
                         datetime_end = dateutil.parser.parse(event['end']['utc'])
                         description_info = strip_tags(event.get('description', {}))
                         eventbrite = Event.objects.get_or_create(
-	                        source=('Eventbrite')
+	                        source=('Eventbrite'),
                             event_name=event.get('name', {}).get('text'),
                             description=description_info.get('text', 'Not Available'),
                             event_url=event.get('url', None),
