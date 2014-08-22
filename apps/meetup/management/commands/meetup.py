@@ -9,8 +9,8 @@ from pytz import timezone
 from tzlocal import get_localzone
 from dateutil.relativedelta import relativedelta
 from apps.meetup.models import Event
-# from settings.production import MEETUP_API_KEY
 from settings.production import MEETUP_API_KEY1
+# from settings.local import MEETUP_API_KEY
 
 
 class Command(BaseCommand):
@@ -31,17 +31,16 @@ class Command(BaseCommand):
 		               # {'city': "philadelphia", 'state': "pa", 'country': "us"},
 		               # {'city': "phoenix", 'state': "az", 'country': "us"},
 		               # {'city': "san antonio", 'state': "tx", 'country': "us"},
-		               #  {'city': "dallas", 'state': "tx", 'country': "us"},
-		               #  {'city': "san diego", 'state': "ca", 'country': "us"},
-		               #  {'city': "columbus", 'state': "oh", 'country': "us"},
-		               #  {'city': "charlotte", 'state': "nc", 'country': "us"},
-		               #  {'city': "indianapolis", 'state': "in", 'country': "us"},
+		               # {'city': "dallas", 'state': "tx", 'country': "us"},
+		                {'city': "san diego", 'state': "ca", 'country': "us"},
+		               # {'city': "columbus", 'state': "oh", 'country': "us"},
+		               # {'city': "charlotte", 'state': "nc", 'country': "us"},
+		               # {'city': "indianapolis", 'state': "in", 'country': "us"},
 		               # {'city': "memphis", 'state': "tn", 'country': "us"},
 		               # {'city': "denver", 'state': "co", 'country': "us"},
 		               # {'city': "portland", 'state': "or", 'country': "us"},
 		               # {'city': "baltimore", 'state': "md", 'country': "us"},
 		               # {'city': "las vegas", 'state': "nv", 'country': "us"},
-		                {'city': "tuscan", 'state': "az", 'country': "us"},
 		               # {'city': "jacksonville", 'state': "fl", 'country': "us"},
 		               # {'city': "austin", 'state': "tx", 'country': "us"},
 		               # {'city': "nashville", 'state': "tn", 'country': "us"},
@@ -68,11 +67,10 @@ class Command(BaseCommand):
 					})
 
 				if resp.status_code != 200:
-					print "error"
 					return
 
 				data = json.dumps(resp.json(), indent=2, sort_keys=True)
-
+				print data
 				events = json.loads(data)
 				print events
 
@@ -84,7 +82,7 @@ class Command(BaseCommand):
 					print x
 					if not (len(events) > x):
 						break
-
+					print "all Good"
 					event = events[x]
 
 					if event.get('name'):
