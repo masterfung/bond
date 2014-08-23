@@ -31,7 +31,7 @@ class Event(models.Model):
 	visibility = models.CharField(max_length=35, null=True, blank=True)
 	venue = models.TextField(null=True, blank=True)
 	venue_name = models.TextField(null=True, blank=True)
-	event_id = models.CharField(max_length=15, null=True, blank=True)
+	event_id = models.CharField(max_length=15, unique=True, null=True)
 	maybe_rsvp_count = models.BigIntegerField(null=True, blank=True)
 	event_url = models.TextField(null=True, blank=True)
 	duration = models.IntegerField(max_length=100, null=True, blank=True)

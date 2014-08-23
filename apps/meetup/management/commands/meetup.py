@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
 		locations = [  # {'city': "los angeles", 'state': "ca", 'country': "us"},
 		               # {'city': "boston", 'state': "ma", 'country': "us"},
-		               # {'city': "san francisco", 'state': "ca", 'country': "us"},
+		               {'city': "san francisco", 'state': "ca", 'country': "us"},
 		               # {'city': "chicago", 'state': "il", 'country': "us"},
 		               # {'city': "houston", 'state': "tx", 'country': "us"},
 		               # {'city': "atlanta", 'state': "ga", 'country': "us"},
@@ -85,54 +85,57 @@ class Command(BaseCommand):
 					print "all Good"
 					event = events[x]
 
-					if event.get('name'):
-						counter_time = event.get('time', 0)
-						start_dateTime_obj = datetime.datetime.fromtimestamp(counter_time / 1000)
-						start_dateTime = timezone.localize(start_dateTime_obj)
-						start_time = start_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
-						event_updated = event.get('updated', None)
-						event_updated_converted = datetime.datetime.fromtimestamp(event_updated / 1000)
-						created_time = event.get('created', None)
-						created_time_converted = datetime.datetime.fromtimestamp(created_time / 1000)
-						if event.get('duration', None):
-							end_time_epoch = event['time'] + event['duration']
-							end_dateTime_obj = datetime.datetime.fromtimestamp(end_time_epoch / 1000)
-							end_dateTime = timezone.localize(end_dateTime_obj)
-							end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
-						else:
-							end_dateTime = start_dateTime + relativedelta(hours=5)
-							end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
-						meetup = Event.objects.get_or_create(
-							source=('Meetup'),
-							group_id=event.get('group', {}).get('id', 'Not Available'),
-							join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
-							group_name=event.get('group', {}).get('name', 'Not Available'),
-							event_name=event.get('name', 'Not Available'),
-							description=strip_tags(event.get('description', 'Not Available').strip()),
-							group=event.get('group', 'Not Available'),
-							venue=event.get('venue', 'Not Available'),
-							event_id=event.get('id', 'Not Available'),
-							event_updated=event_updated_converted,
-							visibility=event.get('visibility', 'Not Available'),
-							status=event.get('status', 'Not Available'),
-							utc_offset=event.get('utc_offset', None),
-							rsvp_limit=event.get("rsvp_limit", 0),
-							event_url=event.get('event_url', 'Not Available'),
-							how_to_find_us=event.get('how_to_find_us', 'Not Available'),
+					try:
+						if event.get('name') is not None:
+							counter_time = event.get('time', 0)
+							start_dateTime_obj = datetime.datetime.fromtimestamp(counter_time / 1000)
+							start_dateTime = timezone.localize(start_dateTime_obj)
+							start_time = start_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+							event_updated = event.get('updated', None)
+							event_updated_converted = datetime.datetime.fromtimestamp(event_updated / 1000)
+							created_time = event.get('created', None)
+							created_time_converted = datetime.datetime.fromtimestamp(created_time / 1000)
+							if event.get('duration', None):
+								end_time_epoch = event['time'] + event['duration']
+								end_dateTime_obj = datetime.datetime.fromtimestamp(end_time_epoch / 1000)
+								end_dateTime = timezone.localize(end_dateTime_obj)
+								end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+							else:
+								end_dateTime = start_dateTime + relativedelta(hours=5)
+								end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+							meetup = Event.objects.get_or_create(
+								event_id=event.get('id', 'Not Available'),
+								source=('Meetup'),
+								group_id=event.get('group', {}).get('id', 'Not Available'),
+								join_mode=event.get('group', {}).get('join_mode', 'Not Available'),
+								group_name=event.get('group', {}).get('name', 'Not Available'),
+								event_name=event.get('name', 'Not Available'),
+								description=strip_tags(event.get('description', 'Not Available').strip()),
+								group=event.get('group', 'Not Available'),
+								venue=event.get('venue', 'Not Available'),
 
-							lat=event.get('venue', {}).get('lat', 0),
-							lon=event.get('venue', {}).get('lon', 0),
-							event_address=event.get('venue', {}).get('address_1', 'Not Available'),
-							event_address2=event.get('venue', {}).get('address_2', 'Not Available'),
-							city=event.get('venue', {}).get('city', 'Not Available'),
-							state=event.get('venue', {}).get('state', 'Not Available'),
-							zip=event.get('venue', {}).get('zip', 0),
-							country=event.get('venue', {}).get('country', 'Not Available'),
-							maybe_rsvp_count=event.get('maybe_rsvp_count', 0),
+								event_updated=event_updated_converted,
+								visibility=event.get('visibility', 'Not Available'),
+								status=event.get('status', 'Not Available'),
+								utc_offset=event.get('utc_offset', None),
+								rsvp_limit=event.get("rsvp_limit", 0),
+								event_url=event.get('event_url', 'Not Available'),
+								how_to_find_us=event.get('how_to_find_us', 'Not Available'),
 
-							start_dateTime=start_dateTime,
-							end_dateTime=end_dateTime,
+								lat=event.get('venue', {}).get('lat', 0),
+								lon=event.get('venue', {}).get('lon', 0),
+								event_address=event.get('venue', {}).get('address_1', 'Not Available'),
+								event_address2=event.get('venue', {}).get('address_2', 'Not Available'),
+								city=event.get('venue', {}).get('city', 'Not Available'),
+								state=event.get('venue', {}).get('state', 'Not Available'),
+								zip=event.get('venue', {}).get('zip', 0),
+								country=event.get('venue', {}).get('country', 'Not Available'),
+								maybe_rsvp_count=event.get('maybe_rsvp_count', 0),
 
-							event_created=created_time_converted
-						)
+								start_dateTime=start_dateTime,
+								end_dateTime=end_dateTime,
 
+								event_created=created_time_converted
+							)
+					except:
+						continue

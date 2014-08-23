@@ -17,13 +17,13 @@ class Command(BaseCommand):
 
         cities = [
             "san+francisco",
-            "boston", "new+york", "houston",
-            "los+angeles", "baltimore", "austin",
-            "san+antonio", "nashville", "seattle", "philadelphia",
-            "columbus", "dallas", "denver", "salt+lake+city",
-            "las+vegas", "washington", "kansas+city",
-            "minneapolis", "atlanta", "orlando", "richmond",
-            "jacksonville", "charlotte", "milwaukee"
+            # "boston", "new+york", "houston",
+            # "los+angeles", "baltimore", "austin",
+            # "san+antonio", "nashville", "seattle", "philadelphia",
+            # "columbus", "dallas", "denver", "salt+lake+city",
+            # "las+vegas", "washington", "kansas+city",
+            # "minneapolis", "atlanta", "orlando", "richmond",
+            # "jacksonville", "charlotte", "milwaukee"
         ]
 
         while page < 50:
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                         break
                     print x
                     event = events[x]
-                    if event.get('venue'):
+                    if event.get('venue') is not None:
                         formatted_start_time = event['start']['utc'][:-1] + '-7:00'
                         formatted_end_time = event['end']['utc'][:-1] + '-7:00'
                         datetime_start = dateutil.parser.parse(event['start']['utc'])
@@ -88,9 +88,9 @@ class Command(BaseCommand):
                             start_time=formatted_start_time,
                             end_time=formatted_end_time,
                             start_dateTime=datetime_start,
-                            end_dateTime=datetime_end
+                            end_dateTime=datetime_end,
 
-                            # ticket_free=event.get('ticket_classes', {}).get('fee', {}),
+                            # ticket_free=event.get('ticket_classes', {}).get('fee', 'Not Available'),
                             # cost=event['ticket_classes'].get('cost', {}).get('display', 'Not Available'),
                             # cost_currency=event.get('ticket_classes', {}).get('cost', {}).get('currency', 'Not Available'),
                             # event_status=event.get('status', 'Not Available')
