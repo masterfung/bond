@@ -41,12 +41,12 @@ class Command(BaseCommand):
 		                {'city': "portland", 'state': "or", 'country': "us"},
 		                {'city': "baltimore", 'state': "md", 'country': "us"},
 		                {'city': "las vegas", 'state': "nv", 'country': "us"},
-		               # {'city': "jacksonville", 'state': "fl", 'country': "us"},
-		               # {'city': "austin", 'state': "tx", 'country': "us"},
-		               # {'city': "nashville", 'state': "tn", 'country': "us"},
-		               # {'city': "cleveland", 'state': "oh", 'country': "us"},
-		               # {'city': "new orleans", 'state': "la", 'country': "us"},
-		               # {'city': "milwaukee", 'state': "wi", 'country': "us"},
+		                {'city': "jacksonville", 'state': "fl", 'country': "us"},
+		                {'city': "austin", 'state': "tx", 'country': "us"},
+		                {'city': "nashville", 'state': "tn", 'country': "us"},
+		                {'city': "cleveland", 'state': "oh", 'country': "us"},
+		                {'city': "new orleans", 'state': "la", 'country': "us"},
+		                {'city': "milwaukee", 'state': "wi", 'country': "us"},
 		]
 
 		while offset < 20:
