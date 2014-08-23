@@ -82,7 +82,6 @@ class Command(BaseCommand):
 					print x
 					if not (len(events) > x):
 						break
-					print "all Good"
 					event = events[x]
 
 					try:
