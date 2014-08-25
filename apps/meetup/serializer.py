@@ -42,7 +42,6 @@ class TopicEventSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Event
 		fields = (
-			# 'owner',
 			'event_name',
 			'group_name',
 			'description',
