@@ -76,6 +76,8 @@ INSTALLED_APPS = (
 	'dateutil',
 	'tzlocal',
 	'compressor',
+	'django_coverage',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -215,11 +217,11 @@ EMAIL_SUBJECT_PREFIX = "[%s] " % SITE_NAME
 
 # Error reporting settings.  Use these to set up automatic error notifications.
 
-ADMINS = ()
+ADMINS = (('Johnny Hung', 'thung@me.com'),)
 
 MANAGERS = ()
 
-SEND_BROKEN_LINK_EMAILS = False
+SEND_BROKEN_LINK_EMAILS = True
 
 
 # Locale settings.
@@ -315,22 +317,22 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh/')
 
-#HAYSTACK
+# HAYSTACK
 
 from urlparse import urlparse
 
 es = urlparse(os.environ.get('SEARCHBOX_URL') or 'http://127.0.0.1:9200/')
 
 HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': es.scheme + '://' + es.hostname + ':80',
-        'INDEX_NAME': 'documents',
-    },
+	'default': {
+		'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+		'URL': es.scheme + '://' + es.hostname + ':80',
+		'INDEX_NAME': 'documents',
+	},
 }
 
 if es.username:
-    HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
+	HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 

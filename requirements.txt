@@ -21,6 +21,7 @@ django-appconf==0.6
 django-braces==1.4.0
 django-celery==3.1.10
 django-compressor==1.4
+django-coverage==1.2.4
 django-crispy-forms==1.4.0
 django-filter==0.7
 django-floppyforms==1.2.0
