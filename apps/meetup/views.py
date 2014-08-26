@@ -92,15 +92,15 @@ def events(request):
 
 
 @login_required
-def event(request, topicevent_id=1):
-	return render(request, 'events/event.html', {'event': Event.objects.get(id=topicevent_id)})
+def event(request, event_id=1):
+	return render(request, 'events/event.html', {'event': Event.objects.get(id=event_id)})
 
 
 @login_required
 def search_titles(request):
-	topic_event = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
+	event = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
 
-	return render(request, 'events/events.html', {'topic_event': topic_event})
+	return render(request, 'events/events.html', {'event': event})
 
 
 class IndexView(TemplateView):

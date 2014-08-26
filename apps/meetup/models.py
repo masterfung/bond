@@ -54,8 +54,6 @@ class Event(models.Model):
 	end_dateTime = models.DateTimeField(null=True, blank=True)
 
 	group = models.TextField(null=True, blank=True)
-	# time = models.BigIntegerField(null=True, blank=True)
-	# created = models.BigIntegerField(null=True, blank=True)
 	event_created = models.DateTimeField(null=True, blank=True)
 	timestamp = models.DateTimeField(default=datetime.today())
 	last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
