@@ -43,10 +43,12 @@ lxml==3.3.5
 mailchimp==2.0.8
 newrelic==2.24.0.21
 oauthlib==0.6.3
+pep8==1.5.7
 psycopg2==2.5.3
 pyOpenSSL==0.14
 pycparser==2.10
 pyelasticsearch==0.7.1
+pyflakes==0.8.1
 python-dateutil==2.2
 python-openid==2.2.5
 python-social-auth==0.1.26
