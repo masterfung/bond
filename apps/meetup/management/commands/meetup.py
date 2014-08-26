@@ -59,7 +59,7 @@ class Command(BaseCommand):
 					           "key": MEETUP_API_KEY1,
 					           "city": place['city'],
 					           "state": place['state'],
-					           "country": "us",
+					           "country": place['country'],
 					           "page": 200,
 					           "radius": 50.0,
 					           "offset": offset,
@@ -87,21 +87,21 @@ class Command(BaseCommand):
 					try:
 						if event.get('name') is not None:
 							counter_time = event.get('time', 0)
-							start_dateTime_obj = datetime.datetime.fromtimestamp(counter_time / 1000)
-							start_dateTime = timezone.localize(start_dateTime_obj)
-							start_time = start_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+							start_date_time_obj = datetime.datetime.fromtimestamp(counter_time / 1000)
+							start_date_time = timezone.localize(start_date_time_obj)
+							start_time = start_date_time.strftime('%Y-%m-%dT%H:%M:%S-07:00')
 							event_updated = event.get('updated', None)
 							event_updated_converted = datetime.datetime.fromtimestamp(event_updated / 1000)
 							created_time = event.get('created', None)
 							created_time_converted = datetime.datetime.fromtimestamp(created_time / 1000)
 							if event.get('duration', None):
 								end_time_epoch = event['time'] + event['duration']
-								end_dateTime_obj = datetime.datetime.fromtimestamp(end_time_epoch / 1000)
-								end_dateTime = timezone.localize(end_dateTime_obj)
-								end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+								end_date_time_obj = datetime.datetime.fromtimestamp(end_time_epoch / 1000)
+								end_date_time = timezone.localize(end_date_time_obj)
+								end_time = end_date_time.strftime('%Y-%m-%dT%H:%M:%S-07:00')
 							else:
-								end_dateTime = start_dateTime + relativedelta(hours=5)
-								end_time = end_dateTime.strftime('%Y-%m-%dT%H:%M:%S-07:00')
+								end_date_time = start_date_time + relativedelta(hours=5)
+								end_time = end_date_time.strftime('%Y-%m-%dT%H:%M:%S-07:00')
 							meetup = Event.objects.get_or_create(
 								event_id=event.get('id', 'Not Available'),
 								source=('Meetup'),
@@ -131,10 +131,14 @@ class Command(BaseCommand):
 								country=event.get('venue', {}).get('country', 'Not Available'),
 								maybe_rsvp_count=event.get('maybe_rsvp_count', 0),
 
-								start_dateTime=start_dateTime,
-								end_dateTime=end_dateTime,
+								start_dateTime=start_date_time,
+								end_dateTime=end_date_time,
 
 								event_created=created_time_converted
 							)
 					except:
+						print 'Something went wrong in Meetup.'
+						print event
+						print x
 						continue
+
