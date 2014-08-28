@@ -9,154 +9,153 @@ from models import Interest, Profile, UserCity
 
 
 def home(request):
-	"""Home page"""
-	return render(request, 'index.html')
+    """Home page"""
+    return render(request, 'index.html')
 
 
 def logout(request):
-	"""Logs out user"""
-	auth_logout(request)
-	return redirect('/')
+    """Logs out user"""
+    auth_logout(request)
+    return redirect('/')
 
 
 @cache_page(3600)
 def about(request):
-	"""About page"""
-	return render(request, 'menu/about.html')
+    """About page"""
+    return render(request, 'menu/about.html')
 
 
 @cache_page(3600)
 def whyus(request):
-	"""Why choose us page"""
-	return render(request, 'menu/why_us.html')
+    """Why choose us page"""
+    return render(request, 'menu/why_us.html')
 
 
 def angular(request):
-	return render(request, 'angular.html')
+    return render(request, 'angular.html')
 
 
 def settings(request):
-	"""Handles new interests, notifications, and event preferences"""
-	interests = Interest.objects.filter(profile=request.user)  # based on selected user only
-	profile = Profile.objects.get(id=request.user.id)
-	cities = UserCity.objects.filter(profile=request.user)
+    """Handles new interests, notifications, and event preferences"""
+    interests = Interest.objects.filter(profile=request.user)  # based on selected user only
+    profile = Profile.objects.get(id=request.user.id)
+    cities = UserCity.objects.filter(profile=request.user)
 
-	if 'interest' in request.POST:
-		interest_form = InterestForm(request.POST, prefix='interest')
-		if interest_form.is_valid():
-			interest = interest_form.save(commit=False)
-			interest.profile = request.user
-			interest.save()
-			return redirect("/settings")
-	else:
-		interest_form = InterestForm(prefix='interest')
+    if 'interest' in request.POST:
+        interest_form = InterestForm(request.POST, prefix='interest')
+        if interest_form.is_valid():
+            interest = interest_form.save(commit=False)
+            interest.profile = request.user
+            interest.save()
+            return redirect("/settings")
+    else:
+        interest_form = InterestForm(prefix='interest')
 
-	if 'notification' in request.POST:
-		profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
-		if profile_form.is_valid():
-			profile = profile_form.save(commit=False)
-			profile.save()
-			return redirect("/settings")
-	else:
-		profile_form = ProfileForm(prefix='notification', instance=profile)
+    if 'notification' in request.POST:
+        profile_form = ProfileForm(request.POST, prefix='notification', instance=request.user)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.save()
+            return redirect("/settings")
+    else:
+        profile_form = ProfileForm(prefix='notification', instance=profile)
 
-	if 'city' in request.POST:
-		city_form = UserCityForm(request.POST, prefix='city')
-		if city_form.is_valid():
-			city = city_form.save(commit=False)
-			city.profile = request.user
-			city.save()
-			return redirect("/settings")
+    if 'city' in request.POST:
+        city_form = UserCityForm(request.POST, prefix='city')
+        if city_form.is_valid():
+            city = city_form.save(commit=False)
+            city.profile = request.user
+            city.save()
+            return redirect("/settings")
 
-	else:
-		city_form = UserCityForm(prefix='city')
+    else:
+        city_form = UserCityForm(prefix='city')
 
-	data = {'user': request.user, 'interests': interests, 'profile': profile,
-	        'interest_form': interest_form, 'profile_form': profile_form,
-	        'cities': cities, 'city_form': city_form
-	}
-	return render(request, 'settings.html', data)
+    data = {'user': request.user, 'interests': interests, 'profile': profile,
+            'interest_form': interest_form, 'profile_form': profile_form,
+            'cities': cities, 'city_form': city_form
+    }
+    return render(request, 'settings.html', data)
 
 
 @login_required
 def profile(request):
-	city_event = Event.objects.filter(city=request.user.city,
-	                                  start_dateTime__gt=datetime.date.today()).order_by('?')[:8]
-
-	food = Event.objects.filter(city=request.user.city,
-	                            description__icontains='food',
-	                            start_dateTime__gt=datetime.date.today()).order_by('timestamp')[:1]
-	community = Event.objects.filter(city=request.user.city,
-	                                 description__icontains='community',
-	                                 start_dateTime__gt=datetime.date.today()).order_by('timestamp')[:1]
-	wellness = Event.objects.filter(city=request.user.city,
-	                                description__icontains='health',
-	                                start_dateTime__gt=datetime.date.today()).order_by('timestamp')[:1]
-	education = Event.objects.filter(city=request.user.city,
-	                                 description__icontains='learn',
-	                                 start_dateTime__gt=datetime.date.today()).order_by('timestamp')[:1]
-	personal = Event.objects.filter(city=request.user.city).order_by('timestamp')[:2]
-	data = {
-		'user': request.user, 'city_event': city_event, 'food': food,
-		'community': community, 'wellness': wellness, 'education': education,
-		'personal': personal
-	}
-	return render(request, 'profiles/view_profile.html', data)
+    city_event = Event.objects.filter(city=request.user.city,
+                                      start_dateTime__gte=datetime.date.today()).order_by('?')[:8]
+    food = Event.objects.filter(city=request.user.city,
+                                description__icontains='food',
+                                start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+    community = Event.objects.filter(city=request.user.city,
+                                     description__icontains='community',
+                                     start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+    wellness = Event.objects.filter(city=request.user.city,
+                                    description__icontains='health',
+                                    start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+    education = Event.objects.filter(city=request.user.city,
+                                     description__icontains='learn',
+                                     start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+    personal = Event.objects.filter(city=request.user.city).order_by('timestamp')[:2]
+    data = {
+        'user': request.user, 'city_event': city_event, 'food': food,
+        'community': community, 'wellness': wellness, 'education': education,
+        'personal': personal
+    }
+    return render(request, 'profiles/view_profile.html', data)
 
 
 @login_required
 def delete_interest(request, interest_id):
-	"""Delete an interest"""
-	interest = Interest.objects.get(id=interest_id)
-	interest.delete()
-	return redirect('/settings')
+    """Delete an interest"""
+    interest = Interest.objects.get(id=interest_id)
+    interest.delete()
+    return redirect('/settings')
 
 
 @login_required
 def delete_user_city(request, usercity_id):
-	"""Delete a city"""
-	city = UserCity.objects.get(id=usercity_id)
-	city.delete()
-	return redirect('/settings')
+    """Delete a city"""
+    city = UserCity.objects.get(id=usercity_id)
+    city.delete()
+    return redirect('/settings')
 
 
 @login_required
 def update_profile(request, profile_id):
-	profile = Profile.objects.get(id=profile_id)
-	data = {'profile': profile}
-	return render(request, '/settings.html', data)
+    profile = Profile.objects.get(id=profile_id)
+    data = {'profile': profile}
+    return render(request, '/settings.html', data)
 
 
 @login_required()
 def getting_started(request):
-	survey = Profile.objects.get(id=request.user.id)
-	if request.method == 'POST':
-		print 'post'
-		form = GettingStartedForm(request.POST)
-		if form.is_valid():
-			food = form.cleaned_data['One']
-			wellness = form.cleaned_data['Two']
-			community = form.cleaned_data['Three']
-			education = form.cleaned_data['Four']
-			personal = form.cleaned_data['Five']
-			personal += form.cleaned_data['Six']
-			personal += form.cleaned_data['Seven']
-			personal += form.cleaned_data['Eight']
-			community += form.cleaned_data['Nine']
-			wellness += form.cleaned_data['Ten']
-			personal += form.cleaned_data['Eleven']
-			personal += form.cleaned_data['Twelve']
+    survey = Profile.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        print 'post'
+        form = GettingStartedForm(request.POST)
+        if form.is_valid():
+            food = form.cleaned_data['One']
+            wellness = form.cleaned_data['Two']
+            community = form.cleaned_data['Three']
+            education = form.cleaned_data['Four']
+            personal = form.cleaned_data['Five']
+            personal += form.cleaned_data['Six']
+            personal += form.cleaned_data['Seven']
+            personal += form.cleaned_data['Eight']
+            community += form.cleaned_data['Nine']
+            wellness += form.cleaned_data['Ten']
+            personal += form.cleaned_data['Eleven']
+            personal += form.cleaned_data['Twelve']
 
-			survey.food_score = int(food)
-			survey.wellness_score = int(wellness)
-			survey.community_score = int(community)
-			survey.education_score = int(education)
-			survey.personal_score = int(personal)
-			survey.save()
+            survey.food_score = int(food)
+            survey.wellness_score = int(wellness)
+            survey.community_score = int(community)
+            survey.education_score = int(education)
+            survey.personal_score = int(personal)
+            survey.save()
 
-			return redirect("profile")
+            return redirect("profile")
 
-	else:
-		form = GettingStartedForm()
-	data = {'form': form}
-	return render(request, 'getting_started.html', data)
+    else:
+        form = GettingStartedForm()
+    data = {'form': form}
+    return render(request, 'getting_started.html', data)

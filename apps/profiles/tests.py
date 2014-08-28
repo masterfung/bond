@@ -6,7 +6,7 @@ from apps.profiles.test_utils import run_pyflakes_for_package, run_pep8_for_pack
 
 
 class ViewTestCase(TestCase):
-    def test_index_page_image(self):
+    def test_home_page_image(self):
         response = self.client.get(reverse('home'))
         self.assertTrue("<img class='img-responsive img-hold' "
                       "src='https://bondandme.s3.amazonaws.com/img/second-cover.fda9e34e23a0.jpg' "
@@ -18,6 +18,10 @@ class ViewTestCase(TestCase):
         self.assertTrue("<a href='//www.iubenda.com/privacy-policy/805249' "
                         "class='iubenda-nostyle no-brand iub-legal-only iubenda-embed' "
                         "title='Privacy Policy'>", response.context)
+
+    def test_about_page(self):
+        response = self.client.get(reverse('about'))
+        self.assertTrue("<title>About Us</title>", response.context)
 
 
 class SyntaxTest(TestCase):
