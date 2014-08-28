@@ -56,6 +56,7 @@ pytz==2014.4
 queuelib==1.2.2
 requests==2.3.0
 requests-oauthlib==0.4.1
+selenium==2.42.1
 sh==1.09
 simplejson==3.6.2
 six==1.7.3

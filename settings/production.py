@@ -77,6 +77,7 @@ INSTALLED_APPS = (
 	'tzlocal',
 	'compressor',
 	'django_coverage',
+    'jasmine',
 
 )
 

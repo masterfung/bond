@@ -59,8 +59,10 @@ urlpatterns = patterns('',
 
                        url(r'^a/$', 'apps.profiles.views.angular', name='angular'),
 
-                       url(r'^search/$', include('haystack.urls')),  # pulls urls from the haystack app
-                       # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),  # pulls urls from the haystack app
+                       url(r'^search/$', include('haystack.urls')),
+                       # pulls urls from the haystack app
+                       # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),
+                       #  pulls urls from the haystack app
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),
