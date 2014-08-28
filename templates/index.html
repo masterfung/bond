@@ -6,6 +6,15 @@
 Bond
 {% endblock title %}
 
+{% block head %}
+	<script>
+			// Picture element HTML shim|v it for old IE (pairs with Picturefill.js)
+			document.createElement( "picture" );
+	</script>
+	{{ block.super }}
+
+{% endblock head %}
+
 {% block carousel %}
 
     <!-- Carousel
@@ -19,7 +28,10 @@ Bond
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{% static 'img/main-slide.jpg' %}" alt="First slide">
+{#	      <picture alt="Main Carousel Image">#}
+{#		      <source srcset="{% static 'img/main-slide.jpg' %}" media="(min-width: 1200px)">#}
+{#	      </picture>#}
+          <img srcset="{% static 'img/main-slide.jpg' %}" media="(min-width: 1200px)" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1 class="title-heading-style">Personalized Events. <br> Every Time</h1>
@@ -162,3 +174,4 @@ Bond
       <!-- /END THE FEATURETTES -->
 
 {% endblock content %}
+

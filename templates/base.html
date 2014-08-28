@@ -23,13 +23,14 @@
 <link href="{% static 'stylesheets/font-awesome.min.css' %}" rel="stylesheet">
 <link href="{% static 'stylesheets/carousel.css' %}" rel="stylesheet">
 <link href="{% static 'stylesheets/custom.css' %}" rel="stylesheet">
-{#{% endcompress %}#}
+{#{% endcompress css %}#}
 {% compress js %}
 <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'js/modernizr.custom.14652.js' %}"></script>
 <script src="{% static 'js/oauth.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
-{% endcompress %}
+{% endcompress js %}
 <script type="text/javascript">
     if (window.location.hash && window.location.hash == '#_=_') {
         window.location.hash = '';
@@ -37,7 +38,7 @@
 </script>
 
 {% block head %}
-
+	<script src="{% static 'js/picturefill.js' %}" async></script>
 {% endblock head %}
 </head>
 

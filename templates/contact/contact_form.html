@@ -9,7 +9,13 @@ Contact Us
 <div class="container">
     <div class="row centering-box">
 		<div class="spacing-buffer"></div>
-	    <h1 class="text-center">Get In Touch With Us!</h1>
+	    {% if user.is_authenticated %}
+	        <h1 class="text-center">We want to hear from you!</h1>
+		    <p class="text-center">Share why you use our products. Share how we can be better! Make
+		    Bond better!</p>
+	    {% else %}
+	        <h1 class="text-center">Get In Touch With Us!</h1>
+	    {% endif %}
 
         <form action="/contact/" method="post">
             {% csrf_token %}
