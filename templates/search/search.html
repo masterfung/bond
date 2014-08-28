@@ -19,6 +19,7 @@
 		                <div class="table-bordered">
 		                    <h3><a target="_blank" href="{{ result.object.event_url }}">{{ result.object.event_name }}</a></h3>
 			                <p class="btn"><strong>Status</strong>: {{ result.object.status | capfirst}}</p>
+		                    <p><strong>Source</strong>: {{ result.object.source }}</p>
 		                    <p><strong>Description</strong>: {{ result.object.description }}</p>
 		                    <p>City: {{ result.object.city }}</p>
 		                    <p>Lat: {{ result.object.lat }} | Lon: {{ result.object.lon }}</p>

@@ -115,6 +115,7 @@ Profile
 
 				{% else %}
 					<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+					<p>Source: {{ event.source }} | Start Date: {{ event.start_time }}</p>
 					<p>{{ event.description | truncatechars:100  }}</p>
 				{% endif %}
 
