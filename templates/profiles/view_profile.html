@@ -64,42 +64,60 @@ Profile
 		{% if user.personal_score >= 10 and user.food_score == 3 and user.wellness_score > 4 and user.community_score > 4 and user.education_score == 3 %}
 			{% for event in food %}
 			<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
-			<p>{{ event.description | truncatechars:100  }}</p>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
+				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 			{% for event in personal %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 			{% for event in community %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 			{% for event in wellness %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 			{% for event in education %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 		{% elif user.personal_score > 10 and user.food_score == 1 or user.wellness_score == 2 %}
 			{% for event in personal %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 			{% for event in wellness %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 		{% elif user.personal_score > 7 and user.food_score == 2 %}
 			{% for event in personal %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 		{% elif user.personal_score > 5 and user.food_score == 1 %}
 			{% for event in personal %}
 				<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
+				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
 				<p>{{ event.description | truncatechars:100  }}</p>
+				<hr/>
 			{% endfor %}
 		{% else %}
 			<h2 class="text-center">Awaiting {{ user.first_name | capfirst}} to finish survey before we can supply kick-ass events.</h2>
@@ -115,8 +133,9 @@ Profile
 
 				{% else %}
 					<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
-					<p>Source: {{ event.source }} | Start Date: {{ event.start_time }}</p>
-					<p>{{ event.description | truncatechars:100  }}</p>
+					<p>Source: {{ event.source }} | Date: {{ event.start_dateTime| date:"DATETIME_FORMAT" }}</p>
+					<p>{{ event.description | truncatechars:150  }}</p>
+					<hr/>
 				{% endif %}
 
 			{% endfor %}
