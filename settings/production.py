@@ -98,6 +98,8 @@ ROOT_URLCONF = 'bond.urls'
 
 WSGI_APPLICATION = 'bond.wsgi.application'
 
+GEOIP_DATABASE = '../bond/GeoLiteCity.dat'
+
 MEETUP_API_KEY1 = os.environ.get("MEETUP_API_KEY1")
 EVENTBRITE_API_KEY = os.environ.get("EVENTBRITE_API_KEY")
 EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
