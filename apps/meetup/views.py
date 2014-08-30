@@ -47,11 +47,11 @@ def meetup_oauth_connect(request):
 		data = json.loads(request.body)
 		print "{} is the token".format(data)
 
-	client_id = 'vjrn056elr2s00femc9i9smmhf'
-	client_secret = 'puv15odjlhhpcr4ja42j16e2vq'
+	# client_id = 'vjrn056elr2s00femc9i9smmhf'
+	# client_secret = 'puv15odjlhhpcr4ja42j16e2vq'
 
-	scope = ACCESS_TOKEN_URL
-	oauth = OAuth2Session(client_id, redirect_uri=REDIRECT_URI)
+	# scope = ACCESS_TOKEN_URL
+	# oauth = OAuth2Session(client_id, redirect_uri=REDIRECT_URI)
 
 	# r = oauth.get(AUTHORIZATION_URL)
 	# print r

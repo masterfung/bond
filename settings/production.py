@@ -78,6 +78,7 @@ INSTALLED_APPS = (
 	'compressor',
 	'django_coverage',
     'jasmine',
+    'easy_timezones',
 
 )
 
@@ -90,6 +91,7 @@ MIDDLEWARE_CLASSES = (
 	"django.contrib.auth.middleware.AuthenticationMiddleware",
 	"django.contrib.messages.middleware.MessageMiddleware",
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'easy_timezones.middleware.EasyTimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'bond.urls'

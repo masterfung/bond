@@ -22,6 +22,11 @@ Profile
         {% endif %}
         </h1>
 		<p class="text-center">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
+{#        {% load tz %}#}
+{#		    The UTC time is {{ object.date }}#}
+{#		{% localtime on %}#}
+{#		    The local time is {{ object.date }}#}
+{#		{% endlocaltime %}#}
         <p class="text-center">Your current time: <br/> {% now "jS F Y g:iA" %}</p>
         <div class="spacing-buffer"></div>
     </div>
