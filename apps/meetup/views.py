@@ -7,12 +7,20 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from requests import get
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-# from apps.meetup.forms import TopicEventIndexForm
+# from apps.meetup.forms import EventIndexForm
 from models import Event
-from apps.meetup.serializer import TopicEventSerializer
+
+from apps.meetup.serializer import EventSerializer
+
+from django.http import Http404
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 # from .permissions import IsOwnerOrReadOnly
 from haystack.query import SearchQuerySet
-# from settings import local
+
+
 from tasks import hello_world
 from django.views.generic import TemplateView
 
@@ -80,7 +88,7 @@ def autocomplete(request):
 
 
 # def notes(request):
-# form = TopicEventIndexForm(request.GET)
+# form = EventIndexForm(request.GET)
 # events = form.search()
 # return render(request, 'events/events.html', {'events': events})
 
@@ -114,8 +122,29 @@ class IndexView(TemplateView):
 
 class EventMixin(object):
 	queryset = Event.objects.all()
-	serializer_class = TopicEventSerializer(queryset)
+	serializer_class = EventSerializer(queryset)
 
+
+class EventList(APIView):
+
+	def get(self, request, format=None):
+		events = Event.objects.all()
+		serialized_events = EventSerializer(events, many=True)
+		return Response(serialized_events.data)
+
+
+class EventDetail(APIView):
+
+	def get_object(self, pk):
+		try:
+			return Event.objects.get(pk=pk)
+		except Event.DoesNotExist:
+			raise Http404
+
+	def get(self, request, pk, format=None):
+		event = self.get_object(pk)
+		serialized_event = EventSerializer(event)
+		return Response(serialized_event.data)
 
 # @api_view(['GET', 'POST'])
 # def event_list(request):
@@ -124,11 +153,11 @@ class EventMixin(object):
 # '''
 #
 # if request.method == 'GET':
-# events = TopicEvent.objects.all()
-# serializer = TopicEventSerializer(events)
+# events = Event.objects.all()
+# serializer = EventSerializer(events)
 # return Response(serializer.data)
 #     elif request.method == 'POST':
-#         serializer = TopicEventSerializer(data=request.DATA)
+#         serializer = EventSerializer(data=request.DATA)
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -139,16 +168,16 @@ class EventMixin(object):
 # @api_view(['GET', 'PUT', 'DELETE'])
 # def event_detail(request, pk):
 #     try:
-#         event = TopicEvent.objects.get(pk=pk)
-#     except TopicEvent.DoesNotExist:
+#         event = Event.objects.get(pk=pk)
+#     except Event.DoesNotExist:
 #         return Response(status=status.HTTP_404_NOT_FOUND)
 #
 #     if request.method == 'GET':
-#         serializer = TopicEventSerializer(event)
+#         serializer = EventSerializer(event)
 #         return Response(serializer.data)
 #
 #     elif request.method == 'PUT':
-#         serializer = TopicEventSerializer(event, data=request.DATA)
+#         serializer = EventSerializer(event, data=request.DATA)
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(serializer.data)

@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load staticfiles %}
 {% load djangular_tags %}
+{% load time_tags %}
 
 {% block title %}
 Profile
@@ -70,6 +71,7 @@ Profile
 			{% for event in food %}
 			<h4><a target="_blank" href="{{ event.event_url }}">{{ event.event_name }}</a></h4>
 				<p>Source: {{ event.source }} | Date: {{ event.start_dateTime | date:"DATETIME_FORMAT" }}</p>
+{#				<p>Source: {{ event.source }} | Date: {% localize_time event.start_dateTime %}</p>#}
 				<p>{{ event.description | truncatechars:100  }}</p>
 				<hr/>
 			{% endfor %}

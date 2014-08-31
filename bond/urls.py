@@ -1,11 +1,13 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
 # from bond.meetup.views import EventDetail, EventList
 from haystack.forms import FacetedSearchForm
 from haystack.query import SearchQuerySet
 from haystack.views import search_view_factory, FacetedSearchView
 from rest_framework.urlpatterns import format_suffix_patterns
+from django.contrib import admin
 
+from apps.meetup.models import Event
+from apps.meetup.views import EventList, EventDetail
 
 admin.autodiscover()
 
@@ -15,9 +17,10 @@ urlpatterns = patterns('',
                        # url(r'^blog/', include('blog.urls')),
 
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^admin/doc', include('django.contrib.admindocs.urls')),
 
-                       # url(r'^api/meetups/$', EventList.as_view(), name='event_list'),
-                       # url(r'^api/meetups/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
+                       url(r'^api/events/$', EventList.as_view(), name='event_list'),
+                       url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
 
                        (r'^accounts/', include('registration.backends.default.urls')),
                        # added login and reset password to defaults
