@@ -23,6 +23,7 @@ urlpatterns = patterns('',
                        url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
 
                        (r'^accounts/', include('registration.backends.default.urls')),
+
                        # added login and reset password to defaults
 
                        url('', include('social.apps.django_app.urls', namespace='social')),
@@ -35,8 +36,6 @@ urlpatterns = patterns('',
 
                        url(r'^profile/$', 'apps.profiles.views.profile', name='profile'),
 
-
-                       # url(r'^profile/delete_interest/$', 'profiles.views.delete_interest', name='delete_interest'),
                        url(r'^getting-started/$', 'apps.profiles.views.getting_started', name='getting_started'),
 
                        url(r'^settings/$', 'apps.profiles.views.settings', name='settings'),
@@ -51,6 +50,8 @@ urlpatterns = patterns('',
 
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
                        # url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
+
+                       url(r'^o/auth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
                        url(r'^events/$', 'apps.events.views.events', name='events'),
 
