@@ -79,7 +79,7 @@ INSTALLED_APPS = (
 	'django_coverage',
 	'jasmine',
 	'oauth2_provider',
-
+	'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,6 +92,7 @@ MIDDLEWARE_CLASSES = (
 	"django.contrib.messages.middleware.MessageMiddleware",
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
 	'easy_timezones.middleware.EasyTimezoneMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'bond.urls'
@@ -99,6 +100,8 @@ ROOT_URLCONF = 'bond.urls'
 WSGI_APPLICATION = 'bond.wsgi.application'
 
 GEOIP_DATABASE = 'GeoLiteCity.dat'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MEETUP_API_KEY1 = os.environ.get("MEETUP_API_KEY1")
 EVENTBRITE_API_KEY = os.environ.get("EVENTBRITE_API_KEY")
@@ -131,14 +134,29 @@ PREPEND_WWW = False
 
 REST_FRAMEWORK = {
 	'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework.authentication.BasicAuthentication',
-		'rest_framework.authentication.SessionAuthentication',
+		'oauth2_provider.ext.rest_framework.OAuth2Authentication',
 	),
+	'DEFAULT_PERMISSION_CLASSES': (
+		'rest_framework.permissions.IsAuthenticated',
+	),
+	'DEFAULT_THROTTLE_CLASSES': (
+		'rest_framework.throttling.AnonRateThrottle',
+		'rest_framework.throttling.UserRateThrottle',
+	),
+	'DEFAULT_THROTTLE_RATES': {
+		'anon': '50/day',
+		'user': '1000/day'
+	},
 	'PAGINATE_BY': 10,  # Default to 10
 	'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
 	'MAX_PAGINATE_BY': 100  # Maximum limit allowed when using `?page_size=xxx`.
 }
 
+# OAuth 2
+
+OAUTH2_PROVIDER = {  # this is the list of available scopes
+                     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
 
 # Security settings.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

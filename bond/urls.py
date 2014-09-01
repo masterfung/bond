@@ -3,21 +3,34 @@ from django.conf.urls import patterns, include, url
 from haystack.forms import FacetedSearchForm
 from haystack.query import SearchQuerySet
 from haystack.views import search_view_factory, FacetedSearchView
+from rest_framework import viewsets, routers
+from rest_framework import permissions
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib import admin
+
+from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 from apps.meetup.models import Event
 from apps.meetup.views import EventList, EventDetail
 
 admin.autodiscover()
 
+# ViewSets define the view behavior.
+class EventViewSet(viewsets.ModelViewSet):
+	permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+	model = Event
+
+# Routers provide an easy way of automatically determining the URL conf
+router = routers.DefaultRouter()
+router.register(r'events', EventViewSet)
+
 urlpatterns = patterns('',
                        # Examples:
                        # url(r'^$', 'bond.views.home', name='home'),
                        # url(r'^blog/', include('blog.urls')),
 
-                       url(r'^admin/', include(admin.site.urls)),
-                       url(r'^admin/doc', include('django.contrib.admindocs.urls')),
+                       url(r'^bondinfinity/', include(admin.site.urls)),
+                       url(r'^bondinfinity/doc', include('django.contrib.admindocs.urls')),
 
                        url(r'^api/events/$', EventList.as_view(), name='event_list'),
                        url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
@@ -51,7 +64,7 @@ urlpatterns = patterns('',
                        # url(r'^eventbrite_all/$', 'eventbrite.views.eventbrite', name='all_eventbrite_event'),
                        # url(r'^eventbrite_all/$', 'apps.eventbrite.views.eventbriteOAuth', name='all_eventbrite_event'),
 
-                       url(r'^o/auth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+                       url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
                        url(r'^events/$', 'apps.events.views.events', name='events'),
 
@@ -66,7 +79,7 @@ urlpatterns = patterns('',
                        url(r'^search/$', include('haystack.urls')),
                        # pulls urls from the haystack app
                        # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),
-                       #  pulls urls from the haystack app
+                       # pulls urls from the haystack app
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),

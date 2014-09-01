@@ -13,11 +13,10 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import IsAuthenticated
 from models import Event
 
+from oauth2_provider.views.generic import ProtectedResourceView
+
 from apps.meetup.serializer import EventSerializer
 
-from django.http import Http404
-
-from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
@@ -116,62 +115,19 @@ class IndexView(TemplateView):
 
 class EventMixin(object):
     queryset = Event.objects.all()
-    serializer_class = EventSerializer(queryset)
+    serializer_class = EventSerializer
 
 
-class EventList(generics.ListCreateAPIView):
+class EventList(EventMixin, generics.ListCreateAPIView):
     """ List all events, or create new events """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
     permission_classes = (IsAuthenticated,)
 
 
-class EventDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
+class EventDetail(EventMixin, generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
 
 
-# @api_view(['GET', 'POST'])
-# def event_list(request):
-# '''
-# List all events, or create a new event.
-# '''
-#
-# if request.method == 'GET':
-# events = Event.objects.all()
-# serializer = EventSerializer(events)
-# return Response(serializer.data)
-#     elif request.method == 'POST':
-#         serializer = EventSerializer(data=request.DATA)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         else:
-#             return Response(
-#                 serializer._errors, status=status.HTTP_400_BAD_REQUEST)
-#
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def event_detail(request, pk):
-#     try:
-#         event = Event.objects.get(pk=pk)
-#     except Event.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-#
-#     if request.method == 'GET':
-#         serializer = EventSerializer(event)
-#         return Response(serializer.data)
-#
-#     elif request.method == 'PUT':
-#         serializer = EventSerializer(event, data=request.DATA)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         else:
-#             return Response(
-#                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#     elif request.method == 'DELETE':
-#         event.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
+class ApiEndpoint(ProtectedResourceView):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Protected with Oauth2!')
 
