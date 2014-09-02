@@ -6,13 +6,14 @@ from requests import get
 from apps.meetup.models import Event
 from settings.production import EVENTBRITE_OAUTH_KEY
 
-__author__ = 'htm'
+__author__ = '@masterfung'
 
 from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+
         page = 0
 
         cities = [
@@ -24,26 +25,25 @@ class Command(BaseCommand):
              "las+vegas", "washington", "kansas+city",
              "minneapolis", "atlanta", "orlando", "richmond",
              "jacksonville", "charlotte", "milwaukee",
-             # "Portland"
+             "portland"
         ]
-
         while page < 50:
             for city in cities:
-
+                print page
                 page += 1
+                print page
                 resp = get('https://www.eventbriteapi.com/v3/events/search/?',
                            params={
                                "token": EVENTBRITE_OAUTH_KEY,
-                               "venue.city": city,  # "page_count": 45,  # "page_number": 1,  # "page_size": 50,
-                               # "object_count": 6,
+                               "venue.city": city,
                                "page": page,
                            }
                 )
-
+                print resp
                 if resp.status_code != 200:
                     print "error"
                     return
-
+                print 5
                 data = dumps(resp.json(), indent=2, sort_keys=True)
 
                 events = json.loads(data)
@@ -62,9 +62,11 @@ class Command(BaseCommand):
                         if event.get('venue') is not None:
                             formatted_start_time = event['start']['utc'][:-1] + '-7:00'
                             formatted_end_time = event['end']['utc'][:-1] + '-7:00'
+
                             datetime_start = dateutil.parser.parse(event['start']['utc'])
                             datetime_end = dateutil.parser.parse(event['end']['utc'])
                             description_info = strip_tags(event.get('description', {}))
+
                             eventbrite = Event.objects.get_or_create(
                                 source=('Eventbrite'),
                                 event_name=event.get('name', {}).get('text'),

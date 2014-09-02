@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}
+	{{ title }} | {% trans 'Bond Admin' %}
+{% endblock title %}
+
+{% block branding %}
+	<a href="/bondinfinity/"><h1 id="site-name">{% trans 'Bond Admin' %}</h1></a>
+{% endblock branding %}
+
+{% block nav-global %}{% endblock %}
