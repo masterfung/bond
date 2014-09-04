@@ -24,6 +24,9 @@ class EventViewSet(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'events', EventViewSet)
 
+# Faceting for Haystack:ES
+sqs = SearchQuerySet().facet('city')
+
 urlpatterns = patterns('',
                        # Examples:
                        # url(r'^$', 'bond.views.home', name='home'),
@@ -77,13 +80,14 @@ urlpatterns = patterns('',
                        url(r'^a/$', 'apps.profiles.views.angular', name='angular'),
 
                        url(r'^search/$', include('haystack.urls')),
+
                        # pulls urls from the haystack app
                        # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),
                        # pulls urls from the haystack app
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),
-                           name='faceted_search'),
+                                                                      name='faceted_search'),
 
 )
 

@@ -14,12 +14,12 @@ class Profile(AbstractUser):
 	provider = models.ForeignKey(AuthProvider, null=True, related_name='users')
 	raw = models.TextField(null=True)
 	fib = models.BigIntegerField(null=True, blank=True)
-	phone = models.CharField(max_length=12, null=True)
-	city = models.CharField(max_length=40, null=True)
-	birthday = models.CharField(max_length=10, null=True)
+	phone = models.CharField(max_length=12, blank=True)
+	city = models.CharField(max_length=40, blank=True)
+	birthday = models.CharField(max_length=10, blank=True)
 	zip = models.IntegerField(max_length=5, null=True, blank=True)
 	picture_url = models.ImageField(upload_to='avatar/', blank=True, null=True)
-	profile_updated_time = models.CharField(max_length=50, blank=True, null=True)
+	profile_updated_time = models.CharField(max_length=50, blank=True)
 	account_created = models.DateTimeField(auto_now_add=True)
 
 	ENROLLED = 'Enrolled'
