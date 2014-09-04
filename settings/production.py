@@ -81,6 +81,7 @@ INSTALLED_APPS = (
 	'oauth2_provider',
 	'corsheaders',
 	'opbeat.contrib.django',
+	'newrelic'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,7 +95,7 @@ MIDDLEWARE_CLASSES = (
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
 	'easy_timezones.middleware.EasyTimezoneMiddleware',
 	'corsheaders.middleware.CorsMiddleware',
-	'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
+	# 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
 
 ROOT_URLCONF = 'bond.urls'
