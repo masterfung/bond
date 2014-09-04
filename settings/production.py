@@ -80,6 +80,7 @@ INSTALLED_APPS = (
 	'jasmine',
 	'oauth2_provider',
 	'corsheaders',
+	'opbeat.contrib.django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,6 +94,7 @@ MIDDLEWARE_CLASSES = (
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
 	'easy_timezones.middleware.EasyTimezoneMiddleware',
 	'corsheaders.middleware.CorsMiddleware',
+	'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
 
 ROOT_URLCONF = 'bond.urls'
@@ -249,6 +251,15 @@ SERVER_EMAIL = u"{name} <notifications@{domain}>".format(
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
 EMAIL_SUBJECT_PREFIX = "[%s] " % SITE_NAME
+
+
+# Opbeat
+
+OPBEAT = {
+	"ORGANIZATION_ID": os.environ.get("ORGANIZATION_ID"),
+	"APP_ID": os.environ.get("APP_ID"),
+	"SECRET_TOKEN": os.environ.get("SECRET_TOKEN")
+}
 
 
 # Error reporting settings.  Use these to set up automatic error notifications.
