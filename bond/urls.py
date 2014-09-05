@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 # from bond.meetup.views import EventDetail, EventList
+from django.contrib.auth.decorators import login_required
 from haystack.forms import FacetedSearchForm
 from haystack.query import SearchQuerySet
 from haystack.views import search_view_factory, FacetedSearchView
@@ -15,8 +16,8 @@ from apps.meetup.views import EventList, EventDetail
 
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ModelViewSet):
-	permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-	model = Event
+    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    model = Event
 
 # Routers provide an easy way of automatically determining the URL conf
 router = routers.DefaultRouter()
@@ -36,7 +37,7 @@ urlpatterns = patterns('',
                        url(r'^api/events/$', EventList.as_view(), name='event_list'),
                        url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
 
-                      # (r'^accounts/', include('registration.backends.default.urls')),
+                       # (r'^accounts/', include('registration.backends.default.urls')),
 
                        # added login and reset password to defaults
 
@@ -86,7 +87,7 @@ urlpatterns = patterns('',
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),
-                                                                      name='faceted_search'),
+                           name='faceted_search'),
 
 )
 
