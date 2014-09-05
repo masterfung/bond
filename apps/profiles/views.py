@@ -92,16 +92,16 @@ def profile(request):
                                       start_dateTime__gte=datetime.date.today()).order_by('?')[:8]
     food = Event.objects.filter(city=request.user.city,
                                 description__icontains='food',
-                                start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+                                start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
     community = Event.objects.filter(city=request.user.city,
                                      description__icontains='community',
-                                     start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+                                     start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
     wellness = Event.objects.filter(city=request.user.city,
                                     description__icontains='health',
-                                    start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+                                    start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
     education = Event.objects.filter(city=request.user.city,
                                      description__icontains='learn',
-                                     start_dateTime__gte=datetime.date.today()).order_by('timestamp')[:1]
+                                     start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
     personal = Event.objects.filter(city=request.user.city).order_by('timestamp')[:2]
     data = {
         'user': request.user, 'city_event': city_event, 'food': food,
