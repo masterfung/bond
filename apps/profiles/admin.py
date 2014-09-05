@@ -16,7 +16,7 @@ class ProfileAdmin(UserAdmin):
         return self.fieldsets + (
             ('Custom Fields', {'fields': ('provider', 'raw',
                                           'fib', 'phone', 'city',
-                                          'birthday', 'zipcode', 'picture_url',
+                                          'birthday', 'zip_code', 'picture_url',
                                           'profile_updated_time', 'distance', 'email_notification',
                                           'text_notification', 'notice_frequency', 'food_score',
                                           'wellness_score', 'community_score', 'personal_score',
@@ -24,7 +24,7 @@ class ProfileAdmin(UserAdmin):
             )}),
         )
 
-    list_display = ['username', 'provider', 'city', 'zipcode']
+    list_display = ['username', 'provider', 'city', 'zip_code']
     search_fields = ['username', 'provider', 'city']
 
 

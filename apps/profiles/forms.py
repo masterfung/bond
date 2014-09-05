@@ -51,7 +51,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone', 'city',
-                  'email_notification', 'text_notification', 'zipcode',
+                  'email_notification', 'text_notification', 'zip_code',
                   'distance', 'notice_frequency']
 
 
