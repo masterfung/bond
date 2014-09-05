@@ -13,8 +13,6 @@ from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope, TokenHasS
 from apps.meetup.models import Event
 from apps.meetup.views import EventList, EventDetail
 
-admin.autodiscover()
-
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ModelViewSet):
 	permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
@@ -38,7 +36,7 @@ urlpatterns = patterns('',
                        url(r'^api/events/$', EventList.as_view(), name='event_list'),
                        url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view(), name='event_detail'),
 
-                       (r'^accounts/', include('registration.backends.default.urls')),
+                      # (r'^accounts/', include('registration.backends.default.urls')),
 
                        # added login and reset password to defaults
 
@@ -47,6 +45,7 @@ urlpatterns = patterns('',
                        url(r'^$', "apps.profiles.views.home", name="home"),
                        url(r'^about/$', 'apps.profiles.views.about', name='about'),
                        url(r'^why-us/$', 'apps.profiles.views.whyus', name='whyus'),
+                       url(r'^login/$', 'apps.profiles.views.login', name='login'),
 
                        url(r'^contact/$', 'apps.contact.views.contact', name='contact'),
 

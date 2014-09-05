@@ -1,4 +1,5 @@
 import datetime
+import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -8,9 +9,16 @@ from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm, U
 from models import Interest, Profile, UserCity
 
 
+logger = logging.getLogger(__name__)
+
+
 def home(request):
     """Home page"""
     return render(request, 'index.html')
+
+
+def login(request):
+    return render(request, 'registration/login.html')
 
 
 def logout(request):

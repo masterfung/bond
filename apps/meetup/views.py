@@ -1,5 +1,6 @@
 from json import dumps
 import json
+import logging
 from django.views.decorators.csrf import csrf_exempt
 from requests_oauthlib import OAuth2Session
 from django.contrib.auth.decorators import login_required
@@ -40,6 +41,9 @@ from django.views.generic import TemplateView
 ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
 AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
 REDIRECT_URI = 'bondandme.com'
+
+
+logger = logging.getLogger(__name__)
 
 
 @csrf_exempt
