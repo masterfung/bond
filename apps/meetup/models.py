@@ -55,7 +55,7 @@ class Event(models.Model):
 
     group = models.TextField(null=True, blank=True)
     event_created = models.DateTimeField(null=True, blank=True)
-    timestamp = models.DateTimeField(default=datetime.today())
+    timestamp = models.DateTimeField()
     last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __unicode__(self):
