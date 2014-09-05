@@ -46,55 +46,56 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 # Application definition
 
 INSTALLED_APPS = (
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'django.contrib.sites',
-	# 'registration',
-	'apps.profiles',
-	'bcrypt',
-	'social.apps.django_app.default',
-	'apps.meetup',
-	'crispy_forms',
-	'floppyforms',
-	'captcha',
-	'scraper',
-	'apps.events',
-	'apps.eventbrite',
-	'rest_framework',
-	'djcelery',
-	'djangular',
-	'whoosh',
-	'haystack',
-	'herokuapp',
-	'storages',
-	'pytz',
-	'dateutil',
-	'tzlocal',
-	'compressor',
-	'django_coverage',
-	'jasmine',
-	'oauth2_provider',
-	'corsheaders',
-	'opbeat.contrib.django',
-	'newrelic'
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',  # 'registration',
+    'apps.profiles',
+    'bcrypt',
+    'social.apps.django_app.default',
+    'apps.meetup',
+    'crispy_forms',
+    'floppyforms',
+    'captcha',
+    'scraper',
+    'apps.events',
+    'apps.eventbrite',
+    'rest_framework',
+    'djcelery',
+    'djangular',
+    'whoosh',
+    'haystack',
+    'herokuapp',
+    'storages',
+    'pytz',
+    'dateutil',
+    'tzlocal',
+    'compressor',
+    'django_coverage',
+    'jasmine',
+    'oauth2_provider',
+    'corsheaders',
+    'opbeat.contrib.django',
+    'newrelic',
+    'easy_timezones',
 )
 
 MIDDLEWARE_CLASSES = (
-	"django.middleware.gzip.GZipMiddleware",
-	"herokuapp.middleware.CanonicalDomainMiddleware",
-	"django.contrib.sessions.middleware.SessionMiddleware",
-	"django.middleware.common.CommonMiddleware",
-	"django.middleware.csrf.CsrfViewMiddleware",
-	"django.contrib.auth.middleware.AuthenticationMiddleware",
-	"django.contrib.messages.middleware.MessageMiddleware",
-	"django.middleware.clickjacking.XFrameOptionsMiddleware",
-	'easy_timezones.middleware.EasyTimezoneMiddleware',
-	'corsheaders.middleware.CorsMiddleware',
-	# 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
+    "django.middleware.gzip.GZipMiddleware",
+    "herokuapp.middleware.CanonicalDomainMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'easy_timezones.middleware.EasyTimezoneMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
+    # 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
 
 ROOT_URLCONF = 'bond.urls'
@@ -115,7 +116,7 @@ EVENTBRITE_OAUTH_KEY = os.environ.get("EVENTBRITE_OAUTH_KEY")
 # DATABASES = dict(default=dj_database_url.config(default=os.environ.get("DATABASE_URL")))
 
 DATABASES = {
-	"default": dj_database_url.config(default="postgresql://"),
+    "default": dj_database_url.config(default="postgresql://"),
 }
 
 HEROKU_APP_NAME = "bondandme"
@@ -135,23 +136,23 @@ PREPEND_WWW = False
 # Rest Framework
 
 REST_FRAMEWORK = {
-	'DEFAULT_AUTHENTICATION_CLASSES': (
-		'oauth2_provider.ext.rest_framework.OAuth2Authentication',
-	),
-	'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.IsAuthenticated',
-	),
-	'DEFAULT_THROTTLE_CLASSES': (
-		'rest_framework.throttling.AnonRateThrottle',
-		'rest_framework.throttling.UserRateThrottle',
-	),
-	'DEFAULT_THROTTLE_RATES': {
-		'anon': '50/day',
-		'user': '1000/day'
-	},
-	'PAGINATE_BY': 10,  # Default to 10
-	'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
-	'MAX_PAGINATE_BY': 100  # Maximum limit allowed when using `?page_size=xxx`.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '50/day',
+        'user': '1000/day'
+    },
+    'PAGINATE_BY': 10,  # Default to 10
+    'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
+    'MAX_PAGINATE_BY': 100  # Maximum limit allowed when using `?page_size=xxx`.
 }
 
 # OAuth 2
@@ -164,34 +165,34 @@ OAUTH2_PROVIDER = {  # this is the list of available scopes
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 ALLOWED_HOSTS = (
-	SITE_DOMAIN,
-	"bondandme.herokuapp.com",
-	"bondandme.com",
-	"www.bondandme.com",
+    SITE_DOMAIN,
+    "bondandme.herokuapp.com",
+    "bondandme.com",
+    "www.bondandme.com",
 )
 
 PASSWORD_HASHERS = (
-	'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-	'django.contrib.auth.hashers.BCryptPasswordHasher',
-	'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-	'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-	'django.contrib.auth.hashers.SHA1PasswordHasher',
-	'django.contrib.auth.hashers.MD5PasswordHasher',
-	'django.contrib.auth.hashers.CryptPasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-	"django.contrib.auth.context_processors.auth",
-	"django.core.context_processors.debug",
-	"django.core.context_processors.i18n",
-	"django.core.context_processors.media",
-	"django.core.context_processors.static",
-	"django.core.context_processors.tz",
-	"django.contrib.messages.context_processors.messages",
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
 
-	"django.core.context_processors.request",
-	'social.apps.django_app.context_processors.backends',
-	'social.apps.django_app.context_processors.login_redirect',
+    "django.core.context_processors.request",
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 
@@ -215,7 +216,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 AWS_AUTO_CREATE_BUCKET = True
 
 AWS_HEADERS = {
-	"Cache-Control": "public, max-age=86400",
+    "Cache-Control": "public, max-age=86400",
 }
 
 AWS_S3_FILE_OVERWRITE = False
@@ -244,8 +245,8 @@ EMAIL_PORT = 25
 EMAIL_USE_TLS = False
 
 SERVER_EMAIL = u"{name} <notifications@{domain}>".format(
-	name=SITE_NAME,
-	domain=SITE_DOMAIN,
+    name=SITE_NAME,
+    domain=SITE_DOMAIN,
 )
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
@@ -256,9 +257,9 @@ EMAIL_SUBJECT_PREFIX = "[%s] " % SITE_NAME
 # Opbeat
 
 OPBEAT = {
-	"ORGANIZATION_ID": os.environ.get("ORGANIZATION_ID"),
-	"APP_ID": os.environ.get("APP_ID"),
-	"SECRET_TOKEN": os.environ.get("SECRET_TOKEN")
+    "ORGANIZATION_ID": os.environ.get("ORGANIZATION_ID"),
+    "APP_ID": os.environ.get("APP_ID"),
+    "SECRET_TOKEN": os.environ.get("SECRET_TOKEN")
 }
 
 
@@ -298,45 +299,45 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 CACHE_MIDDLEWARE_KEY_PREFIX = "bond"
 
 CACHES = {
-	"default": {
-		"BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-	},  # Long cache timeout for staticfiles, since this is used heavily by the optimizing storage.
-	"staticfiles": {
-		"BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-		"TIMEOUT": 60 * 60 * 24 * 365,
-		"LOCATION": "staticfiles",
-	},
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },  # Long cache timeout for staticfiles, since this is used heavily by the optimizing storage.
+    "staticfiles": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "TIMEOUT": 60 * 60 * 24 * 365,
+        "LOCATION": "staticfiles",
+    },
 }
 
 # Social
 
 AUTHENTICATION_BACKENDS = (
-	'social.backends.open_id.OpenIdAuth',
-	'social.backends.facebook.FacebookOAuth2',
-	'social.backends.linkedin.LinkedinOAuth2',
-	'social.backends.twitter.TwitterOAuth',
-	"django.contrib.auth.backends.ModelBackend",
+    'social.backends.open_id.OpenIdAuth',
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.linkedin.LinkedinOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 SOCIAL_AUTH_PIPELINE = (
-	'social.pipeline.social_auth.social_details',
-	'social.pipeline.social_auth.social_uid',
-	'social.pipeline.social_auth.auth_allowed',
-	'social.pipeline.social_auth.social_user',
-	'social.pipeline.user.get_username',
-	'social.pipeline.social_auth.associate_by_email',
-	'social.pipeline.user.create_user',
-	'social.pipeline.social_auth.associate_user',
-	'social.pipeline.social_auth.load_extra_data',
-	'social.pipeline.user.user_details',
-	'apps.profiles.pipeline.user.save_profile',
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.social_auth.associate_by_email',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'apps.profiles.pipeline.user.save_profile',
 )
 
 SOCIAL_AUTH_DISCONNECT_PIPELINE = (
-	'social.pipeline.disconnect.allowed_to_disconnect',
-	'social.pipeline.disconnect.get_entries',
-	'social.pipeline.disconnect.revoke_tokens',
-	'social.pipeline.disconnect.disconnect',
+    'social.pipeline.disconnect.allowed_to_disconnect',
+    'social.pipeline.disconnect.get_entries',
+    'social.pipeline.disconnect.revoke_tokens',
+    'social.pipeline.disconnect.disconnect',
 )
 
 # USER_FIELDS = ['username', 'email', 'first_name', 'last_name', 'phone', 'city', 'age', 'picture_url', 'provider']
@@ -373,15 +374,15 @@ from urlparse import urlparse
 es = urlparse(os.environ.get('SEARCHBOX_URL') or 'http://127.0.0.1:9200/')
 
 HAYSTACK_CONNECTIONS = {
-	'default': {
-		'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-		'URL': es.scheme + '://' + es.hostname + ':80',
-		'INDEX_NAME': 'documents',
-	},
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': es.scheme + '://' + es.hostname + ':80',
+        'INDEX_NAME': 'documents',
+    },
 }
 
 if es.username:
-	HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
+    HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": es.username + ':' + es.password}
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
@@ -391,19 +392,19 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 MEDIA_URL = '/media/'
 
 TEMPLATE_DIRS = (
-	os.path.join(SITE_ROOT, "templates"),
+    os.path.join(SITE_ROOT, "templates"),
 )
 
 TEMPLATE_LOADERS = (
-	("django.template.loaders.cached.Loader", (
-		"django.template.loaders.filesystem.Loader",
-		"django.template.loaders.app_directories.Loader",
-	)
-	),
+    ("django.template.loaders.cached.Loader", (
+        "django.template.loaders.filesystem.Loader",
+        "django.template.loaders.app_directories.Loader",
+    )
+    ),
 )
 
 STATICFILES_DIRS = (
-	os.path.join(SITE_ROOT, "static", "static"),
+    os.path.join(SITE_ROOT, "static", "static"),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static')
@@ -427,27 +428,27 @@ COMPRESS_ROOT = os.path.join(BASE_DIR, "static")
 COMPRESS_CSS_FILTERS = ['compressor.filters.cssmin.CSSMinFilter']
 
 STATICFILES_FINDERS = (
-	'django.contrib.staticfiles.finders.FileSystemFinder',
-	'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-	'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Logging configuration.
 
 LOGGING = {
-	"version": 1,  # Don't throw away default loggers.
-	"disable_existing_loggers": False,
-	"handlers": {  # Redefine console logger to run in production.
-	               "console": {
-		               "level": "INFO",
-		               "class": "logging.StreamHandler",
-	               },
-	},
-	"loggers": {  # Redefine django logger to use redefined console logging.
-	              "django": {
-		              "handlers": ["console"],
-	              }
-	}
+    "version": 1,  # Don't throw away default loggers.
+    "disable_existing_loggers": False,
+    "handlers": {  # Redefine console logger to run in production.
+                   "console": {
+                       "level": "INFO",
+                       "class": "logging.StreamHandler",
+                   },
+    },
+    "loggers": {  # Redefine django logger to use redefined console logging.
+                  "django": {
+                      "handlers": ["console"],
+                  }
+    }
 }
 
 

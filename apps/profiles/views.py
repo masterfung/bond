@@ -3,6 +3,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from apps.meetup.models import Event
 from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm, UserCityForm
@@ -88,21 +89,23 @@ def settings(request):
 
 @login_required
 def profile(request):
+    current_time = timezone.localtime(timezone.now())
+
     city_event = Event.objects.filter(city=request.user.city,
-                                      start_dateTime__gte=datetime.date.today()).order_by('?')[:8]
+                                      start_dateTime__gte=current_time).order_by('?')[:8]
     food = Event.objects.filter(city=request.user.city,
                                 description__icontains='food',
-                                start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
+                                start_dateTime__gte=current_time).order_by('last_modified')[:1]
     community = Event.objects.filter(city=request.user.city,
                                      description__icontains='community',
-                                     start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
+                                     start_dateTime__gte=current_time).order_by('last_modified')[:1]
     wellness = Event.objects.filter(city=request.user.city,
                                     description__icontains='health',
-                                    start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
+                                    start_dateTime__gte=current_time).order_by('last_modified')[:1]
     education = Event.objects.filter(city=request.user.city,
                                      description__icontains='learn',
-                                     start_dateTime__gte=datetime.date.today()).order_by('last_modified')[:1]
-    personal = Event.objects.filter(city=request.user.city).order_by('timestamp')[:2]
+                                     start_dateTime__gte=current_time).order_by('last_modified')[:1]
+    personal = Event.objects.filter(city=request.user.city).order_by('last_modified')[:2]
     data = {
         'user': request.user, 'city_event': city_event, 'food': food,
         'community': community, 'wellness': wellness, 'education': education,

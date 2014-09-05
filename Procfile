@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT bond.wsgi:application
+web: newrelic-admin run-program waitress-serve --port=$PORT bond.wsgi:application

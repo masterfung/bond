@@ -3,6 +3,7 @@
 {% load staticfiles %}
 {% load djangular_tags %}
 {% load time_tags %}
+{% load tz %}
 
 {% block title %}
 Profile
@@ -23,8 +24,7 @@ Profile
         {% endif %}
         </h1>
 		<p class="text-center">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
-{#        {% load tz %}#}
-{#		    The UTC time is {{ object.date }}#}
+
 {#		{% localtime on %}#}
 {#		    The local time is {{ object.date }}#}
 {#		{% endlocaltime %}#}
