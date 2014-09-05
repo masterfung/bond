@@ -42,7 +42,7 @@ def whyus(request):
 def angular(request):
     return render(request, 'angular.html')
 
-
+@login_required
 def settings(request):
     """Handles new interests, notifications, and event preferences"""
     interests = Interest.objects.filter(profile=request.user)  # based on selected user only
