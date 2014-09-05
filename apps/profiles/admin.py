@@ -5,36 +5,35 @@ from apps.profiles.models import Profile, Interest, CategoryPreference, UserCity
 
 
 class ProfileAdmin(UserAdmin):
-	add_form = ProfileCreationForm
+    add_form = ProfileCreationForm
 
-	def get_fieldsets(self, request, obj=None):  # 4c (whole method)
-		"""
+    def get_fieldsets(self, request, obj=None):  # 4c (whole method)
+        """
+        Get the custom fields that are missing from the usercreationform for the PatronAdmin
 
-		Get the custom fields that are missing from the usercreationform for the PatronAdmin
+        """
 
-		"""
+        return self.fieldsets + (
+            ('Custom Fields', {'fields': ('provider', 'raw',
+                                          'fib', 'phone', 'city',
+                                          'birthday', 'zipcode', 'picture_url',
+                                          'profile_updated_time', 'distance', 'email_notification',
+                                          'text_notification', 'notice_frequency', 'food_score',
+                                          'wellness_score', 'community_score', 'personal_score',
+                                          'education_score'
+            )}),
+        )
 
-		return self.fieldsets + (
-			('Custom Fields', {'fields': ('provider', 'raw',
-			                              'fib', 'phone', 'city',
-			                              'birthday', 'zip', 'picture_url',
-			                              'profile_updated_time', 'distance', 'email_notification',
-			                              'text_notification', 'notice_frequency', 'food_score',
-			                              'wellness_score', 'community_score', 'personal_score',
-			                              'education_score'
-			)}),
-		)
-
-	list_display = ['username', 'provider', 'city', 'zip']
-	search_fields = ['username', 'provider', 'city']
+    list_display = ['username', 'provider', 'city', 'zipcode']
+    search_fields = ['username', 'provider', 'city']
 
 
 class InterestAdmin(admin.ModelAdmin):
-	list_display = ['name', 'choice', 'profile']
+    list_display = ['name', 'choice', 'profile']
 
 
 class UserCityAdmin(admin.ModelAdmin):
-	list_display = ['name', 'profile']
+    list_display = ['name', 'profile']
 
 
 admin.site.register(Profile, ProfileAdmin)

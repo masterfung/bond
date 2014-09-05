@@ -11,6 +11,7 @@ def save_profile(strategy, details, user=None, *args, **kwargs):
         user.profile_updated_time = kwargs['response'].get('updated_time', 'NA')
         user.city = kwargs['response'].get('city', 'San Francisco')
         user.phone = kwargs['response'].get('phone', '000.000.0000')
+        # user.zipcode = kwargs['response'].get('zip', '00000')
         user.fib = kwargs['response'].get('id', 0)
 
         user.raw = dumps(kwargs['response'])
