@@ -283,6 +283,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 # Additional static file locations.
 
 
