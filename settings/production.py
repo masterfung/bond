@@ -449,21 +449,11 @@ LOGGING = {
                "level": "INFO",
                "class": "logging.StreamHandler",
            },
-           "mail_admins": {
-            "level": "ERROR",
-            "class": "django.utils.log.AdminEmailHandler",
-            "filters": ["special"]
-           }
     },
     "loggers": {  # Redefine django logger to use redefined console logging.
           "django": {
               "handlers": ["console"],
           },
-        "django.request": {
-            "handlers": ["mail_admins"],
-            "level": "ERROR",
-            "propagate": False,
-        },
     }
 }
 
