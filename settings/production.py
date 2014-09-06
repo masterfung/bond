@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'opbeat.contrib.django',
     'newrelic',
     'easy_timezones',
+    'raven.contrib.django.raven_compat',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -97,6 +98,11 @@ MIDDLEWARE_CLASSES = (
 
     # 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
+
+# Set your DSN value
+RAVEN_CONFIG = {
+    'dsn': 'https://1eae96827d564c5eb1aeb484246bea14:fbdd63920dda4331b880247239c60050@app.getsentry.com/29866',
+}
 
 ROOT_URLCONF = 'bond.urls'
 
