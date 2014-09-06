@@ -108,4 +108,6 @@ class Command(BaseCommand):
                                 # event_status=event.get('status', 'Not Available')
                             )
                     except:
-                        continue
+                        logger.error('Eventbrite error')
+                        logger.error('{} from Eventbrite with index of {}'.format(event, x))
+                        logger.error('The city was: {}'.format(city))

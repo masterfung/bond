@@ -439,16 +439,26 @@ LOGGING = {
     "version": 1,  # Don't throw away default loggers.
     "disable_existing_loggers": False,
     "handlers": {  # Redefine console logger to run in production.
-                   "console": {
-                       "level": "INFO",
-                       "class": "logging.StreamHandler",
-                   },
+           "console": {
+               "level": "INFO",
+               "class": "logging.StreamHandler",
+               "formatter": "simple"
+           },
+           "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "filters": ["special"]
+           }
     },
     "loggers": {  # Redefine django logger to use redefined console logging.
-                  "django": {
-                      "handlers": ["console"],
-                  }
+          "django": {
+              "handlers": ["console"],
+          },
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": False,
+        },
     }
 }
-
 

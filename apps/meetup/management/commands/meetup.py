@@ -145,8 +145,7 @@ class Command(BaseCommand):
 
                             )
                     except:
-                        print 'Something went wrong in Meetup.'
-                        print event
-                        print x
-                        continue
+                        logger.error('Meetup error')
+                        logger.error('{} from Meetup with index of {}'.format(event, x))
+                        logger.error('{} city, state {}'.format(place['city'], place['state']))
 
