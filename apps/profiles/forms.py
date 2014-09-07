@@ -7,7 +7,7 @@ from djangular.forms import NgFormValidationMixin, NgModelFormMixin
 from apps.profiles.models import Interest, Profile, UserCity
 
 
-class ProfileCreationForm(UserCreationForm):  # 4b (whole class / module)
+class ProfileCreationForm(UserCreationForm):
     '''
    A form that we can use to create a patron with no privileges
 

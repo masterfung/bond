@@ -106,7 +106,7 @@ class Command(BaseCommand):
                             else:
                                 end_date_time = start_date_time + relativedelta(hours=5)
                                 end_time = end_date_time.strftime('%Y-%m-%dT%H:%M:%S-07:00')
-                            meetup, created = Event.objects.update_or_create(
+                            meetup = Event.objects.update_or_create(
                                 event_id=event.get('id', 0),
 
                                 defaults={

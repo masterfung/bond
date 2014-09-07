@@ -71,7 +71,7 @@ class Command(BaseCommand):
                             datetime_end = dateutil.parser.parse(event['end']['utc'])
                             description_info = strip_tags(event.get('description', {}))
 
-                            eventbrite, created = Event.objects.update_or_create(
+                            eventbrite = Event.objects.update_or_create(
                                 event_id=event.get('id', 0),
 
                                 defaults={'source': 'Eventbrite',
