@@ -28,7 +28,15 @@ Profile
 {#		{% localtime on %}#}
 {#		    The local time is {{ object.date }}#}
 {#		{% endlocaltime %}#}
-        <p class="text-center">Your current time: <br/> {% now "jS F Y g:iA" %}</p>
+{#        <p class="text-center">Your current time: <br/> {% now "jS F Y g:iA" %}</p>#}
+        <p class="text-center">Your current time:
+	        {% localtime on %}
+		    {{ value }}
+			{% endlocaltime %}
+	        <br/>
+		{{ value|localtime }}
+
+        </p>
         <div class="spacing-buffer"></div>
     </div>
 </div>
