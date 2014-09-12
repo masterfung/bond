@@ -5,6 +5,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
+import pytz
+from django.utils import timezone
 from apps.meetup.models import Event
 from apps.profiles.forms import InterestForm, ProfileForm, GettingStartedForm, UserCityForm
 from models import Interest, Profile, UserCity
@@ -106,10 +108,15 @@ def profile(request):
                                      description__icontains='learn',
                                      start_dateTime__gte=current_time).order_by('last_modified')[:1]
     personal = Event.objects.filter(city=request.user.city).order_by('last_modified')[:2]
+
+    if request.method == 'POST':
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/profile')
+
     data = {
         'user': request.user, 'city_event': city_event, 'food': food,
         'community': community, 'wellness': wellness, 'education': education,
-        'personal': personal
+        'personal': personal, 'timezones': pytz.common_timezones
     }
     return render(request, 'profiles/view_profile.html', data)
 
@@ -170,3 +177,12 @@ def getting_started(request):
         form = GettingStartedForm()
     data = {'form': form}
     return render(request, 'getting_started.html', data)
+
+
+class TimezoneMiddleware(object):
+    def process_request(self, request):
+        tzname = request.session.get('django_timezone')
+        if tzname:
+            timezone.activate(pytz.timezone(tzname))
+        else:
+            timezone.deactivate()
