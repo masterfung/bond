@@ -38,9 +38,9 @@ from django.views.generic import TemplateView
 
 # MEETUP_API_KEY = local.MEETUP_API_KEY
 
-ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
-AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
-REDIRECT_URI = 'bondandme.com'
+# ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
+# AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
+# REDIRECT_URI = 'bondandme.com'
 
 
 logger = logging.getLogger(__name__)

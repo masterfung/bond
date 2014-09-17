@@ -87,7 +87,7 @@ urlpatterns = patterns('',
                        url(r'^search/category/$', search_view_factory(searchqueryset=SearchQuerySet().facet('city'),
                                                                       view_class=FacetedSearchView,
                                                                       form_class=FacetedSearchForm),
-                           name='faceted_search'),
+                                                                      name='faceted_search'),
 
 )
 
