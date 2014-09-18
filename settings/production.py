@@ -95,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'apps.profile.views.TimezoneMiddleware',
+    'apps.profiles.views.TimezoneMiddleware',
     # 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
 
