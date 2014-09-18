@@ -10,7 +10,7 @@ from pytz import timezone
 from tzlocal import get_localzone
 from dateutil.relativedelta import relativedelta
 from apps.meetup.models import Event
-from settings.production import MEETUP_API_KEY1
+from settings.production import MEETUP_API_KEY
 # from settings.local import MEETUP_API_KEY
 
 logger = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ class Command(BaseCommand):
             for place in locations:
                 resp = get("https://api.meetup.com/2/open_events.json",
                            params={
-                               "key": MEETUP_API_KEY1,
+                               "key": MEETUP_API_KEY,
                                "city": place['city'],
                                "state": place['state'],
                                "country": place['country'],
