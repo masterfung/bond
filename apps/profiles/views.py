@@ -116,7 +116,7 @@ def profile(request):
     data = {
         'user': request.user, 'city_event': city_event, 'food': food,
         'community': community, 'wellness': wellness, 'education': education,
-        'personal': personal, 'timezones': pytz.common_timezones
+        'personal': personal, 'timezones': pytz.common_timezones, 'value': timezone.now(),
     }
     return render(request, 'profiles/view_profile.html', data)
 
