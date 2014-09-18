@@ -67,8 +67,7 @@ class Command(BaseCommand):
                                "page": 200,
                                "radius": 50.0,
                                "offset": offset,
-                           }, headers={  # "Authorization": "Bearer {}".format(datacode[0])
-                    })
+                           })
 
                 if resp.status_code != 200:
                     return
