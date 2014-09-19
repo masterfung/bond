@@ -50,12 +50,13 @@ class Event(models.Model):
 
     start_time = models.CharField(max_length=150, blank=True)
     end_time = models.CharField(max_length=150, blank=True)
+
     start_dateTime = models.DateTimeField(null=True, blank=True)
     end_dateTime = models.DateTimeField(null=True, blank=True)
 
     group = models.TextField(null=True, blank=True)
     event_created = models.DateTimeField(null=True, blank=True)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __unicode__(self):

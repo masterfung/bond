@@ -7,7 +7,8 @@ Jinja2==2.7.3
 Markdown==2.4.1
 MarkupSafe==0.23
 Pillow==2.5.3
-PyYAML==3.11
+PyJWT==0.2.1
+PyYAML==3.10
 Pygments==1.6
 Scrapy==0.24.4
 Twisted==14.0.0
@@ -22,6 +23,7 @@ boto==2.32.1
 celery==3.1.13
 certifi==14.05.14
 cffi==0.8.6
+characteristic==14.1.0
 cov-core==1.14.0
 coverage==3.7.1
 cryptography==0.5.4
@@ -42,12 +44,12 @@ django-easy-timezones==0.2.0
 django-easytz==0.3
 django-filter==0.7
 django-floppyforms==1.2.0
-django-haystack==2.2.0
+django-haystack==2.2.1
 django-herokuapp==0.9.18
 django-oauth-toolkit==0.7.2
 django-paging==0.2.5
 django-picklefield==0.3.1
-django-recaptcha==1.0
+django-recaptcha==1.0.2
 django-require==1.0.6
 django-require-s3==1.0.0
 django-social-auth==0.7.28
@@ -85,6 +87,8 @@ pep8==1.5.7
 psycopg2==2.5.4
 py==1.4.23
 pyOpenSSL==0.14
+pyasn1==0.1.7
+pyasn1-modules==0.0.5
 pycparser==2.10
 pyelasticsearch==0.7.1
 pyflakes==0.8.1
