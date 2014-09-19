@@ -17,6 +17,7 @@ Whoosh==2.6.0
 amqp==1.4.6
 anyjson==0.3.3
 argparse==1.2.1
+arrow==0.4.4
 bcrypt==1.0.2
 billiard==3.3.0.18
 boto==2.32.1
@@ -45,10 +46,13 @@ django-easytz==0.3
 django-filter==0.7
 django-floppyforms==1.2.0
 django-haystack==2.2.1
+django-heroku-memcacheify==0.5
 django-herokuapp==0.9.18
 django-oauth-toolkit==0.7.2
 django-paging==0.2.5
 django-picklefield==0.3.1
+django-pylibmc==0.5.0
+django-pylibmc-sasl==0.2.4
 django-recaptcha==1.0.2
 django-require==1.0.6
 django-require-s3==1.0.0
@@ -93,6 +97,7 @@ pycparser==2.10
 pyelasticsearch==0.7.1
 pyflakes==0.8.1
 pygeoip==0.3.1
+pylibmc==1.2.3
 pynliner==0.5.1
 pytest==2.6.1
 pytest-cov==1.8.0

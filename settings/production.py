@@ -14,6 +14,7 @@ import os
 from django.utils.crypto import get_random_string
 import djcelery
 import logging
+from memcacheify import memcacheify
 
 logging.basicConfig(level=logging.INFO)
 
@@ -304,16 +305,11 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 CACHE_MIDDLEWARE_KEY_PREFIX = "bond"
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-    },  # Long cache timeout for staticfiles, since this is used heavily by the optimizing storage.
-    "staticfiles": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "TIMEOUT": 60 * 60 * 24 * 365,
-        "LOCATION": "staticfiles",
-    },
-}
+os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
+os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
+os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+CACHES = memcacheify()
 
 # Social
 
