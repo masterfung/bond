@@ -1,8 +1,8 @@
-from haystack.forms import ModelSearchForm
-from time import timezone
+from haystack.forms import SearchForm
+from django.utils import timezone
 
 
-class FutureModelSearchForm(ModelSearchForm):
+class FutureModelSearchForm(SearchForm):
     def search(self):
         sqs = super(FutureModelSearchForm, self).search()
         return sqs.filter(start_date__gte=timezone.now())

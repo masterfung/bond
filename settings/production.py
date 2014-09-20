@@ -16,7 +16,7 @@ import djcelery
 import logging
 from memcacheify import memcacheify
 
-logging.basicConfig(level=logging.INFO)
+# logging.basicConfig(level=logging.INFO)
 
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -83,7 +83,7 @@ INSTALLED_APPS = (
     'newrelic',
     'easy_timezones',
     'raven.contrib.django.raven_compat',
-    'search',
+    'apps.search',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -438,19 +438,19 @@ STATICFILES_FINDERS = (
 
 # Logging configuration.
 
-LOGGING = {
-    "version": 1,  # Don't throw away default loggers.
-    "disable_existing_loggers": False,
-    "handlers": {  # Redefine console logger to run in production.
-           "console": {
-               "level": "INFO",
-               "class": "logging.StreamHandler",
-           },
-    },
-    "loggers": {  # Redefine django logger to use redefined console logging.
-          "django": {
-              "handlers": ["console"],
-          },
-    }
-}
+# LOGGING = {
+#     "version": 1,  # Don't throw away default loggers.
+#     "disable_existing_loggers": False,
+#     "handlers": {  # Redefine console logger to run in production.
+#            "console": {
+#                "level": "INFO",
+#                "class": "logging.StreamHandler",
+#            },
+#     },
+#     "loggers": {
+#           "django.request": {
+#               "handlers": ["console"],
+#           },
+#     }
+# }
 

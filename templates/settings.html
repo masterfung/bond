@@ -30,7 +30,7 @@
         <p class="text-center">Add your favorite interests so you can quickly access your events in your city.</p>
         <ul class="centered">
             {% for interest in interests %}
-                <a class="userChoice btn btn-default" href="/search/?q={{ interest.name }}+{{ user.city }}">{{ interest.name }}</a>
+                <a class="userChoice btn btn-default" href="/apps/search/?q={{ interest.name }}+{{ user.city }}">{{ interest.name }}</a>
 
             {% endfor %}
         </ul>
@@ -56,7 +56,7 @@
 		<p class="text-center">Traveling soon? Plan ahead and add your cities to find out what is going on.</p>
 		<ul class="centered">
             {% for city in cities %}
-                <a class="userChoice btn btn-default" href="/search/?q={{ city.name }}">{{ city.name }}</a>
+                <a class="userChoice btn btn-default" href="/apps/search/?q={{ city.name }}">{{ city.name }}</a>
             {% endfor %}
         </ul>
 

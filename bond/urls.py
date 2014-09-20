@@ -79,7 +79,7 @@ urlpatterns = patterns('',
 
                        url(r'^a/$', 'apps.profiles.views.angular', name='angular'),
 
-                       url(r'^search/$', include('haystack.urls')),
+                       url(r'^search/$', include('apps.search.urls')),
 
                        # pulls urls from the haystack app
                        # url(r'^search/$', 'apps.meetup.views.autocomplete', name='autocomplete'),

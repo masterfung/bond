@@ -1,5 +1,6 @@
 from haystack.views import SearchView as HaystackSearchView
-from search.forms import FutureModelSearchForm
+
+from apps.search.forms import FutureModelSearchForm
 
 
 class SearchView(HaystackSearchView):
