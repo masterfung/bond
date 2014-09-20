@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'newrelic',
     'easy_timezones',
     'raven.contrib.django.raven_compat',
+    'search',
 )
 
 MIDDLEWARE_CLASSES = (
