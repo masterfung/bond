@@ -1,8 +1,7 @@
-from django.shortcuts import render
-
-# Create your views here.
-from haystack.views import SearchView
+from haystack.views import SearchView as HaystackSearchView
+from search.forms import FutureModelSearchForm
 
 
-class SearchView(SearchView):
-    pass
+class SearchView(HaystackSearchView):
+    form = FutureModelSearchForm
+

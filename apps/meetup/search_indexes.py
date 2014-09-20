@@ -14,6 +14,7 @@ class EventIndex(SearchIndex, indexes.Indexable):
     event_url = indexes.CharField(model_attr='event_url')
     event_start = indexes.DateTimeField(model_attr='start_dateTime')
     city = indexes.CharField(model_attr='city', faceted=True)
+    start_date = indexes.DateTimeField(model_attr='start_dateTime')
 
     content_auto = indexes.EdgeNgramField(model_attr='event_name') #search population with some intelligence
 

@@ -1,6 +1,9 @@
-__author__ = 'htm'
 from haystack.forms import ModelSearchForm
+from time import timezone
 
 
 class FutureModelSearchForm(ModelSearchForm):
-    pass
+    def search(self):
+        sqs = super(FutureModelSearchForm, self).search()
+        return sqs.filter(start_date__gte=timezone.now())
+
