@@ -15,7 +15,7 @@
 				<ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'profile' %}">Profile</a></li>
-                        <li><a href="/search">Event Search  <i class="fa fa-search"></i></a></li>
+                        <li><a href="{% url 'haystack_search' %}">Event Search  <i class="fa fa-search"></i></a></li>
                         <li><a href="{% url 'settings' %}">Settings</a></li>
 
                     {% else %}
