@@ -1,3 +1,4 @@
+import datetime
 from django.template import loader, Context
 from haystack.exceptions import SearchFieldError
 from haystack.indexes import SearchIndex
@@ -11,6 +12,7 @@ class EventIndex(SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     event_name = indexes.CharField(model_attr='event_name')
     event_url = indexes.CharField(model_attr='event_url')
+    event_start = indexes.DateTimeField(model_attr='start_dateTime')
     city = indexes.CharField(model_attr='city', faceted=True)
 
     content_auto = indexes.EdgeNgramField(model_attr='event_name') #search population with some intelligence

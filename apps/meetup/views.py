@@ -2,6 +2,9 @@ from json import dumps
 import json
 import logging
 from django.views.decorators.csrf import csrf_exempt
+from haystack import forms
+from haystack.backends import SQ
+from haystack.forms import SearchForm
 from requests_oauthlib import OAuth2Session
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -13,34 +16,13 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 # from apps.meetup.forms import EventIndexForm
 from rest_framework.permissions import IsAuthenticated
 from models import Event
-
 from oauth2_provider.views.generic import ProtectedResourceView
-
 from apps.meetup.serializer import EventSerializer
-
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
-
-# from .permissions import IsOwnerOrReadOnly
 from haystack.query import SearchQuerySet
-
-
 from tasks import hello_world
 from django.views.generic import TemplateView
-
-# class EventList(EventMixin, ListCreateAPIView):
-# pass
-#
-#
-# class EventDetail(EventMixin, RetrieveUpdateDestroyAPIView):
-# pass
-
-
-# MEETUP_API_KEY = local.MEETUP_API_KEY
-
-# ACCESS_TOKEN_URL = 'https://secure.meetup.com/oauth2/access'
-# AUTHORIZATION_URL = 'https://secure.meetup.com/oauth2/authorize'
-# REDIRECT_URI = 'bondandme.com'
 
 
 logger = logging.getLogger(__name__)
@@ -144,3 +126,6 @@ class ApiEndpoint(ProtectedResourceView):
     def get(self, request, *args, **kwargs):
         return HttpResponse('Protected with Oauth2!')
 
+
+# sqs = SearchQuerySet().order_by('meetup.models.start_dateTime')[:5]
+# print sqs
