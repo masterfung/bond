@@ -4,11 +4,13 @@
 {% block content %}
     <div class="container">
         <div class="row">
-	        <h1>Search for an Event</h1>
-
+	        <h1 class="text-center">Search for an Event</h1>
+			<div class="centered">
 		    <form method="get" action="">
 
-		            {{ form.as_p }}
+
+			            {{ form.as_p }}
+            </div>
 
 		        {% if query %}
 		            <h2>Results</h2>
