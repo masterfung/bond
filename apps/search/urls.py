@@ -1,14 +1,14 @@
 from __future__ import unicode_literals
-from apps.search.forms import FutureModelSearchForm
+from apps.search.forms import FutureSearchForm
 
 try:
     from django.conf.urls import patterns, url
 except ImportError:
     from django.conf.urls.defaults import patterns, url
 
-from apps.search.views import SearchView
+from haystack.views import SearchView
 
 
 urlpatterns = patterns('haystack.views',
-    url(r'^$', SearchView(form_class=FutureModelSearchForm), name='haystack_search'),
+    url(r'^$', SearchView(form_class=FutureSearchForm), name='haystack_search'),
 )
