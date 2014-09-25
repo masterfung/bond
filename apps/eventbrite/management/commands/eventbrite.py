@@ -5,7 +5,7 @@ import dateutil.parser
 from django.utils.html import strip_tags
 from requests import get
 from apps.meetup.models import Event
-from settings.production import EVENTBRITE_OAUTH_KEY
+from django.conf import settings
 
 __author__ = '@masterfung'
 
@@ -38,14 +38,14 @@ class Command(BaseCommand):
                 print page
                 resp = get('https://www.eventbriteapi.com/v3/events/search/?',
                            params={
-                               "token": EVENTBRITE_OAUTH_KEY,
+                               "token": settings.EVENTBRITE_OAUTH_KEY,
                                "venue.city": city,
                                "page": page,
                            }
                 )
 
                 if resp.status_code != 200:
-                    print "error"
+                    print "error", resp.status_code
                     return
 
                 data = dumps(resp.json(), indent=2, sort_keys=True)

@@ -10,7 +10,7 @@ class EventbriteTest(TestCase):
                 "token": settings.EVENTBRITE_OAUTH_KEY,
                 "venue.city": "miami",
                 "page": "1",
-            }
+            }, headers={"content-type": "application/json"}
         )
-        print response.text
+        print response.request.headers
         self.assertEqual(response.status_code, 200)
