@@ -12,4 +12,5 @@ class EventbriteTest(TestCase):
                 "page": "1",
             }
         )
+        print response.text
         self.assertEqual(response.status_code, 200)
