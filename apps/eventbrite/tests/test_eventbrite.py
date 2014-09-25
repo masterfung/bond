@@ -79,8 +79,9 @@ class EventbriteTest(TestCase):
                     "address_1": "72 Tat Chee Avenue",
                     "address_2": None,
                     "city": "Kowloon Tong",
-                    "region": None,
-                    "postal_code": None,
+                    "state": "San Francisco",
+                    # "region": None,
+                    "postal_code": 12310,
                     "country": "HK"
                 },
                 "resource_uri": "https://www.eventbriteapi.com/v3/venues/3603961/",
