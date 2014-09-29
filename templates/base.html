@@ -29,7 +29,7 @@
 <script src="{% static 'js/modernizr.custom.14652.js' %}"></script>
 <script src="{% static 'js/oauth.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
-{#<script src="{% static 'easytz/js/easytz.js' %}"></script>#}
+<script src="{% static 'easytz/js/easytz.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
 {% endcompress js %}
 <script type="text/javascript">
@@ -39,8 +39,11 @@
 </script>
 
 {% block head %}
-	<script src="{% static 'js/picturefill.js' %}" async></script>
+	{% compress js %}
+		<script src="{% static 'js/picturefill.js' %}" async></script>
+	{% endcompress js %}
 {% endblock head %}
+
 </head>
 
 <body id="home">

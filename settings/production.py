@@ -296,7 +296,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Additional static file locations.
 
-
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"

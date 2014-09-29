@@ -11,7 +11,6 @@ __author__ = '@masterfung'
 
 from django.core.management.base import BaseCommand
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -44,8 +43,6 @@ class Command(BaseCommand):
                       'lon': event.get('venue', {}).get('longitude', 0),
 
                       'ticket_classes': event.get('ticket_classes', {}),
-                      # 'start_time': formatted_start_time,
-                      # 'end_time': formatted_end_time,
                       'start_dateTime': datetime_start,
                       'end_dateTime': datetime_end,
             },
