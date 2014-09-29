@@ -98,6 +98,7 @@ MIDDLEWARE_CLASSES = (
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'apps.profiles.views.TimezoneMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     # 'opbeat.contrib.django.middleware.Opbeat404CatchMiddleware',
 )
 
@@ -276,9 +277,6 @@ OPBEAT = {
 ADMINS = (('Johnny Hung', 'thung@me.com'),)
 
 MANAGERS = ()
-
-SEND_BROKEN_LINK_EMAILS = True
-
 
 # Locale settings.
 

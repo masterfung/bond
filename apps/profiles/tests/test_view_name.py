@@ -24,3 +24,11 @@ class WhyUsTests(TestCase, RestfulTestMixin):
     def test_whyus_not_present(self):
         response = self.client.get(self.reverse())
         self.assertResponseOk(response)
+
+
+class ContactTests(TestCase, RestfulTestMixin):
+    view_name = 'contact'
+
+    def test_whyus_not_present(self):
+        response = self.client.get(self.reverse())
+        self.assertResponseOk(response)
