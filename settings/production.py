@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'djcelery',
     'djangular',
-    'whoosh',
+    # 'whoosh',
     'haystack',
     'herokuapp',
     'storages',
