@@ -20,4 +20,7 @@ $(document).ready(function() {
         $('.questSetFour').show('slow');
     });
 
+// Global Notify.js
+
+
 });

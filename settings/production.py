@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'easy_timezones',
     'raven.contrib.django.raven_compat',
     'apps.search',
+    'djangobower',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -431,6 +432,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+# BOWER_COMPONENTS_ROOT = '/bond/bower_components/'
+
+BOWER_INSTALLED_APPS = (
+    'notify',
+    'oauth-js',
 )
 
 # Logging configuration.

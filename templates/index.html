@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load compress %}
 {% load i18n %}
 
 {% block title %}
@@ -7,11 +8,13 @@ Bond
 {% endblock title %}
 
 {% block head %}
+	{{ block.super }}
+	{% compress js %}
 	<script>
 			// Picture element HTML shim|v it for old IE (pairs with Picturefill.js)
 			document.createElement( "picture" );
 	</script>
-	{{ block.super }}
+	{% endcompress js %}
 
 {% endblock head %}
 

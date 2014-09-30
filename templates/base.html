@@ -29,6 +29,8 @@
 <script src="{% static 'js/modernizr.custom.14652.js' %}"></script>
 <script src="{% static 'js/oauth.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
+{#<script src="{% static '/Users/htm/Documents/bond/bower_components/components/notify.js/notify.js' %}"></script>#}
+<script src="{% static 'js/notify.min.js' %}"></script>
 {#<script src="{% static 'easytz/js/easytz.js' %}"></script>#}
 <script src="{% static 'js/custom.js' %}"></script>
 {% endcompress js %}
@@ -40,7 +42,7 @@
 
 {% block head %}
 	{% compress js %}
-		<script src="{% static 'js/picturefill.js' %}" async></script>
+		<script async src="{% static 'js/picturefill.js' %}"></script>
 	{% endcompress js %}
 {% endblock head %}
 

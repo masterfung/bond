@@ -3,13 +3,21 @@
 {% load staticfiles %}
 {% load djangular_tags %}
 {% load time_tags %}
+{% load compress %}
 {% load tz %}
 
 {% block title %}
 Profile
 {% endblock title %}
 
+{% block head %}
+{% compress js %}
+	<script src="{% static 'js/notify/profile.js' %}"></script>
+{% endcompress js %}
+{% endblock head %}
+
 {% block message %}
+
 <div class="container">
     <div class="row">
         <div class="spacing-buffer"></div>
@@ -23,7 +31,7 @@ Profile
 	        {{ user.first_name }}!
         {% endif %}
         </h1>
-		<p class="text-center">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
+		<p class="text-center current-city">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
 
 {#		{% localtime on %}#}
 {#		    The local time is {{ object.date }}#}
