@@ -4,11 +4,11 @@
 
 $(document).ready(function () {
 
-	$.notify("Welcome!", "success");
+	$.notify("Welcome to Bond!", "success");
 
 	$(".current-city").notify(
-		"If your city is not correct, please change it",
-		{ position: "left" }
+		"Does your city look correct?",
+		{ position: "right" }
 	)
 
 });
