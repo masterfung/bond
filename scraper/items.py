@@ -6,7 +6,7 @@ from models import Scraper
 
 
 # class SFGateTechBusiness(Item):
-# 	url = Field()
+# url = Field()
 # 	title_content = Field()
 # 	description_content = Field()
 # 	meta_date_content = Field()
@@ -15,4 +15,4 @@ from models import Scraper
 
 
 class SFGateTechBusiness(DjangoItem):
-	django_model = Event
+    django_model = Event

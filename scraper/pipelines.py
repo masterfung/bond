@@ -4,12 +4,11 @@ __author__ = 'htm'
 
 
 class SFGateTechBusiness(object):
-
-	def process_item(self, item, spider):
-		try:
-			# source = ('Scrapy')
-			item.save()
-			return item
-		except IntegrityError, e:
-			spider.log(str(e))
-			return None
+    def process_item(self, item, spider):
+        try:
+            # source = ('Scrapy')
+            item.save()
+            return item
+        except IntegrityError, e:
+            spider.log(str(e))
+            return None
