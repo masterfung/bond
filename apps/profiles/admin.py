@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from apps.profiles.forms import ProfileCreationForm
 from apps.profiles.models import Profile, Interest, CategoryPreference, UserCity, AuthProvider
 
-
+@admin.register(Profile)
 class ProfileAdmin(UserAdmin):
     add_form = ProfileCreationForm
 
@@ -28,17 +28,16 @@ class ProfileAdmin(UserAdmin):
     search_fields = ['username', 'provider', 'city']
 
 
+@admin.register(Interest)
 class InterestAdmin(admin.ModelAdmin):
     list_display = ['name', 'choice', 'profile']
 
 
+@admin.register(UserCity)
 class UserCityAdmin(admin.ModelAdmin):
     list_display = ['name', 'profile']
 
 
-admin.site.register(Profile, ProfileAdmin)
 admin.site.register(AuthProvider)
-admin.site.register(Interest, InterestAdmin)
 admin.site.register(CategoryPreference)
-admin.site.register(UserCity, UserCityAdmin)
 

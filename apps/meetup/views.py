@@ -1,18 +1,9 @@
-from json import dumps
 import json
 import logging
 from django.views.decorators.csrf import csrf_exempt
-from haystack import forms
-from haystack.backends import SQ
-from haystack.forms import SearchForm
-from requests_oauthlib import OAuth2Session
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from requests import get
-from rest_framework import status
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 # from apps.meetup.forms import EventIndexForm
 from rest_framework.permissions import IsAuthenticated
 from models import Event
@@ -64,12 +55,6 @@ def autocomplete(request):
         'results': suggestions
     })
     return HttpResponse(the_data, content_type='application/json')
-
-
-# def notes(request):
-# form = EventIndexForm(request.GET)
-# events = form.search()
-# return render(request, 'events/events.html', {'events': events})
 
 
 @login_required
@@ -125,7 +110,3 @@ class EventDetail(EventMixin, generics.RetrieveUpdateDestroyAPIView):
 class ApiEndpoint(ProtectedResourceView):
     def get(self, request, *args, **kwargs):
         return HttpResponse('Protected with Oauth2!')
-
-
-# sqs = SearchQuerySet().order_by('meetup.models.start_dateTime')[:5]
-# print sqs
