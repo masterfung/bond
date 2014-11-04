@@ -15,13 +15,13 @@ from apps.meetup.models import Event
 from apps.meetup.views import EventList, EventDetail
 
 # ViewSets define the view behavior.
-class EventViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-    model = Event
-
-# Routers provide an easy way of automatically determining the URL conf
-router = routers.DefaultRouter()
-router.register(r'events', EventViewSet)
+# class EventViewSet(viewsets.ModelViewSet):
+#     permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+#     model = Event
+#
+# # Routers provide an easy way of automatically determining the URL conf
+# router = routers.DefaultRouter()
+# router.register(r'events', EventViewSet)
 
 # Faceting for Haystack:ES
 sqs = SearchQuerySet().facet('city')
