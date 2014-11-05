@@ -92,6 +92,9 @@ def settings(request):
 
 @login_required
 def profile(request):
+    """
+
+    """
     current_time = timezone.localtime(timezone.now())
 
     city_event = Event.objects.filter(city=request.user.city,
@@ -140,6 +143,9 @@ def delete_user_city(request, usercity_id):
 
 @login_required
 def update_profile(request, profile_id):
+    """
+
+    """
     profile = Profile.objects.get(id=profile_id)
     data = {'profile': profile}
     return render(request, '/settings.html', data)
@@ -147,6 +153,9 @@ def update_profile(request, profile_id):
 
 @login_required()
 def getting_started(request):
+    """
+
+    """
     survey = Profile.objects.get(id=request.user.id)
     if request.method == 'POST':
         print 'post'
@@ -181,6 +190,11 @@ def getting_started(request):
 
 
 class TimezoneMiddleware(object):
+    """
+    Django provided this code to activate timezone selection. There is an assocated
+    dropdown menu of all the different time zones. Events depend on this parameter to
+    adjust the correct start and end times.
+    """
     def process_request(self, request):
         tzname = request.session.get('django_timezone')
         if tzname:

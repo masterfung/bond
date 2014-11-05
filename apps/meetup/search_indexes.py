@@ -9,6 +9,9 @@ from haystack import indexes
 from apps.meetup.models import Event
 
 class EventIndex(SearchIndex, indexes.Indexable):
+    """
+
+    """
     text = indexes.CharField(document=True, use_template=True)
     event_name = indexes.CharField(model_attr='event_name')
     event_url = indexes.CharField(model_attr='event_url')

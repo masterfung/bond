@@ -5,6 +5,11 @@ from apps.meetup.models import Event
 
 
 class EventSerializer(serializers.ModelSerializer):
+    """
+    This EventSerializer is for the OAUTH-2 serialization in Django
+    Rest Framework. It takes all the available parameters and expose them.
+    Some of the parameters are only specific to certain events.
+    """
     class Meta:
         model = Event
         fields = (

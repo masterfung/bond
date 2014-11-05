@@ -72,7 +72,8 @@ def events(request):
 @login_required
 def event(request, event_id=1):
     """
-
+    A login-required view that renders the events for the users based on what is available
+    in the database.
     """
     return render(request, 'events/event.html', {'event': Event.objects.get(id=event_id)})
 
