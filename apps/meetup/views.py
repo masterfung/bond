@@ -49,6 +49,9 @@ def meetup_oauth_connect(request):
 
 @csrf_exempt
 def autocomplete(request):
+    """
+
+    """
     sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('q', ''))[:5]
     suggestions = [result.event_name for result in sqs]
     the_data = json.dumps({
@@ -59,23 +62,35 @@ def autocomplete(request):
 
 @login_required
 def events(request):
+    """
+
+    """
     events = Event.objects.all()
     return render(request, 'events/events.html')
 
 
 @login_required
 def event(request, event_id=1):
+    """
+
+    """
     return render(request, 'events/event.html', {'event': Event.objects.get(id=event_id)})
 
 
 @login_required
 def search_titles(request):
+    """
+
+    """
     event = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
 
     return render(request, 'events/events.html', {'event': event})
 
 
 class IndexView(TemplateView):
+    """
+
+    """
     template_name = 'events/events.html'
 
     def get_context_data(self, **kwargs):
@@ -104,9 +119,15 @@ class EventList(EventMixin, generics.ListCreateAPIView):
 
 
 class EventDetail(EventMixin, generics.RetrieveUpdateDestroyAPIView):
+    """
+
+    """
     permission_classes = (IsAdminUser,)
 
 
 class ApiEndpoint(ProtectedResourceView):
+    """
+
+    """
     def get(self, request, *args, **kwargs):
         return HttpResponse('Protected with Oauth2!')
