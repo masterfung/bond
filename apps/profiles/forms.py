@@ -3,16 +3,16 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from djangular.forms import NgFormValidationMixin, NgModelFormMixin
+# from djangular.forms import NgFormValidationMixin, NgModelFormMixin
 from apps.profiles.models import Interest, Profile, UserCity
 
 
 class ProfileCreationForm(UserCreationForm):
-    '''
+    """
    A form that we can use to create a patron with no privileges
 
    Use this form to create user simply by admin settings through the use of username & password
-   '''
+   """
     # Thanks to http://stackoverflow.com/questions/16953302/ for the solution to this one
     def clean_username(self):
         # Since User.username is unique, this check is redundant,
@@ -81,7 +81,8 @@ class GettingStartedForm(forms.Form):
     Three = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
                                    label="I am currently seeking to build a stronger community/network")
     Four = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
-                                  label="Attending conferences, workshops, and/or talks are important to my personal growth")
+                                  label="Attending conferences, "
+                                        "workshops, and/or talks are important to my personal growth")
     Five = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,
                                   label="I am more likely to attend an event if my friends will partake")
     Six = forms.TypedChoiceField(choices=choices, coerce=int, widget=forms.RadioSelect,

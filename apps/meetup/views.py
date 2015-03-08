@@ -47,6 +47,7 @@ def meetup_oauth_connect(request):
 
     return render(request, 'meetup/meetup_oauth.html')
 
+
 @csrf_exempt
 def autocomplete(request):
     """
@@ -130,5 +131,6 @@ class ApiEndpoint(ProtectedResourceView):
     """
 
     """
+
     def get(self, request, *args, **kwargs):
         return HttpResponse('Protected with Oauth2!')
