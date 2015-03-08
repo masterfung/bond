@@ -6,6 +6,12 @@ By: Tsung Hung (@masterfung)
 
 ####Installing Instruction:
 
+Please download the necessary Java requirements. Java is required to run ElasticSearch locally.
+I have: 
+java version "1.7.0_67"
+Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
+Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)
+
 1. Install Python (> 2.7), pip, virtualenv, and virtualenvwrapper
 2. Run `mkvirtualenv bond` to create the new virtualenv
 3. Add the local-settings.py file and the local file to their perspective places.

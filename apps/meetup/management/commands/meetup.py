@@ -53,11 +53,9 @@ class Command(BaseCommand):
             {'city': "new orleans", 'state': "la", 'country': "us"},
             {'city': "milwaukee", 'state': "wi", 'country': "us"},
         ]
-        print 'HIHIHI'
         while offset < 20:
             offset += 1
             timezone = get_localzone()
-            print 'WOW!!!'
             for place in locations:
                 resp = get("https://api.meetup.com/2/open_events.json",
                            params={
