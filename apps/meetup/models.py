@@ -63,4 +63,7 @@ class Event(models.Model):
     def __unicode__(self):
         return self.event_name
 
+    class Meta:
+        verbose_name_plural = 'All Events'
+
 

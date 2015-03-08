@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class AuthProvider(models.Model):
     provider = models.CharField(max_length=100, unique=True, blank=False)
 
@@ -100,3 +101,6 @@ class UserCity(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'User Cities'
