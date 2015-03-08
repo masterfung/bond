@@ -1,0 +1,13 @@
+test:
+  override:
+  - source venv26/bin/activate ; python manage.py test
+
+machine:
+  timezone:
+    America/Los_Angeles
+
+  python:
+    version: 2.7.9
+
+  java:
+    version: oraclejdk7
