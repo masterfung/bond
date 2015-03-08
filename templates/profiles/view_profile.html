@@ -21,7 +21,7 @@ Profile
         <div class="spacing-buffer"></div>
         <div class="centered">
     	    <img class="img-responsive img-circle" src="http://graph.facebook.com/{{ user.fib }}/picture?type=large" alt="Profile Image"/>
-        </div>
+
         <h1 class="text-center title-heading-style">Welcome
         {% if user.first_name == '' %}
 	        Awesome Individual!
@@ -29,6 +29,7 @@ Profile
 	        {{ user.first_name }}!
         {% endif %}
         </h1>
+        </div>
 		<p class="text-center current-city">Your current city is: <a href="{% url 'settings' %}">{{ user.city }}</a></p>
 
 {#		{% localtime on %}#}
