@@ -1,7 +1,6 @@
 from haystack.forms import SearchForm
-# from django.utils import timezone
+from django.utils import timezone
 from apps.profiles.models import UserCity
-from datetime import datetime
 
 
 class FutureSearchForm(SearchForm):
@@ -9,5 +8,5 @@ class FutureSearchForm(SearchForm):
     This insures events are most recent."""
     def search(self):
         sqs = super(FutureSearchForm, self).search()
-        return sqs.filter(start_dateTime__gte=datetime.now())
+        return sqs.filter(start_date__gte=timezone.now())
 
