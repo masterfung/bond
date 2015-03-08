@@ -22,3 +22,4 @@ Thumbs.db
 *.col
 /whoosh/
 local_settings.py
+/htmlconv
