@@ -438,7 +438,7 @@ STATICFILES_FINDERS = (
 # BOWER_COMPONENTS_ROOT = '/bond/bower_components/'
 
 BOWER_INSTALLED_APPS = (
-    'notify',
+    # 'notify',
     'oauth-js',
 )
 

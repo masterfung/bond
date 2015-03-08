@@ -11,9 +11,9 @@ By: Tsung Hung (@masterfung)
 3. Add the local-settings.py file and the local file to their perspective places.
 4. Run `pip install -r requirements.txt` to download the third-party libraries
 5. Open Postgres and create a db called: bond.
-6. Back in the main folder, run `./manage.py migrate` to create a new database.
-7. Create a superuser through `./manage.py createsuperuser` and follow the prompt.
-8. Run `./manage.py runserver` to start up Django.
+6. Back in the main folder, run `python manage.py migrate` to create a new database.
+7. Create a superuser through `python manage.py createsuperuser` and follow the prompt.
+8. Run `python manage.py runserver` to start up Django.
 
 
 ####Running Command Management Code:
