@@ -1,6 +1,6 @@
 test:
   override:
-  - source venv26/bin/activate ; python manage.py test
+  - python manage.py test
 
 machine:
   timezone:
