@@ -9,5 +9,5 @@ class FutureSearchForm(SearchForm):
     This insures events are most recent."""
     def search(self):
         sqs = super(FutureSearchForm, self).search()
-        return sqs.filter(start_date__gte=datetime.now())
+        return sqs.filter(start_dateTime__gte=datetime.now())
 
