@@ -438,10 +438,10 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
 )
 
-BOWER_COMPONENTS_ROOT = '/bond/bower_components/'
+BOWER_COMPONENTS_ROOT = os.path.join(SITE_ROOT, 'bower_components')
 
 BOWER_INSTALLED_APPS = (
-    # 'notify',
+    'notify',
     'oauth-js',
 )
 
