@@ -48,8 +48,9 @@ class Command(BaseCommand):
             },
 
             # # ticket_free=event.get('ticket_classes', {}).get('fee', 'Not Available'),
-            #                 # cost=event['ticket_classes'].get('cost', {}).get('display', 'Not Available'),
-            #                 # cost_currency=event.get('ticket_classes', {}).get('cost', {}).get('currency', 'Not Available'),
+            # # cost=event['ticket_classes'].get('cost', {}).get('display', 'Not Available'),
+            #                 # cost_currency=event.get('ticket_classes', {})
+            # .get('cost', {}).get('currency', 'Not Available'),
             #                 # event_status=event.get('status', 'Not Available')
         )
 
@@ -58,15 +59,15 @@ class Command(BaseCommand):
         page = 0
 
         cities = [
-             "san+francisco",
-             "boston", "new+york", "houston",
-             "los+angeles", "baltimore", "austin",
-             "san+antonio", "nashville", "seattle", "philadelphia",
-             "columbus", "dallas", "denver", "salt+lake+city",
-             "las+vegas", "washington", "kansas+city",
-             "minneapolis", "atlanta", "orlando", "richmond",
-             "jacksonville", "charlotte", "milwaukee",
-             "portland"
+            "san+francisco",
+            "boston", "new+york", "houston",
+            "los+angeles", "baltimore", "austin",
+            "san+antonio", "nashville", "seattle", "philadelphia",
+            "columbus", "dallas", "denver", "salt+lake+city",
+            "las+vegas", "washington", "kansas+city",
+            "minneapolis", "atlanta", "orlando", "richmond",
+            "jacksonville", "charlotte", "milwaukee",
+            "portland"
         ]
         while page < 50:
             for city in cities:
@@ -101,9 +102,12 @@ class Command(BaseCommand):
                     event = events[x]
                     try:
                         self.save_event_from_json(event)
-
-                    except:
-                        logger.error('Eventbrite error')
+                    except (TypeError, NameError, ValueError, IOError) as e:
+                        logger.error('Eventbrite error', e)
+                    except Exception as inst:
+                        print type(inst)  # the exception instance
+                        print inst.args  # arguments stored in .args
+                        print inst
                         # logger.error('{} from Eventbrite with index of {}'.format(event, x))
                         # logger.error('The city was: {}'.format(city))
                         # logger.debug(event)

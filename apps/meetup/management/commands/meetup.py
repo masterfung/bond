@@ -2,15 +2,16 @@ from __future__ import absolute_import
 import json
 import datetime
 import logging
+
 from django.core.management.base import BaseCommand
 from django.utils.html import strip_tags
 from requests import get
-import pytz
-from pytz import timezone
 from tzlocal import get_localzone
 from dateutil.relativedelta import relativedelta
+
 from apps.meetup.models import Event
 from settings.production import MEETUP_API_KEY
+
 # from settings.local import MEETUP_API_KEY
 
 logger = logging.getLogger(__name__)
@@ -143,8 +144,11 @@ class Command(BaseCommand):
                                 }
 
                             )
-                    except:
-                        logger.error('Meetup error')
+                    except (TypeError, NameError, ValueError, IOError) as e:
+                        logger.error('Meetup error', e)
                         logger.error('{} from Meetup with index of {}'.format(event, x))
                         logger.error('{} city, state {}'.format(place['city'], place['state']))
-
+                    except Exception as inst:
+                        print type(inst)  # the exception instance
+                        print inst.args  # arguments stored in .args
+                        print inst

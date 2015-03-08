@@ -8,6 +8,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        for event in Event.objects.all():
+        all_events = list(Event.objects.all())
+        for event in all_events:
             event.description = strip_tags(event.description)
             event.save()
