@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'collectfast',
     'django.contrib.staticfiles',
     'django.contrib.sites',  # 'registration',
     'apps.profiles',
@@ -213,7 +214,7 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 
 # Use Amazon S3 and RequireJS for static files storage.
 
-STATICFILES_STORAGE = "require_s3.storage.OptimizedCachedStaticFilesStorage"
+STATICFILES_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 
 # Amazon S3 settings.
 
@@ -238,6 +239,8 @@ AWS_S3_SECURE_URLS = True
 AWS_REDUCED_REDUNDANCY = False
 
 AWS_IS_GZIPPED = False
+
+AWS_PRELOAD_METADATA = True
 
 STATIC_URL = "https://bondandme.s3.amazonaws.com/"
 
@@ -435,7 +438,7 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
 )
 
-# BOWER_COMPONENTS_ROOT = '/bond/bower_components/'
+BOWER_COMPONENTS_ROOT = '/bond/bower_components/'
 
 BOWER_INSTALLED_APPS = (
     # 'notify',
