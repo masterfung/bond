@@ -76,7 +76,7 @@ INSTALLED_APPS = (
     'tzlocal',
     'compressor',
     'django_coverage',
-    'jasmine',
+    # 'jasmine',
     'oauth2_provider',
     'corsheaders',
     'opbeat.contrib.django',
@@ -315,7 +315,7 @@ CACHES = memcacheify()
 AUTHENTICATION_BACKENDS = (
     'social.backends.open_id.OpenIdAuth',
     'social.backends.facebook.FacebookOAuth2',
-    'social.backends.linkedin.LinkedinOAuth2',
+    # 'social.backends.linkedin.LinkedinOAuth2',
     'social.backends.twitter.TwitterOAuth',
     "django.contrib.auth.backends.ModelBackend",
 )
