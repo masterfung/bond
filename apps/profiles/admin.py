@@ -24,8 +24,8 @@ class ProfileAdmin(UserAdmin):
             )}),
         )
 
-    list_display = ['username', 'provider', 'city', 'zip_code']
-    search_fields = ['username', 'provider', 'city']
+    list_display = ['id', 'username', 'provider', 'city', 'zip_code']
+    search_fields = ['username', 'provider', 'city', 'zip_code']
 
 
 @admin.register(Interest)

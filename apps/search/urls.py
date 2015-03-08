@@ -10,5 +10,5 @@ from haystack.views import SearchView
 
 
 urlpatterns = patterns('haystack.views',
-    url(r'^$', SearchView(form_class=FutureSearchForm), name='haystack_search'),
+                       url(r'^$', SearchView(form_class=FutureSearchForm), name='haystack_search'),
 )

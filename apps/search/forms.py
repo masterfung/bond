@@ -1,6 +1,5 @@
 from haystack.forms import SearchForm
 from django.utils import timezone
-from apps.profiles.models import UserCity
 
 
 class FutureSearchForm(SearchForm):

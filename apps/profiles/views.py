@@ -1,10 +1,7 @@
-import datetime
 import logging
-from os import write
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 from django.views.decorators.cache import cache_page
 import pytz
 from django.utils import timezone
@@ -45,6 +42,7 @@ def whyus(request):
 
 def angular(request):
     return render(request, 'angular.html')
+
 
 @login_required
 def settings(request):
@@ -95,7 +93,7 @@ def profile(request):
     """
 
     """
-    current_time = timezone.localtime(timezone.now())
+    current_time = timezone.now()
 
     city_event = Event.objects.filter(city=request.user.city,
                                       start_dateTime__gte=current_time).order_by('?')[:8]

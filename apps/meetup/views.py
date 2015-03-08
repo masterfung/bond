@@ -44,16 +44,15 @@ def meetup_oauth_connect(request):
     # token = callback.fetch_token(ACCESS_TOKEN_URL, client_secret=client_secret, authorization_response="/")
     # print "{} is the token".format(token)
 
-
     return render(request, 'meetup/meetup_oauth.html')
 
 
 @csrf_exempt
 def autocomplete(request):
     """
-
+    Insure autocomplete to the search query and return result as JSON.
     """
-    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('q', ''))[:5]
+    sqs = SearchQuerySet().autocomplete(content_auto=request.POST.get('q', ''))[:5]
     suggestions = [result.event_name for result in sqs]
     the_data = json.dumps({
         'results': suggestions
@@ -64,7 +63,7 @@ def autocomplete(request):
 @login_required
 def events(request):
     """
-
+    Output events data to the events.html page.
     """
     events = Event.objects.all()
     return render(request, 'events/events.html')
