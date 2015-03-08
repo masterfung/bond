@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'apps.eventbrite',
     'rest_framework',
     'djcelery',
-    'djangular',
+    # 'djangular',
     # 'whoosh',
     'haystack',
     'herokuapp',
