@@ -9,7 +9,7 @@ PyYAML==3.11
 Pygments==1.6
 Scrapy==0.24.4
 Twisted==14.0.0
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 Whoosh==2.6.0
 amqp==1.4.6
 anyjson==0.3.3
