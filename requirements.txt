@@ -118,6 +118,6 @@ sure==1.2.7
 tzlocal==1.1.2
 urllib3==1.10.2
 w3lib==1.10.0
-waitress==0.8.9
+waitress==1.4.2
 wsgiref==0.1.2
 zope.interface==4.1.1
