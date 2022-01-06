@@ -17,7 +17,7 @@ argparse==1.2.1
 bcrypt==1.0.2
 billiard==3.3.0.19
 boto==2.36.0
-celery==3.1.17
+celery==5.2.2
 certifi==14.05.14
 cffi==0.8.6
 characteristic==14.1.0
