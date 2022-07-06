@@ -73,7 +73,7 @@ jasmine-core==2.0.2
 kombu==3.0.24
 lettuce==0.2.19
 logan==0.5.10
-lxml==3.3.6
+lxml==4.9.1
 mailchimp==2.0.9
 mock==1.0.1
 mockfs==1.0.1
