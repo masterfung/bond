@@ -112,7 +112,7 @@ setproctitle==1.1.8
 sh==1.09
 simplejson==3.6.5
 six==1.9.0
-sqlparse==0.1.14
+sqlparse==0.6.0
 static3==0.5.1
 sure==1.2.7
 tzlocal==1.1.2
